@@ -2,6 +2,7 @@ package at.fhjoanneum.myusi.Security
 
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.context.annotation.Configuration
+import org.springframework.http.HttpMethod
 import org.springframework.security.config.annotation.web.builders.HttpSecurity
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter
@@ -15,8 +16,10 @@ class WebSecurityConfiguration : WebSecurityConfigurerAdapter() {
     override fun configure(http: HttpSecurity) {
         http
             .authorizeRequests()
-            .antMatchers("/login").permitAll()
-            .anyRequest().authenticated()
+            //.antMatchers("/**").authenticated()
+            .antMatchers(HttpMethod.GET, "/", "/login").permitAll()
+            .antMatchers("/denyAccess").authenticated()
+            //.anyRequest().authenticated()
             .and()
             .formLogin()
             .and()

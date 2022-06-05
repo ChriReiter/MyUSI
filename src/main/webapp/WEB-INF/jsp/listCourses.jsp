@@ -21,6 +21,9 @@
 <head>
 </head>
 <body>
+<h2>
+    Test content in website
+</h2>
 </body>
 </html>
 </layout:page-container>

@@ -26,6 +26,11 @@ class CurrentUserControllerAdvice {
     @ModelAttribute
     fun addCurrentUser(model: Model) {
         val auth = SecurityContextHolder.getContext().authentication
-        model.addAttribute("currentUser", auth.name)
+        if (auth.name != "anonymousUser") {
+            model.addAttribute("currentUser", auth.name)
+        } else {
+            model.addAttribute("currentUser", "")
+        }
+
     }
 }
