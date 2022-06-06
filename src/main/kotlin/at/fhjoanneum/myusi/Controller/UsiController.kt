@@ -1,8 +1,8 @@
 package at.fhjoanneum.myusi.Controller
 
-import at.fhjoanneum.myusi.Entity.Gender
-import at.fhjoanneum.myusi.Entity.User
-import at.fhjoanneum.myusi.Entity.UserRole
+import at.fhjoanneum.myusi.Entity.*
+import at.fhjoanneum.myusi.Repository.CourseRepository
+import at.fhjoanneum.myusi.Repository.LocationRepository
 import at.fhjoanneum.myusi.Repository.UserRepository
 import org.springframework.dao.DataIntegrityViolationException
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
@@ -18,7 +18,7 @@ import java.time.LocalDate
 import javax.validation.Valid
 
 @Controller
-class UsiController(val userRepository: UserRepository) {
+class UsiController(val userRepository: UserRepository, val courseRepository: CourseRepository, val locationRepository: LocationRepository) {
     @RequestMapping(path=["/","/listCourses"], method = [RequestMethod.GET])
     fun listCourses(model: Model): String {
         return "listCourses"
@@ -49,6 +49,56 @@ class UsiController(val userRepository: UserRepository) {
 
 
         return  "redirect:listCourses"//"redirect:/editEmployee?id=" + employee.id
+    }
+
+    @RequestMapping(path=["/createCourse"], method = [RequestMethod.GET])
+    fun createCourse(model: Model): String {
+        //model["course"] = Course()
+        return populateCreateCourseModel(model)
+    }
+
+    private fun populateCreateCourseModel(model: Model): String {
+        model["locations"] = locationRepository.findAll()
+        var housenum: Int = 1//, locations = Location(3, "test", "test", "test", "test", "test", "1"), users = listOf(),
+        model["course"] = Course(courseName = "Test", numSpaces = 20, description = "Test Course", price = 35.00f, timeStart = "00:00", timeEnd = "00:30", date = LocalDate.now())
+        return "createCourse"
+    }
+
+    @RequestMapping("/newCourse", method = [RequestMethod.POST])
+    fun newCourse(@ModelAttribute @Valid course: Course, bindingResult: BindingResult, model: Model): String {//@Valid @ModelAttribute user: User, bindingResult: BindingResult, model: Model): String {
+        if (bindingResult.hasErrors()) {
+            return populateCreateCourseModel(model)
+        }
+        try {
+            courseRepository.save(course)
+        }  catch (e: DataIntegrityViolationException) {
+            return populateCreateCourseModel(model)
+        } catch (e: Exception) {
+            return populateCreateCourseModel(model)
+        }
+
+
+        return  "redirect:listCourses"//"redirect:/editEmployee?id=" + employee.id
+    }
+
+    @RequestMapping(path=["/createLocation"], method = [RequestMethod.GET])
+    fun createLocation(model: Model): String {
+        model["course"] = Location()
+        return "createLocation"
+    }
+
+    @RequestMapping("/newLocation", method = [RequestMethod.POST])
+    fun newLocation(@ModelAttribute @Valid location: Location, bindingResult: BindingResult, model: Model): String {//@Valid @ModelAttribute user: User, bindingResult: BindingResult, model: Model): String {
+        try {
+            locationRepository.save(location)
+        }  catch (e: DataIntegrityViolationException) {
+            return "createLocation"
+        } catch (e: Exception) {
+            return "createLocation"
+        }
+
+
+        return  "redirect:createCourse"//"redirect:/editEmployee?id=" + employee.id
     }
 }
 

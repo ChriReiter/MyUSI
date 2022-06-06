@@ -9,7 +9,8 @@ import javax.validation.constraints.Size
 
 enum class UserRole {
     ROLE_USER,
-    ROLE_ADMIN
+    ROLE_ADMIN,
+    ROLE_INSTRUCTOR
 }
 
 enum class Gender {

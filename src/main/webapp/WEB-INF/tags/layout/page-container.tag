@@ -49,6 +49,8 @@
                             <a class="dropdown-item" href="/register" class="nav-link">Register</a>
                             <a class="dropdown-item" href="/login" class="nav-link">Login</a>
                         </c:if>
+                        <a class="dropdown-item" href="/createCourse" class="nav-link">Create Course</a>
+
                     </div>
                 </li>
 
