@@ -26,6 +26,17 @@
                 <c:forEach items="${courses}" var="course">
                     <div class="col-lg-4 col-md-6 col-sm-12">
                         <div class="card border-dark mb-5 shadow-sm text-center text-white">
+                            <div class="card-header bg-black">
+                                <div class="row">
+                                    <div class="col">
+                                        #${course.id}
+                                    </div>
+                                    <div class="col">
+                                        Free spaces: ${course.numSpaces - course.participants.size()}
+                                    </div>
+                                </div>
+
+                            </div>
                             <img class="card-img-top" src="img/Screenshot (4).png"/>
                             <div class="card-body bg-black">
                                 <div class="card-title">
