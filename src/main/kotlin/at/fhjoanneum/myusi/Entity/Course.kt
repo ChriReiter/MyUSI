@@ -13,20 +13,17 @@ class Course (
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     var id: Int? = null,
     var courseName: String? = null,
-    //@GeneratedValue(strategy = GenerationType.IDENTITY)
-    //var courseNumber: Int? = null,
     var numSpaces: Int? = null,
     var description: String? = null,
     var price: Float? = null,
     @DateTimeFormat
     var date: LocalDate? = null,
-    //@DateTimeFormat(pattern="hh:mm")
     var timeStart: String? = null,
-    //@DateTimeFormat(pattern="hh:mm")
     var timeEnd: String? = null,
-    //var prerequesites: List<String>? = MutableList(),
+    @ManyToOne
+    var instructor: User? = null,
     @ManyToMany
-    var users: List<User>? = null,
+    var participants: List<User>? = null,
     @ManyToOne
     var locations: Location? = null,
     //@OneToMany

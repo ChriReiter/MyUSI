@@ -14,11 +14,13 @@
     <%--@elvariable id="course" type="at.fhjoanneum.myusi.Entity.Course"--%>
     <form:form modelAttribute="course" method="post" action="newCourse">
         <form:hidden path="id" />
-        <form:hidden path="users"/>
+        <form:hidden path="participants"/>
+        <form:hidden path = "instructor"/>
 
 
         <fieldset>
             <legend>Create a new course</legend>
+            <c:out value="${currentUser}"/>
 
             <div class="mb-3">
                 <label for="inputCourseName" class="form-label${errors.hasFieldErrors('courseName') ? 'is-invalid' : ''}">Course Name</label>

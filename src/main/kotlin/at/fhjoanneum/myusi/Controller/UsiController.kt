@@ -5,6 +5,7 @@ import at.fhjoanneum.myusi.Repository.CourseRepository
 import at.fhjoanneum.myusi.Repository.LocationRepository
 import at.fhjoanneum.myusi.Repository.UserRepository
 import org.springframework.dao.DataIntegrityViolationException
+import org.springframework.security.core.context.SecurityContextHolder
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
 import org.springframework.stereotype.Controller
 import org.springframework.ui.Model
@@ -19,14 +20,16 @@ import javax.validation.Valid
 
 @Controller
 class UsiController(val userRepository: UserRepository, val courseRepository: CourseRepository, val locationRepository: LocationRepository) {
+
     @RequestMapping(path=["/","/listCourses"], method = [RequestMethod.GET])
-    fun listCourses(model: Model): String {
+    fun listEmployees(model: Model, @RequestParam(required = false) search: String? = null): String {
+        model["courses"] = courseRepository.findAll()
         return "listCourses"
     }
 
     @RequestMapping(path=["/register"], method = [RequestMethod.GET])
     fun register(model: Model): String {
-        model["user"] = User(username = "", password = "", role = UserRole.ROLE_USER, dayOfBirth = LocalDate.now(), gender = Gender.GENDER_MALE)
+        model["user"] = User(username = "", password = "", role = UserRole.ROLE_USER, dayOfBirth = LocalDate.now())
         return "register"
     }
 
@@ -48,19 +51,17 @@ class UsiController(val userRepository: UserRepository, val courseRepository: Co
         }
 
 
-        return  "redirect:listCourses"//"redirect:/editEmployee?id=" + employee.id
+        return  "redirect:listCourses"
     }
 
     @RequestMapping(path=["/createCourse"], method = [RequestMethod.GET])
     fun createCourse(model: Model): String {
-        //model["course"] = Course()
         return populateCreateCourseModel(model)
     }
 
     private fun populateCreateCourseModel(model: Model): String {
         model["locations"] = locationRepository.findAll()
-        var housenum: Int = 1//, locations = Location(3, "test", "test", "test", "test", "test", "1"), users = listOf(),
-        model["course"] = Course(courseName = "Test", numSpaces = 20, description = "Test Course", price = 35.00f, timeStart = "00:00", timeEnd = "00:30", date = LocalDate.now())
+        model["course"] = Course(date = LocalDate.now())
         return "createCourse"
     }
 
@@ -70,6 +71,9 @@ class UsiController(val userRepository: UserRepository, val courseRepository: Co
             return populateCreateCourseModel(model)
         }
         try {
+            val username = SecurityContextHolder.getContext().authentication.name
+            course.instructor = userRepository.findByUsername(username)
+            //course.instructor = SecurityContextHolder.getContext().authentication.name.
             courseRepository.save(course)
         }  catch (e: DataIntegrityViolationException) {
             return populateCreateCourseModel(model)
