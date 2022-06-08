@@ -20,7 +20,6 @@
 
         <fieldset>
             <legend>Create a new course</legend>
-            <c:out value="${currentUser}"/>
 
             <div class="mb-3">
                 <label for="inputCourseName" class="form-label${errors.hasFieldErrors('courseName') ? 'is-invalid' : ''}">Course Name</label>
@@ -38,8 +37,8 @@
                 <form:errors path="description" cssClass="invalid-feedback" />
             </div>
             <div class="mb-3">
-                <label for="inputPrice" class="form-label${errors.hasFieldErrors('price') ? 'is-invalid' : ''}">Price</label>
-                <form:input path="price" id="inputPrice"/>
+                <label for="inputPrice" class="form-label${errors.hasFieldErrors('price') ? 'is-invalid' : ''}">Price (in €)</label>
+                <form:input path="price" id="inputPrice" type="number" step="0.01"/>
                 <form:errors path="price" cssClass="invalid-feedback" />
             </div>
             <div class="mb-3">

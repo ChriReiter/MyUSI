@@ -15,7 +15,7 @@
         <form:hidden path="id" />
         <fieldset>
             <div class="mb-3">
-                <label for="inputName" class="form-label${errors.hasFieldErrors('name') ? 'is-invalid' : ''}">Street</label>
+                <label for="inputName" class="form-label${errors.hasFieldErrors('name') ? 'is-invalid' : ''}">Name</label>
                 <form:input path="name" id="inputName"/>
                 <form:errors path="name" cssClass="invalid-feedback" />
             </div>
