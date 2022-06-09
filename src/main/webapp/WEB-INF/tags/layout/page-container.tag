@@ -38,19 +38,15 @@
                     </a>
 
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="/listCourses">Cool Page</a>
                         <sec:authorize access="hasAuthority('ROLE_USER')">
-                            <a class="dropdown-item" href="/listCourses">Another Cool Page</a>
-                        </sec:authorize>
-                        <sec:authorize access="hasAuthority('ROLE_USER')">
-                            <a class="dropdown-item" href="/logout" class="nav-link">Logout</a>
+                            <a class="dropdown-item" href="/performLogout" class="nav-link">Logout</a>
                         </sec:authorize>
                         <c:if test="${currentUser == ''}">
-                            <a class="dropdown-item" href="/register" class="nav-link">Register</a>
                             <a class="dropdown-item" href="/login" class="nav-link">Login</a>
                         </c:if>
-                        <a class="dropdown-item" href="/createCourse" class="nav-link">Create Course</a>
-
+                        <sec:authorize access="hasAuthority('ROLE_INSTRUCTOR')">
+                            <a class="dropdown-item" href="/createCourse" class="nav-link">Create Course</a>
+                        </sec:authorize>
                     </div>
                 </li>
 

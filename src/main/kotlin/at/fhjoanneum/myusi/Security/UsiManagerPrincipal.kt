@@ -11,6 +11,12 @@ class UsiManagerPrincipal(val user: User) : UserDetails {
         if (user.role == UserRole.ROLE_ADMIN) {
             return mutableListOf(
                 SimpleGrantedAuthority(user.role.toString()),
+                SimpleGrantedAuthority(UserRole.ROLE_INSTRUCTOR.toString()),
+                SimpleGrantedAuthority(UserRole.ROLE_USER.toString())
+            )
+        } else if (user.role == UserRole.ROLE_INSTRUCTOR) {
+            return mutableListOf(
+                SimpleGrantedAuthority(user.role.toString()),
                 SimpleGrantedAuthority(UserRole.ROLE_USER.toString())
             )
         } else {

@@ -7,6 +7,7 @@ import at.fhjoanneum.myusi.Repository.LocationRepository
 import at.fhjoanneum.myusi.Repository.UserRepository
 import org.springframework.dao.DataIntegrityViolationException
 import org.springframework.format.annotation.DateTimeFormat
+import org.springframework.security.config.annotation.web.builders.HttpSecurity
 import org.springframework.security.core.context.SecurityContextHolder
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
 import org.springframework.stereotype.Controller
@@ -121,6 +122,17 @@ class UsiController(val userRepository: UserRepository, val courseRepository: Co
 
 
         return  "redirect:createCourse"//"redirect:/editEmployee?id=" + employee.id
+    }
+
+    @RequestMapping(path=["/login"], method = [RequestMethod.GET])
+    fun login(model: Model): String {
+        model["user"] = User(username = "", password = "", role = UserRole.ROLE_USER, dayOfBirth = LocalDate.now())
+        return "login"
+    }
+
+    @RequestMapping(path=["/performLogout"], method = [RequestMethod.GET])
+    fun logout(model: Model): String {
+        return "performLogout"
     }
 }
 

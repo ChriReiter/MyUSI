@@ -19,9 +19,11 @@ class WebSecurityConfiguration : WebSecurityConfigurerAdapter() {
             //.antMatchers("/**").authenticated()
             .antMatchers(HttpMethod.GET, "/", "/login").permitAll()
             .antMatchers("/denyAccess").authenticated()
-            //.anyRequest().authenticated()
             .and()
-            .formLogin()
+            .formLogin().loginPage("/login")
+            .and()
+            .logout().logoutUrl("/performLogout").logoutSuccessUrl("/")
+            .invalidateHttpSession(true).deleteCookies("JSESSIONID")
             .and()
             .rememberMe().key("uniqueAndSecret").userDetailsService(userDetailsService);
     }
