@@ -1,0 +1,162 @@
+* {
+
+}
+
+html, body {
+    background: #D7CDCC;
+}
+
+head {
+    background-color: #1D1E2C;
+}
+
+.navbar * {
+    background-color: #1D1E2C;
+}
+
+.navbar-expand-lg {
+    background-color: #1D1E2C;
+}
+
+.navbar-brand {
+    color: #4FB286;
+}
+
+.nav-link {
+    color: #50FFB1;
+}
+
+.nav-link:hover {
+    color: #4FB286;
+}
+
+.dropdown-item {
+    color: #50FFB1;
+}
+
+.dropdown-item:hover {
+    background-color: #1D1E2C;
+    color: #4FB286;
+}
+
+button {
+    background-color: #50FFB1;
+    color: #1D1E2C;
+    border: 1px solid #1D1E2C;
+    border-radius: 8px;
+}
+
+button:hover {
+    background-color: #4FB286;
+}
+
+button::selection {
+    background-color: #1D1E2C;
+}
+
+
+#searchDropdown {
+    background-color: #D7CDCC;
+    border: 2px solid #1D1E2C;
+    border-radius: 10px;
+    padding: 15px;
+    padding-top: 10px;
+}
+
+#inputSearch {
+    border-radius: 50px;
+    padding: 10px;
+    outline: none;
+}
+
+#searchButton {
+    height: 100%;
+    color: #fff;
+    background: #D7CDCC;
+    border: none;
+    font-size: 24px;
+    text-align: center;
+}
+
+#toggleDropdown {
+    height: 100%;
+    color: #fff;
+    background: #D7CDCC;
+    border: none;
+    font-size: 25px;
+}
+
+
+
+.card {
+    background-color: #ffffff;
+    color: #1D1E2C;
+    border-radius: 50px;
+    border: 2px solid #1D1E2C;
+    text-align: left;
+    max-width: 100%;
+}
+
+.card-header {
+    color: #1D1E2C;
+    text-align: center;
+}
+
+.card-img-top {
+    height: 100%;
+    object-fit: cover;
+}
+
+.card-title {
+    text-underline: #1D1E2C;
+    text-underline-mode: true;
+    size: 30px;
+}
+
+.card-body {
+    line-height: 5px;
+    padding-left: 10%;
+    padding-right: 10%;
+}
+
+.card-footer {
+    background-color: transparent;
+    border-top-color: transparent;
+    text-align: center;
+}
+
+#bookCourseButton {
+    background-color: #50FFB1;
+    color: #1D1E2C;
+    border-color: #1D1E2C;
+    text-align: center;
+}
+
+#bookCourseButton:hover {
+    background-color: #4FB286;
+}
+
+.container-xl {
+    padding: 20px;
+    border: 2px solid #1D1E2C;
+    border-radius: 30px;
+}
+
+#freeSpaces {
+    border: 2px solid #1D1E2C;
+    border-radius: 30px;
+    background-color: #4FB286;
+}
+
+#courseNumber {
+    border: 2px solid #1D1E2C;
+    border-radius: 30px;
+    background-color: #D7CDCC;
+}
+
+#courseFull {
+
+}
+
+
+

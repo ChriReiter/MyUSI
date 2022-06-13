@@ -6,24 +6,31 @@ import java.sql.Time
 import java.time.LocalDate
 import java.time.LocalDateTime
 import javax.persistence.*
+import javax.validation.constraints.NotNull
 
 @Entity
 class Course (
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     var id: Int? = null,
+    @field:NotNull
     var courseName: String? = null,
+    @field:NotNull
     var numSpaces: Int? = null,
+    @field:NotNull
     var description: String? = null,
+    @field:NotNull
     var price: Float? = null,
     @DateTimeFormat
     var date: LocalDate? = null,
+    @field:NotNull
     var timeStart: String? = null,
+    @field:NotNull
     var timeEnd: String? = null,
     @ManyToOne
     var instructor: User? = null,
     @ManyToMany
-    var participants: List<User>? = null,
+    var participants: MutableSet<User>? = null,
     @ManyToOne
     var locations: Location? = null,
     //@OneToMany

@@ -6,6 +6,7 @@ import at.fhjoanneum.myusi.Repository.CourseRepository
 import at.fhjoanneum.myusi.Repository.LocationRepository
 import at.fhjoanneum.myusi.Repository.UserRepository
 import org.springframework.dao.DataIntegrityViolationException
+import org.springframework.data.repository.findByIdOrNull
 import org.springframework.format.annotation.DateTimeFormat
 import org.springframework.security.config.annotation.web.builders.HttpSecurity
 import org.springframework.security.core.context.SecurityContextHolder
@@ -32,16 +33,13 @@ class UsiController(val userRepository: UserRepository, val courseRepository: Co
                       , @RequestParam(required = false) timeStart: String? = null, @RequestParam(required = false) timeEnd: String? = null
                       , @RequestParam(required = false) instructor: User? = null, @RequestParam(required = false) location: Location? = null
     ): String {
-        //val timeStart2: String? = timeStart.plus(":00")
         if (date != null && date != "") {
             val date2 = LocalDate.parse(date, DateTimeFormatter.ISO_LOCAL_DATE)
             model["courses"] = courseRepository.findByCourseName(search, date2, timeStart, timeEnd, instructor, location)//, date, instructor, location)
         } else {
             model["courses"] = courseRepository.findByCourseName(search, null, timeStart, timeEnd, instructor, location)//, date, instructor, location)
         }
-
-        //model["courses"] = courseRepository.findByCourseName(search, date2, instructor, location)//, date, instructor, location)
-        model["instructors"] = userRepository.findAll()
+        model["instructors"] = userRepository.findByRole(UserRole.ROLE_INSTRUCTOR)
         model["locations"] = locationRepository.findAll()
         return "listCourses"
     }
@@ -133,6 +131,19 @@ class UsiController(val userRepository: UserRepository, val courseRepository: Co
     @RequestMapping(path=["/performLogout"], method = [RequestMethod.GET])
     fun logout(model: Model): String {
         return "performLogout"
+    }
+
+    @RequestMapping(path=["/courseRegistration"], method = [RequestMethod.POST])
+    fun courseRegistration(model: Model, @RequestParam id: Int): String {
+        val course: Course = courseRepository.findById(id).get()
+        val username = SecurityContextHolder.getContext().authentication.name
+        if (username != "anonymousUser") {
+            val user = userRepository.findByUsername(username)
+
+            course.participants?.add(user)
+            courseRepository.save(course)
+        }
+        return listCourses(model)
     }
 }
 
