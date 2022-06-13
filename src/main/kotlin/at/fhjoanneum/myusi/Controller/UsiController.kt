@@ -122,16 +122,7 @@ class UsiController(val userRepository: UserRepository, val courseRepository: Co
         return  "redirect:createCourse"//"redirect:/editEmployee?id=" + employee.id
     }
 
-    @RequestMapping(path=["/login"], method = [RequestMethod.GET])
-    fun login(model: Model): String {
-        model["user"] = User(username = "", password = "", role = UserRole.ROLE_USER, dayOfBirth = LocalDate.now())
-        return "login"
-    }
 
-    @RequestMapping(path=["/performLogout"], method = [RequestMethod.GET])
-    fun logout(model: Model): String {
-        return "performLogout"
-    }
 
     @RequestMapping(path=["/courseRegistration"], method = [RequestMethod.POST])
     fun courseRegistration(model: Model, @RequestParam id: Int): String {
