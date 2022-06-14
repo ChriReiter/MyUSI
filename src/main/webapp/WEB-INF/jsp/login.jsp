@@ -16,7 +16,7 @@
         <form:hidden path="id" />
         <form:hidden path="role"/>
         <fieldset>
-            <legend>Register</legend>
+            <legend>Login</legend>
             <div class="mb-3">
                 <label for="inputUsername" class="form-label${errors.hasFieldErrors('username') ? 'is-invalid' : ''}">Username</label>
                 <form:input path="username" id="inputUsername" type="text" class="form-control"/>
@@ -26,7 +26,13 @@
                 <form:input path="password" id="inputPassword" type="password" class="form-control"/>
             </div>
             <div class="mb-3">
-                <form:errors />
+                <c:if test="${param.containsKey('error')}">
+                    <div class="alert alert-danger" role="alert">
+                       <c:out value="Username or password is wrong!"></c:out>
+                    </div>
+
+                </c:if>
+
             </div>
 
             <div class="mb-3">
