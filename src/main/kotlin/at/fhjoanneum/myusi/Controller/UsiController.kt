@@ -44,32 +44,7 @@ class UsiController(val userRepository: UserRepository, val courseRepository: Co
         return "listCourses"
     }
 
-    @RequestMapping(path=["/register"], method = [RequestMethod.GET])
-    fun register(model: Model): String {
-        model["user"] = User(username = "", password = "", role = UserRole.ROLE_USER, dayOfBirth = LocalDate.now())
-        return "register"
-    }
 
-    @RequestMapping("/newUser", method = [RequestMethod.POST])
-    fun newUser(@ModelAttribute @Valid user: User, bindingResult: BindingResult, model: Model): String {//@Valid @ModelAttribute user: User, bindingResult: BindingResult, model: Model): String {
-        val originalPassword = user.password
-        if (bindingResult.hasErrors()) {
-            return "register"
-        }
-        try {
-            user.password = BCryptPasswordEncoder().encode(originalPassword)
-            userRepository.save(user)
-        }  catch (e: DataIntegrityViolationException) {
-            user.password = originalPassword
-            return "register"
-        } catch (e: Exception) {
-            user.password = originalPassword
-            return "register"
-        }
-
-
-        return  "redirect:listCourses"
-    }
 
     @RequestMapping(path=["/createCourse"], method = [RequestMethod.GET])
     fun createCourse(model: Model): String {
