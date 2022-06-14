@@ -19,4 +19,6 @@ interface CourseRepository : JpaRepository<Course, Int> {
     , @Param("timeStart") timeStart: String?, @Param("timeEnd") timeEnd: String?
     , @Param("instructor") instructor: User?, @Param("location") location: Location?
     ): List<Course>
+
+    fun findCourseById(@Param("id") id: Int?): Course
 }
