@@ -10,7 +10,9 @@
 
 
 <layout:page-container title="Course Details" activePage="courseDetails">
-    <table class="table table-bordered">
+
+    <h1 class="mt-4">Details</h1>
+    <table class="table table-bordered border-secondary">
         <tbody>
             <tr>
                 <th>Title</th>
@@ -26,7 +28,12 @@
             </tr>
             <tr>
                 <th>Free spots</th>
-                <td>${course.numSpaces - course.participants.size()}</td>
+                <c:if test="${course.numSpaces - course.participants.size() > 0}">
+                    <td class="text-success">${course.numSpaces - course.participants.size()}</td>
+                </c:if>
+                <c:if test="${course.numSpaces - course.participants.size() <= 0}">
+                    <td class="text-danger">${course.numSpaces - course.participants.size() > 0}</td>
+                </c:if>
             </tr>
             <tr>
                 <th>Waiting Queue</th>
@@ -38,7 +45,29 @@
             </tr>
             <tr>
                 <th>Price</th>
-                <td>${course.price}</td>
+<%--                <td>${course.price}</td>--%>
+                <td>
+                    <fmt:formatNumber value="${course.price}" type="currency" currencySymbol="€"/>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h1 class="mt-4">Dates</h1>
+    <table class="table table-bordered border-secondary">
+        <thead>
+            <th scope="col">Date</th>
+            <th scope="col">Time</th>
+            <th scope="col">Location</th>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    <fmt:parseDate value="${course.date}" pattern="yyyy-MM-dd" var="parsedDate" type="date"/>
+                    <fmt:formatDate value="${parsedDate}" type="date" pattern="dd.MM.yyyy"/>
+                </td>
+                <td> ${course.timeStart.substring(0, 5)} - ${course.timeEnd.substring(0, 5)}</td>
+                <td>${course.locations.name}</td>
             </tr>
         </tbody>
     </table>
