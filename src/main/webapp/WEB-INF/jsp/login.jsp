@@ -16,6 +16,16 @@
         <form:hidden path="id" />
         <form:hidden path="role"/>
         <fieldset>
+            <div class="mb-3">
+                <c:if test="${param.containsKey('error')}">
+                    <div class="alert alert-danger" role="alert">
+
+                        <c:out value="Username or password is wrong!"></c:out>
+                    </div>
+
+                </c:if>
+
+            </div>
             <legend>Login</legend>
             <div class="mb-3">
                 <label for="inputUsername" class="form-label${errors.hasFieldErrors('username') ? 'is-invalid' : ''}">Username</label>
@@ -25,19 +35,11 @@
                 <label for="inputPassword" class="form-label${errors.hasFieldErrors('password') ? 'is-invalid' : ''}">Password</label>
                 <form:input path="password" id="inputPassword" type="password" class="form-control"/>
             </div>
-            <div class="mb-3">
-                <c:if test="${param.containsKey('error')}">
-                    <div class="alert alert-danger" role="alert">
-                       <c:out value="Username or password is wrong!"></c:out>
-                    </div>
 
-                </c:if>
-
-            </div>
 
             <div class="mb-3">
-                <button type="submit" class="btn btn-primary">Submit</button>
-                <a href="listCourses" class="btn btn-default">Cancel</a>
+                <button type="submit" class="btn btn-success">Login</button>
+                <%--<a href="listCourses" class="btn btn-default">Cancel</a>--%>
             </div>
             <div class="mb-3">
                 <p>You don't have an account? Register <a href="register">here</a> </p>

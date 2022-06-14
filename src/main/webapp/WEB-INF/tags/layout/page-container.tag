@@ -23,7 +23,9 @@
         <a class="navbar-brand" href="/">MyUSI</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
+<%--            <span class="navbar-toggler-icon"></span>--%>
+            <i class="bi bi-list darkgreen"></i>
+
         </button>
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -64,6 +66,12 @@
     </div>
 
     <!-- Messages ----------------------------------------------------------- -->
+
+    <!-- Error message ----------------------------------------------------------- -->
+    <c:if test="${not empty errorMessage}">
+        <div class="alert alert-danger" role="alert">${errorMessage}</div>
+    </c:if>
+    <!-- Error message ----------------------------------------------------------- -->
 
     <!-- Error message ----------------------------------------------------------- -->
     <c:if test="${not empty errorMessage}">

@@ -45,10 +45,11 @@ button {
     border: 1px solid #1D1E2C;
     border-radius: 8px;
 }
-
-button:hover {
-    background-color: #4FB286;
+.darkgreen {
+    color: #4FB286;
+    font-size: 2em;
 }
+
 
 button::selection {
     background-color: #1D1E2C;
