@@ -111,7 +111,10 @@
                                 </div>
 
                             </div>
-                            <img class="card-img-top" src="img/Screenshot (4).png"/>
+                            <a href="/courseDetails?id=${course.id}">
+                                <sec:csrfInput/>
+                                <img class="card-img-top" src="img/Screenshot (4).png" type="submit" />
+                            </a>
                             <div class="card-body">
                                 <div class="card-title">
                                     <h4>${course.courseName}</h4>
@@ -143,10 +146,8 @@
                                                     <button id="bookCourseButton" type="submit" class="btn btn-outline-primary">Book Course</button>
                                                 </form>
                                             </c:if>
-
                                         </div>
                                     </div>
-
                                 </div>
                             </div>
                         </div>

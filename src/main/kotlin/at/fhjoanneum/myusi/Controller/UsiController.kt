@@ -136,5 +136,13 @@ class UsiController(val userRepository: UserRepository, val courseRepository: Co
         }
         return listCourses(model)
     }
+
+    @RequestMapping(path=["/courseDetails"], method = [RequestMethod.GET])
+    fun courseDetails(model: Model, @RequestParam id: Int): String {
+        val course = courseRepository.findCourseById(id)
+        model["course"] = course
+
+        return "courseDetails"
+    }
 }
 
