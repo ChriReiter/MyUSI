@@ -28,9 +28,9 @@ class User(
     var username: String,
     @Column(nullable = false, unique = true)
     var password: String,
-    @field:NotNull(message = "Field cannot be empty")
+    @field:Size(min = 1, max = 240, message = "Field cannot be empty")
     var firstName: String? = null,
-    @field:NotNull(message = "Field cannot be empty")
+    @field:Size(min = 1, max = 240, message = "Field cannot be empty")
     var lastName: String? = null,
     @field:NotNull
     var university: String? = null,

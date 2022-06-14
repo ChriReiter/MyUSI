@@ -19,23 +19,23 @@
         <legend>Register</legend>
 
         <div class="mb-3">
-            <label for="inputFirstName" class="form-label${errors.hasFieldErrors('firstName') ? 'is-invalid' : ''}">First Name</label>
-            <form:input path="firstName" id="inputFirstName"/>
+            <label for="inputFirstName" class="form-label ${errors.hasFieldErrors('firstName') ? 'is-invalid' : ''}">First Name</label>
+            <form:input path="firstName" id="inputFirstName" type="text" class="form-control"/>
             <form:errors path="firstName" cssClass="invalid-feedback" />
         </div>
         <div class="mb-3">
-            <label for="inputLastName" class="form-label${errors.hasFieldErrors('lastName') ? 'is-invalid' : ''}">Last Name</label>
-            <form:input path="lastName" id="inputLastName"/>
+            <label for="inputLastName" class="form-label ${errors.hasFieldErrors('lastName') ? 'is-invalid' : ''}">Last Name</label>
+            <form:input path="lastName" id="inputLastName" type="text" class="form-control"/>
             <form:errors path="lastName" cssClass="invalid-feedback" />
         </div>
         <div class="mb-3">
-            <label for="inputEmail" class="form-label${errors.hasFieldErrors('email') ? 'is-invalid' : ''}">Email</label>
-            <form:input path="email" id="inputEmail"/>
+            <label for="inputEmail" class="form-label ${errors.hasFieldErrors('email') ? 'is-invalid' : ''}">Email</label>
+            <form:input path="email" id="inputEmail" type="email" class="form-control"/>
             <form:errors path="email" cssClass="invalid-feedback" />
         </div>
         <div class="mb-3">
-            <label for="inputTelephone" class="form-label${errors.hasFieldErrors('lastName') ? 'is-invalid' : ''}">Telephone</label>
-            <form:input path="telephone" id="inputTelephone"/>
+            <label for="inputTelephone" class="form-label ${errors.hasFieldErrors('lastName') ? 'is-invalid' : ''}">Telephone</label>
+            <form:input path="telephone" id="inputTelephone" type="tel" class="form-control"/>
             <form:errors path="email" cssClass="invalid-feedback" />
         </div>
         <div class="mb-3">
@@ -56,46 +56,49 @@
             </form:select>
         </div>
         <div class="mb-3">
-            <label for="inputUniversity" class="form-label${errors.hasFieldErrors('university') ? 'is-invalid' : ''}">University</label>
-            <form:input path="university" id="inputUniversity"/>
+            <label for="inputUniversity" class="form-label ${errors.hasFieldErrors('university') ? 'is-invalid' : ''}">University</label>
+            <form:input path="university" id="inputUniversity" type="text" class="form-control" />
             <form:errors path="university" cssClass="invalid-feedback" />
         </div>
         <div class="mb-3">
-            <label for="inputStreet" class="form-label${errors.hasFieldErrors('street') ? 'is-invalid' : ''}">Street</label>
-            <form:input path="street" id="inputStreet"/>
+            <label for="inputStreet" class="form-label ${errors.hasFieldErrors('street') ? 'is-invalid' : ''}">Street</label>
+            <form:input path="street" id="inputStreet" type="text" class="form-control"/>
             <form:errors path="street" cssClass="invalid-feedback" />
         </div>
         <div class="mb-3">
-            <label for="inputHousenum" class="form-label${errors.hasFieldErrors('housenum') ? 'is-invalid' : ''}">Number</label>
-            <form:input path="housenum" id="inputHousenum"/>
+            <label for="inputHousenum" class="form-label ${errors.hasFieldErrors('housenum') ? 'is-invalid' : ''}">Number</label>
+            <form:input path="housenum" id="inputHousenum" type="num" class="form-control"/>
             <form:errors path="housenum" cssClass="invalid-feedback" />
         </div>
         <div class="mb-3">
-            <label for="inputZip" class="form-label${errors.hasFieldErrors('zip') ? 'is-invalid' : ''}">Zip</label>
-            <form:input path="zip" id="inputZip"/>
+            <label for="inputZip" class="form-label ${errors.hasFieldErrors('zip') ? 'is-invalid' : ''}">Zip</label>
+            <form:input path="zip" id="inputZip" type="text" class="form-control"/>
             <form:errors path="zip" cssClass="invalid-feedback" />
         </div>
         <div class="mb-3">
-            <label for="inputCity" class="form-label${errors.hasFieldErrors('city') ? 'is-invalid' : ''}">City</label>
-            <form:input path="city" id="inputCity"/>
+            <label for="inputCity" class="form-label ${errors.hasFieldErrors('city') ? 'is-invalid' : ''}">City</label>
+            <form:input path="city" id="inputCity" type="text" class="form-control"/>
             <form:errors path="city" cssClass="invalid-feedback" />
         </div>
         <div class="mb-3">
-            <label for="inputCountry" class="form-label${errors.hasFieldErrors('country') ? 'is-invalid' : ''}">Country</label>
-            <form:input path="country" id="inputCountry"/>
+            <label for="inputCountry" class="form-label ${errors.hasFieldErrors('country') ? 'is-invalid' : ''}">Country</label>
+            <form:input path="country" id="inputCountry" type="text" class="form-control"/>
             <form:errors path="country" cssClass="invalid-feedback" />
         </div>
 
 
         <div class="mb-3">
-            <label for="inputUsername" class="form-label${errors.hasFieldErrors('username') ? 'is-invalid' : ''}">Username</label>
-            <form:input path="username" id="inputUsername"/>
+            <label for="inputUsername" class="form-label ${errors.hasFieldErrors('username') ? 'is-invalid' : ''}">Username</label>
+            <form:input path="username" id="inputUsername" type="text" class="form-control"/>
         </div>
         <div class="mb-3">
-            <label for="inputPassword" class="form-label${errors.hasFieldErrors('password') ? 'is-invalid' : ''}">Password</label>
-            <form:input path="password" id="inputPassword"/>
+            <label for="inputPassword" class="form-label ${errors.hasFieldErrors('password') ? 'is-invalid' : ''}">Password</label>
+            <form:input path="password" id="inputPassword" type="password" class="form-control"/>
         </div>
-
+        <div class="mb-3">
+            <label for="inputPassword" class="form-label ${errors.hasFieldErrors('password') ? 'is-invalid' : ''}">Confirm Password</label>
+            <form:input path="password" id="inputPassword" type="password" class="form-control"/>
+        </div>
 
         <div class="mb-3">
             <button type="submit" class="btn btn-primary">Submit</button>

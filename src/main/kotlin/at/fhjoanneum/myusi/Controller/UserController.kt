@@ -41,7 +41,9 @@ class UserController(val userRepository: UserRepository) {
     }
     @RequestMapping(path=["/register"], method = [RequestMethod.GET])
     fun register(model: Model): String {
-        model["user"] = User(username = "", password = "", role = UserRole.ROLE_USER, dayOfBirth = LocalDate.now())
+        if(!model.containsAttribute("user")){
+            model["user"] = User(username = "", password = "", role = UserRole.ROLE_USER, dayOfBirth = LocalDate.now())
+        }
         return "register"
     }
 
@@ -56,10 +58,12 @@ class UserController(val userRepository: UserRepository) {
             userRepository.save(user)
         }  catch (e: DataIntegrityViolationException) {
             user.password = originalPassword
-            return "register"
+            model["user"]=user
+            return register(model)
         } catch (e: Exception) {
             user.password = originalPassword
-            return "register"
+            model["user"]=user
+            return register(model)
         }
 
 
