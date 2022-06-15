@@ -114,12 +114,6 @@ button::selection {
     size: 30px;
 }
 
-.card-body {
-    line-height: 5px;
-    padding-left: 10%;
-    padding-right: 10%;
-}
-
 .card-footer {
     background-color: transparent;
     border-top-color: transparent;
@@ -140,6 +134,10 @@ button::selection {
 .container-xl {
     padding: 20px;
     border: 2px solid #1D1E2C;
+    border-radius: 30px;
+}
+
+.rounded-4{
     border-radius: 30px;
 }
 
