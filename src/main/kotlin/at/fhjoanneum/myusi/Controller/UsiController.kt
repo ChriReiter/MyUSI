@@ -58,7 +58,8 @@ class UsiController(val userRepository: UserRepository, val courseRepository: Co
     }
 
     @RequestMapping("/newCourse", method = [RequestMethod.POST])
-    fun newCourse(@ModelAttribute @Valid course: Course, bindingResult: BindingResult, model: Model): String {//@Valid @ModelAttribute user: User, bindingResult: BindingResult, model: Model): String {
+    fun newCourse(@ModelAttribute @Valid course: Course, bindingResult: BindingResult, model: Model,
+    @RequestParam(required = false) file: String? = null): String {//@Valid @ModelAttribute user: User, bindingResult: BindingResult, model: Model): String {
         if (bindingResult.hasErrors()) {
             return populateCreateCourseModel(model)
         }

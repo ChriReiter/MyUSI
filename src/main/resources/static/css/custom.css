@@ -116,8 +116,6 @@ button::selection {
 
 .card-body {
     line-height: 5px;
-    padding-left: 10%;
-    padding-right: 10%;
 }
 
 .card-footer {
@@ -143,20 +141,70 @@ button::selection {
     border-radius: 30px;
 }
 
+.chooseImage {
+    padding: 20px;
+    border: 2px solid #1D1E2C;
+    border-radius: 30px;
+}
+
 #freeSpaces {
     border: 2px solid #1D1E2C;
     border-radius: 30px;
     background-color: #4FB286;
+    height: 30px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 #courseNumber {
     border: 2px solid #1D1E2C;
     border-radius: 30px;
     background-color: #D7CDCC;
+    height: 30px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 #courseFull {
 
+}
+
+#uploadButton {
+    height: 40px;
+    width: 100%;
+    position: absolute;
+    bottom: 0%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #1D1E2C;
+    color: white;
+    line-height: 30px;
+    cursor: pointer;
+    display: none;
+}
+
+.image-preview {
+    width: 300px;
+    min-height: 100px;
+    border: 2px solid #1D1E2C;
+    margin-top: 15px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.image-preview-image {
+    display: none;
+    width: 100%;
+}
+
+.container-startscreen {
+    padding: 5%;
 }
 
 

@@ -61,9 +61,6 @@
 <div class="container" role="main">
 
 
-    <div class="page-header">
-        <h1>MyUSI</h1>
-    </div>
 
     <!-- Messages ----------------------------------------------------------- -->
 

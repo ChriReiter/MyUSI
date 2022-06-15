@@ -42,15 +42,15 @@ class User(
     var gender: Gender? = null,
     @field:NotNull(message = "Field cannot be empty")
     var country: String? = null,
-    @field:Size(min = 2, max = 240)
+    @field:NotNull(message = "Field cannot be empty")
     var city: String? = null,
-    @field:Size(min = 2, max = 240)
+    @field:NotNull(message = "Field cannot be empty")
     var zip: String? = null,
-    @field:Size(min = 2, max = 240)
+    @field:NotNull(message = "Field cannot be empty")
     var street: String? = null,
-    @field:NotNull()
+    @field:NotNull(message = "Field cannot be empty")
     var housenum: String? = null,
-    @field:Size(min = 2, max = 240)
+    @field:NotNull(message = "Field cannot be empty")
     var telephone: String? = null,
     @Enumerated(EnumType.STRING)
     var role: UserRole? = null
