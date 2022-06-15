@@ -13,79 +13,84 @@
     <div class="row">
         <div class="col-md-12">
                 <form id="searchform">
-                    <div class="row">
-                        <div class="col">
-                            <input id="inputSearch" name="search" class="form-control" style="width: 100%" value="${param.search}"/>
-                        </div>
-                        <div class="col-sm-1">
-                            <button id="searchButton" type="submit"><i class="bi bi-search"></i></button>
-                        </div>
-                        <div class="col-sm-1">
-                            <a id="toggleDropdown" class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                               data-bs-toggle="dropdown"
-                               aria-haspopup="true" aria-expanded="false">
-                            </a>
-                            <div id="searchDropdown" class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <div class="row">
-                                    <div class="col">
-                                        <label for="dateSearch" class="form-label">Date</label>
-                                        <input id="dateSearch" name="date" class="form-control" type="date" value="${param.date}"/>
-                                    </div>
-                                    <div class="col">
-                                        <label for="timeStartSearch" class="form-label">Start</label>
-                                        <input id="timeStartSearch" name="timeStart" class="form-control" type="time" value="${param.timeStart}"/>
-                                    </div>
-                                    <div class="col">
-                                        <label for="timeEndSearch" class="form-label">End</label>
-                                        <input id="timeEndSearch" name="timeEnd" class="form-control" type="time" value="${param.timeEnd}"/>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col">
+                    <div class="container-startscreen">
+                        <div class="row">
+                            <div class="col">
+                                <input id="inputSearch" name="search" class="form-control" style="width: 100%" value="${param.search}"/>
+                            </div>
+                            <div class="col-sm-1">
+                                <button id="searchButton" type="submit"><i class="bi bi-search"></i></button>
+                            </div>
+                            <div class="col-sm-1">
+                                <a id="toggleDropdown" class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                                   data-bs-toggle="dropdown"
+                                   aria-haspopup="true" aria-expanded="false">
+                                </a>
+                                <div id="searchDropdown" class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <div class="row">
                                         <div class="col">
-                                            <label for="instructorSearch" class="form-label">Instructor</label>
-                                            <select id="instructorSearch" name="instructor" class="form-control" value="${param.instructor}">
-                                                <option value=""></option>
-                                                <c:forEach var="instructor" items="${instructors}">
-                                                    <option value="${instructor.id}"<c:if
-                                                            test="${param.instructor == instructor.id}"> selected</c:if>>${instructor.firstName} ${instructor.lastName}</option>
-                                                </c:forEach>
-                                            </select>
+                                            <label for="dateSearch" class="form-label">Date</label>
+                                            <input id="dateSearch" name="date" class="form-control" type="date" value="${param.date}"/>
+                                        </div>
+                                        <div class="col">
+                                            <label for="timeStartSearch" class="form-label">Start</label>
+                                            <input id="timeStartSearch" name="timeStart" class="form-control" type="time" value="${param.timeStart}"/>
+                                        </div>
+                                        <div class="col">
+                                            <label for="timeEndSearch" class="form-label">End</label>
+                                            <input id="timeEndSearch" name="timeEnd" class="form-control" type="time" value="${param.timeEnd}"/>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col">
                                             <div class="col">
+                                                <label for="instructorSearch" class="form-label">Instructor</label>
+                                                <select id="instructorSearch" name="instructor" class="form-control" value="${param.instructor}">
+                                                    <option value=""></option>
+                                                    <c:forEach var="instructor" items="${instructors}">
+                                                        <option value="${instructor.id}"<c:if
+                                                                test="${param.instructor == instructor.id}"> selected</c:if>>${instructor.firstName} ${instructor.lastName}</option>
+                                                    </c:forEach>
+                                                </select>
                                                 <div class="col">
-                                                    <label for="locationSearch" class="form-label">Location</label>
-                                                    <select id="locationSearch" name="location" class="form-control" value="${param.location}">
-                                                        <option value=""></option>
-                                                        <c:forEach var="location" items="${locations}">
-                                                            <option value="${location.id}"<c:if
-                                                                    test="${param.location == location.id}"> selected</c:if>>${location.name}</option>
-                                                        </c:forEach>
-                                                    </select>
+                                                    <div class="col">
+                                                        <label for="locationSearch" class="form-label">Location</label>
+                                                        <select id="locationSearch" name="location" class="form-control" value="${param.location}">
+                                                            <option value=""></option>
+                                                            <c:forEach var="location" items="${locations}">
+                                                                <option value="${location.id}"<c:if
+                                                                        test="${param.location == location.id}"> selected</c:if>>${location.name}</option>
+                                                            </c:forEach>
+                                                        </select>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="col-sm-1" style="width: 30px; padding-top: 5%; margin-right: 5%; margin-left: auto;">
-                                    <button type="submit"><i class="bi bi-search"></i></button>
+                                    <div class="col-sm-1" style="width: 30px; padding-top: 5%; margin-right: 5%; margin-left: auto;">
+                                        <button type="submit"><i class="bi bi-search"></i></button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
+
                 </form>
 
 
 
+            <div class="form-check form-switch" style="justify-content: right">
+                <label for="flexSwitchCheckDefault">Toggle Design</label>
+                <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
+            </div>
 
 
 
-            <h2>Design 1</h2>
-
-            <div class="row">
+            <div class="row" id="layoutCard">
                 <c:forEach items="${courses}" var="course">
                     <div class="col-lg-4 col-md-6 col-sm-12">
                         <div class="card mb-5">
-                            <div class="card-header">
+                            <div class="card-body">
                                 <div class="row">
                                     <div class="col">
                                         <div class="container-sm" id="courseNumber">
@@ -134,10 +139,10 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="card-footer">
+                                <div class="card-body">
                                     <div class="row">
-                                        <div class="col">
-                                            <c:if test="${currentUser == ''}">
+                                        <div class="col" style="align-content: center">
+                                            <c:if test="${currentUser != ''}">
                                                 <form method="post" class="col" action="/courseRegistration?id=${course.id}">
                                                     <sec:csrfInput/>
                                                     <button id="bookCourseButton" type="submit" class="btn btn-outline-primary">Book Course</button>
@@ -154,9 +159,7 @@
                 </c:forEach>
             </div>
 
-            <h2>Design 2</h2>
-
-            <table data-toggle="table" class="table table-striped table-bordered">
+            <table data-toggle="table" class="table table-striped table-bordered" id="layoutTable" hidden>
                 <thead class="thread-dark">
                 <tr>
                     <th data-sortable="true">No</th>
@@ -166,9 +169,7 @@
                     <th data-sortable="true">When</th>
                     <th data-sortable="true">Where</th>
                     <th data-sortable="true">Who</th>
-                    <sec:authorize access="hasRole('ROLE_ADMIN')">
-                        <th>Actions</th>
-                    </sec:authorize>
+                    <th>Actions</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -176,8 +177,8 @@
                     <tr>
                         <td>${course.id}</td>
                         <td>${course.courseName}</td>
-                        <td>${course.price}</td>
-                        <td>${course.numSpaces - course.participants.size()}</td>
+                        <td>Cost: <fmt:formatNumber value="${course.price}" minFractionDigits="2" maxFractionDigits="2"/> €</td>
+                        <td>${course.participants.size()} / ${course.numSpaces}</td>
                         <td>
                             <fmt:parseDate value="${course.date}" pattern="yyyy-MM-dd" var="parsedDate"
                                            type="date"/>
@@ -185,9 +186,14 @@
                         </td>
                         <td>${course.locations.name}</td>
                         <td>${course.instructor.firstName} ${course.instructor.lastName}</td>
-                        <sec:authorize access="hasRole('ROLE_ADMIN')">
-                            <td>Admin Actions</td>
-                        </sec:authorize>
+                        <td>
+                            <c:if test="${currentUser != ''}">
+                            <form method="post" class="col" action="/courseRegistration?id=${course.id}">
+                                <sec:csrfInput/>
+                                <button id="bookCourseButton" type="submit" class="btn btn-outline-primary">Book Course</button>
+                            </form>
+                            </c:if>
+                        </td>
 
                     </tr>
                 </c:forEach>
@@ -197,3 +203,5 @@
     </div>
 
 </layout:page-container>
+
+<script src="/js/switchLayout.js"></script>

@@ -19,7 +19,7 @@ class WebSecurityConfiguration : WebSecurityConfigurerAdapter() {
             //.antMatchers("/**").authenticated()
             //.antMatchers(HttpMethod.GET, "/", "/login").permitAll()
             .antMatchers("/login").permitAll()
-            .antMatchers("/resources/**", "/static/**","/webjars/**","/css/*","/js/*","/img/*").permitAll()
+            .antMatchers("/resources/**", "/static/**","/webjars/**","/css/*","/js/*","/img/*", "/register", "/newUser").permitAll()
             .antMatchers("/denyAccess").authenticated()
             .anyRequest().authenticated()
             .and()

@@ -15,7 +15,7 @@
     <form:form modelAttribute="course" method="post" action="newCourse">
         <form:hidden path="id" />
         <form:hidden path="participants"/>
-        <form:hidden path = "instructor"/>
+        <form:hidden path="instructor"/>
 
 
         <fieldset>
@@ -78,6 +78,16 @@
                 </div>
             </div>
 
+            <h2>Upload Image</h2>
+
+            <div class="chooseImage">
+                <form:input path="file" type="file" name="inputFile" id="inputFile"/>
+                <div class="image-preview" id="imagePreview">
+                    <img src="" alt="Image Preview" class="image-preview-image">
+                    <span class="image-preview-text">Image Preview</span>
+                </div>
+            </div>
+
             <div></div>
             <div class="mb-3">
                 <button type="submit" class="btn btn-primary">Submit</button>
@@ -88,5 +98,7 @@
 
 </layout:page-container>
 
+<script src="webjars/dropzone/5.9.3/dist/dropzone.js"></script>
+<script src="/js/imageUpload.js"></script>
 
 
