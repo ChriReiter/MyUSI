@@ -133,15 +133,15 @@ class UsiController(val userRepository: UserRepository, val courseRepository: Co
         return "courseDetails"
     }
 
-    @RequestMapping(path=["/","/listInstructorCourses"], method = [RequestMethod.GET])
-    fun listInstructorCourses(model: Model, instructor: User
-    ): String {
-        val username = SecurityContextHolder.getContext().authentication.name
-        val instructorCourses = courseRepository.findCoursesByInstructor(userRepository.findByUsername(username))
+    @RequestMapping(path=["/listInstructorCourses"], method = [RequestMethod.GET])
+    fun listInstructorCourses(model: Model, instructor: User?
+    ): String? {
+        val loggedUser = SecurityContextHolder.getContext().authentication.name
+        val instructorCourses = courseRepository.findCoursesByInstructor(userRepository.findByUsername(loggedUser))
                 if (instructorCourses != null) {
                     model["courses"] = instructorCourses
                 }
-                model["instructors"] = userRepository.findByRole(UserRole.ROLE_INSTRUCTOR)
+             //   model["instructors"] = userRepository.findByRole(UserRole.ROLE_INSTRUCTOR)
                 model["locations"] = locationRepository.findAll()
                 return "listInstructorCourses"
             }

@@ -25,11 +25,11 @@ class UsiManagerPrincipal(val user: User) : UserDetails {
         //return setOf(UserRole.ROLE_USER, user.role).map { SimpleGrantedAuthority(it.toString()) }
     }
 
-    override fun getPassword(): String {
+    override fun getPassword(): String? {
         return user.password
     }
 
-    override fun getUsername(): String {
+    override fun getUsername(): String? {
         return user.username
     }
 
