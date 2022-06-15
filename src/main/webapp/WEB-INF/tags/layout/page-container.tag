@@ -49,6 +49,9 @@
                         <sec:authorize access="hasAuthority('ROLE_INSTRUCTOR')">
                             <a class="dropdown-item" href="/createCourse" class="nav-link">Create Course</a>
                         </sec:authorize>
+                        <sec:authorize access="hasAuthority('ROLE_INSTRUCTOR')">
+                            <a class="dropdown-item" href="/listInstructorCourses" class="nav-link">Show my Courses</a>
+                        </sec:authorize>
                     </div>
                 </li>
 
