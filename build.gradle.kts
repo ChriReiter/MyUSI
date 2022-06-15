@@ -33,6 +33,7 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-security")
     implementation("org.webjars.npm:bootstrap-icons:1.8.1")
     implementation("org.springframework.security:spring-security-taglibs")
+    implementation("org.springframework.boot:spring-boot-starter-mail")
 }
 
 tasks.withType<KotlinCompile> {

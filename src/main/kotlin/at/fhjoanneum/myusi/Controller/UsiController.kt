@@ -8,6 +8,8 @@ import at.fhjoanneum.myusi.Repository.UserRepository
 import org.springframework.dao.DataIntegrityViolationException
 import org.springframework.data.repository.findByIdOrNull
 import org.springframework.format.annotation.DateTimeFormat
+import org.springframework.mail.MailSender
+import org.springframework.mail.SimpleMailMessage
 import org.springframework.security.access.annotation.Secured
 import org.springframework.security.config.annotation.web.builders.HttpSecurity
 import org.springframework.security.core.context.SecurityContextHolder
@@ -107,7 +109,7 @@ class UsiController(val userRepository: UserRepository, val courseRepository: Co
         }
 
 
-        return  "redirect:createCourse"//"redirect:/editEmployee?id=" + employee.id
+        return  "redirect:createCourse"
     }
 
 
@@ -122,6 +124,31 @@ class UsiController(val userRepository: UserRepository, val courseRepository: Co
             course.participants?.add(user)
             courseRepository.save(course)
         }
+
+        val mailSender: MailSender
+
+        val message = SimpleMailMessage()
+        message.setTo("test@test.com")
+        message.setSubject("Test Mail myUSI")
+        message.setText("Test Mail myUsi")
+        //mailSender.send(message)
+
+        return "redirect:listCourses"
+    }
+
+    @RequestMapping(path=["/courseDeregistration"], method = [RequestMethod.POST])
+    fun courseRDeregistration(model: Model, @RequestParam id: Int): String {
+        val course: Course = courseRepository.findById(id).get()
+        val username = SecurityContextHolder.getContext().authentication.name
+        if (username != "anonymousUser") {
+            val user = userRepository.findByUsername(username)
+            if (course.participants?.contains(user) == true) {
+                course.participants?.remove(user)
+            }
+
+            courseRepository.save(course)
+        }
+
         return "redirect:listCourses"
     }
 
