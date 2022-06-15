@@ -81,7 +81,7 @@
             <h2>Upload Image</h2>
 
             <div class="chooseImage">
-                <form:input path="file" type="file" name="inputFile" id="inputFile"/>
+                <form:input path="" type="file" name="inputFile" id="inputFile"/>
                 <div class="image-preview" id="imagePreview">
                     <img src="" alt="Image Preview" class="image-preview-image">
                     <span class="image-preview-text">Image Preview</span>

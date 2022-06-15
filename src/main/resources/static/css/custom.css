@@ -170,7 +170,14 @@ button::selection {
 }
 
 #courseFull {
+    border: 2px solid #1D1E2C;
+    border-radius: 30px;
+    background-color: #D7CDCC;
+    height: 30px;
 
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 #uploadButton {

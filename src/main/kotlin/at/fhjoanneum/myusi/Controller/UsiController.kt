@@ -8,6 +8,7 @@ import at.fhjoanneum.myusi.Repository.UserRepository
 import org.springframework.dao.DataIntegrityViolationException
 import org.springframework.data.repository.findByIdOrNull
 import org.springframework.format.annotation.DateTimeFormat
+import org.springframework.security.access.annotation.Secured
 import org.springframework.security.config.annotation.web.builders.HttpSecurity
 import org.springframework.security.core.context.SecurityContextHolder
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
@@ -45,18 +46,27 @@ class UsiController(val userRepository: UserRepository, val courseRepository: Co
     }
 
 
-
+    @Secured("ROLE_INSTRUCTOR")
     @RequestMapping(path=["/createCourse"], method = [RequestMethod.GET])
-    fun createCourse(model: Model): String {
+    fun createCourse(@RequestParam(required = false) id: Int?, model: Model): String {
+
+        if (id != null) {
+            if (courseRepository.findById(id).get().instructor?.username != SecurityContextHolder.getContext().authentication.name) {
+                return "redirect:listCourses"
+            }
+        }
+        model["course"] = if (id == null) Course()
+        else courseRepository.findById(id).orElse(Course())
+
         return populateCreateCourseModel(model)
     }
 
     private fun populateCreateCourseModel(model: Model): String {
         model["locations"] = locationRepository.findAll()
-        model["course"] = Course()
         return "createCourse"
     }
 
+    @Secured("ROLE_INSTRUCTOR")
     @RequestMapping("/newCourse", method = [RequestMethod.POST])
     fun newCourse(@ModelAttribute @Valid course: Course, bindingResult: BindingResult, model: Model,
     @RequestParam(required = false) file: String? = null): String {//@Valid @ModelAttribute user: User, bindingResult: BindingResult, model: Model): String {
@@ -78,12 +88,14 @@ class UsiController(val userRepository: UserRepository, val courseRepository: Co
         return  "redirect:listCourses"//"redirect:/editEmployee?id=" + employee.id
     }
 
+    @Secured("ROLE_INSTRUCTOR")
     @RequestMapping(path=["/createLocation"], method = [RequestMethod.GET])
     fun createLocation(model: Model): String {
         model["course"] = Location()
         return "createLocation"
     }
 
+    @Secured("ROLE_INSTRUCTOR")
     @RequestMapping("/newLocation", method = [RequestMethod.POST])
     fun newLocation(@ModelAttribute @Valid location: Location, bindingResult: BindingResult, model: Model): String {//@Valid @ModelAttribute user: User, bindingResult: BindingResult, model: Model): String {
         try {
@@ -110,7 +122,7 @@ class UsiController(val userRepository: UserRepository, val courseRepository: Co
             course.participants?.add(user)
             courseRepository.save(course)
         }
-        return listCourses(model)
+        return "redirect:listCourses"
     }
 
     @RequestMapping(path=["/courseDetails"], method = [RequestMethod.GET])

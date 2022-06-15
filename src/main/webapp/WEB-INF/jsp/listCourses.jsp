@@ -152,6 +152,14 @@
                                                 </form>
                                             </c:if>
                                         </div>
+                                        <div class="col" style="align-content: center">
+                                            <c:if test="${currentUser == course.instructor.username}">
+                                                <a href="/createCourse?id=${course.id}">
+                                                    <sec:csrfInput/>
+                                                    <button id="bookCourseButton" class="btn btn-outline-primary">Modify Course</button>
+                                                </a>
+                                            </c:if>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -193,6 +201,12 @@
                                 <sec:csrfInput/>
                                 <button id="bookCourseButton" type="submit" class="btn btn-outline-primary">Book Course</button>
                             </form>
+                            </c:if>
+                            <c:if test="${currentUser == course.instructor.username}">
+                                <a href="/createCourse?id=${course.id}">
+                                    <sec:csrfInput/>
+                                    <button id="bookCourseButton" class="btn btn-outline-primary">Modify Course</button>
+                                </a>
                             </c:if>
                         </td>
 
