@@ -124,14 +124,15 @@ button::selection {
     text-align: center;
 }
 
-#bookCourseButton {
+.btn-outline-primary {
     background-color: #50FFB1;
     color: #1D1E2C;
     border-color: #1D1E2C;
     text-align: center;
+    font-max-size: small;
 }
 
-#bookCourseButton:hover {
+.btn-outline-primary:hover {
     background-color: #4FB286;
 }
 
