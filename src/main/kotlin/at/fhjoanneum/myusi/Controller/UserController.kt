@@ -5,6 +5,8 @@ import at.fhjoanneum.myusi.Entity.*
 import at.fhjoanneum.myusi.Repository.CourseRepository
 import at.fhjoanneum.myusi.Repository.LocationRepository
 import at.fhjoanneum.myusi.Repository.UserRepository
+import at.fhjoanneum.myusi.Service.MailSenderService
+import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.dao.DataIntegrityViolationException
 import org.springframework.data.repository.findByIdOrNull
 import org.springframework.format.annotation.DateTimeFormat
@@ -27,6 +29,9 @@ import javax.validation.Valid
 
 @Controller
 class UserController(val userRepository: UserRepository) {
+
+    @Autowired
+    val mailSender: MailSenderService? = null
 
     @RequestMapping(path=["/login"], method = [RequestMethod.GET])
     fun login(model:Model): String {
@@ -58,6 +63,9 @@ class UserController(val userRepository: UserRepository) {
         try {
             user.password = BCryptPasswordEncoder().encode(originalPassword)
             userRepository.save(user)
+            mailSender?.sendMail(user.email,
+                "Successfully registered account for MyUSI",
+                "You have successfully registered your account for MyUSI application. Start booking courses now!")
         }  catch (e: DataIntegrityViolationException) {
             user.password = originalPassword
             return "register"
