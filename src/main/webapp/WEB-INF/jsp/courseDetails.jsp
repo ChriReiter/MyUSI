@@ -8,7 +8,6 @@
 <%@taglib prefix="layout" tagdir="/WEB-INF/tags/layout" %>
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
-
 <layout:page-container title="Course Details" activePage="courseDetails">
 
     <h1 class="mt-4">Details</h1>
@@ -21,6 +20,10 @@
             <tr>
                 <th>ID</th>
                 <td>${course.id}</td>
+            </tr>
+            <tr>
+                <th>Category</th>
+                <td>${course.category.categoryName}</td>
             </tr>
             <tr>
                 <th>Instructor</th>

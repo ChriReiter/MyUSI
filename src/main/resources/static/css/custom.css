@@ -114,25 +114,20 @@ button::selection {
     size: 30px;
 }
 
-.card-body {
-    line-height: 5px;
-}
-
 .card-footer {
     background-color: transparent;
     border-top-color: transparent;
     text-align: center;
 }
 
-.btn-outline-primary {
+#bookCourseButton {
     background-color: #50FFB1;
     color: #1D1E2C;
     border-color: #1D1E2C;
     text-align: center;
-    font-max-size: small;
 }
 
-.btn-outline-primary:hover {
+#bookCourseButton:hover {
     background-color: #4FB286;
 }
 
@@ -142,9 +137,7 @@ button::selection {
     border-radius: 30px;
 }
 
-.chooseImage {
-    padding: 20px;
-    border: 2px solid #1D1E2C;
+.rounded-4{
     border-radius: 30px;
 }
 
@@ -152,68 +145,14 @@ button::selection {
     border: 2px solid #1D1E2C;
     border-radius: 30px;
     background-color: #4FB286;
-    height: 30px;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
 }
 
 #courseNumber {
     border: 2px solid #1D1E2C;
     border-radius: 30px;
     background-color: #D7CDCC;
-    height: 30px;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
 }
 
 #courseFull {
-    border: 2px solid #1D1E2C;
-    border-radius: 30px;
-    background-color: #D7CDCC;
-    height: 30px;
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
 }
-
-#uploadButton {
-    height: 40px;
-    width: 100%;
-    position: absolute;
-    bottom: 0%;
-    left: 50%;
-    transform: translateX(-50%);
-    background: #1D1E2C;
-    color: white;
-    line-height: 30px;
-    cursor: pointer;
-    display: none;
-}
-
-.image-preview {
-    width: 300px;
-    min-height: 100px;
-    border: 2px solid #1D1E2C;
-    margin-top: 15px;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.image-preview-image {
-    display: none;
-    width: 100%;
-}
-
-.container-startscreen {
-    padding: 5%;
-}
-
-
-

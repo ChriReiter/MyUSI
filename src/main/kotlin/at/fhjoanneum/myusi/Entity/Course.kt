@@ -33,10 +33,12 @@ class Course (
     var participants: MutableSet<User>? = null,
     @ManyToOne
     var locations: Location? = null,
-    //@OneToOne
-    //var file: File? = null
+    @ManyToOne
+    var category: CourseCategory? = null
+//    @OneToOne
+//    var file: File? = null
     //@OneToMany
     //var dates: List<CourseDate>? =  null
-        ){
+){
 
 }

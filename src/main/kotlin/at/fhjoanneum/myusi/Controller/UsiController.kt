@@ -2,10 +2,12 @@ package at.fhjoanneum.myusi.Controller
 
 import at.fhjoanneum.myusi.Converter.DateToStringConverter
 import at.fhjoanneum.myusi.Entity.*
+import at.fhjoanneum.myusi.Repository.CourseCategoryRepository
 import at.fhjoanneum.myusi.Repository.CourseRepository
 import at.fhjoanneum.myusi.Repository.LocationRepository
 import at.fhjoanneum.myusi.Repository.UserRepository
 import at.fhjoanneum.myusi.Service.MailSenderService
+import jdk.jfr.Category
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.dao.DataIntegrityViolationException
 import org.springframework.data.repository.findByIdOrNull
@@ -31,7 +33,7 @@ import java.util.*
 import javax.validation.Valid
 
 @Controller
-class UsiController(val userRepository: UserRepository, val courseRepository: CourseRepository, val locationRepository: LocationRepository) {
+class UsiController(val userRepository: UserRepository, val courseRepository: CourseRepository, val locationRepository: LocationRepository, val categoryRepository: CourseCategoryRepository) {
 
     @Autowired
     val mailSender: MailSenderService? = null
@@ -49,6 +51,7 @@ class UsiController(val userRepository: UserRepository, val courseRepository: Co
         }
         model["instructors"] = userRepository.findByRole(UserRole.ROLE_INSTRUCTOR)
         model["locations"] = locationRepository.findAll()
+        model["category"] = categoryRepository.findAll()
         return "listCourses"
     }
 
@@ -70,6 +73,7 @@ class UsiController(val userRepository: UserRepository, val courseRepository: Co
 
     private fun populateCreateCourseModel(model: Model): String {
         model["locations"] = locationRepository.findAll()
+        model["category"] = categoryRepository.findAll()
         return "createCourse"
     }
 
@@ -112,13 +116,26 @@ class UsiController(val userRepository: UserRepository, val courseRepository: Co
         } catch (e: Exception) {
             return "createLocation"
         }
-
-
         return  "redirect:createCourse"
     }
-
-
-
+    @Secured("ROLE_INSTRUCTOR")
+    @RequestMapping(path=["/createCategory"], method = [RequestMethod.GET])
+    fun createCategory(model: Model): String {
+        model["course"] = CourseCategory()
+        return "createCategory"
+    }
+    @Secured("ROLE_INSTRUCTOR")
+    @RequestMapping("/newCategory", method = [RequestMethod.POST])
+    fun newCategory(@ModelAttribute @Valid category: CourseCategory, bindingResult: BindingResult, model: Model): String {
+        try {
+            categoryRepository.save(category)
+        } catch (e: DataIntegrityViolationException) {
+            return "createCategory"
+        } catch (e: Exception) {
+            return "createCategory"
+        }
+        return "redirect:createCourse"
+    }
     @RequestMapping(path=["/courseRegistration"], method = [RequestMethod.POST])
     fun courseRegistration(model: Model, @RequestParam id: Int): String {
         val course: Course = courseRepository.findById(id).get()
