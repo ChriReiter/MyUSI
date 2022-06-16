@@ -22,7 +22,8 @@
         <div class="container border border-dark rounded-4 border-2 p-3 mb-4">
             <h3>General Information</h3>
             <div class="form-floating">
-                <form:select path="category" id="selectCategory" cssClass="form-select ${errors.hasFieldErrors('category') ? 'is-invalid' : ''}">
+                <form:select path="category" id="selectCategory" cssClass="mdb-select md-form ${errors.hasFieldErrors('category') ? 'is-invalid' : ''}"
+                    searchable="Search here...">
                     <form:option value=""></form:option>
                     <form:options items="${category}" itemValue="id" itemLabel="categoryName"/>
                 </form:select>

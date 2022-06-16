@@ -118,28 +118,36 @@
                                 <img class="card-img-top" src="img/Screenshot (4).png" type="submit" />
                             </a>
                             <div class="card-body">
-                                <div class="card-title">
+                                <div class="card-title d-flex align-items-center justify-content-center">
                                     <h4>${course.courseName}</h4>
                                 </div>
-                                <div class="card-text">
-                                    <p>Category: ${course.category.categoryName}</p>
-                                    <p>With: ${course.instructor.firstName} ${course.instructor.lastName}</p>
-                                    <div class="row">
-                                        <div class="col">
-                                            <p>When: <fmt:parseDate value="${course.date}" pattern="yyyy-MM-dd" var="parsedDate"
-                                                                    type="date"/>
-                                                <fmt:formatDate value="${parsedDate}" type="date" pattern="dd.MM.yyyy"/>, ${course.timeStart.substring(0, 5)} - ${course.timeEnd.substring(0, 5)}</p>
-                                        </div>
-                                    </div>
-                                    <p>Where: ${course.locations.name}</p>
-                                    <div class="row">
-                                        <div class="col">
-                                            <p>
-                                                Cost: <fmt:formatNumber value="${course.price}" minFractionDigits="2" maxFractionDigits="2"/> €
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
+                                <table class="table table-borderless">
+                                    <tbody>
+                                    <tr>
+                                        <th>Category:</th>
+                                        <td>${course.category.categoryName}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Instructor:</th>
+                                        <td>${course.instructor.firstName} ${course.instructor.lastName}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Date:</th>
+                                        <td><fmt:parseDate value="${course.date}" pattern="yyyy-MM-dd" var="parsedDate"
+                                                           type="date"/>
+                                            <fmt:formatDate value="${parsedDate}" type="date" pattern="dd.MM.yyyy"/>, ${course.timeStart.substring(0, 5)} - ${course.timeEnd.substring(0, 5)}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Location:</th>
+                                        <td>${course.locations.name}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Price:</th>
+                                        <td><fmt:formatNumber value="${course.price}" type="currency" currencySymbol="€"/></td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+
                                 <div class="card-body">
                                     <div class="row">
                                         <div class="col" style="align-content: center">
