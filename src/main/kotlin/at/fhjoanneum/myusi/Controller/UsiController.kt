@@ -5,6 +5,8 @@ import at.fhjoanneum.myusi.Entity.*
 import at.fhjoanneum.myusi.Repository.CourseRepository
 import at.fhjoanneum.myusi.Repository.LocationRepository
 import at.fhjoanneum.myusi.Repository.UserRepository
+import at.fhjoanneum.myusi.Service.MailSenderService
+import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.dao.DataIntegrityViolationException
 import org.springframework.data.repository.findByIdOrNull
 import org.springframework.format.annotation.DateTimeFormat
@@ -30,6 +32,9 @@ import javax.validation.Valid
 
 @Controller
 class UsiController(val userRepository: UserRepository, val courseRepository: CourseRepository, val locationRepository: LocationRepository) {
+
+    @Autowired
+    val mailSender: MailSenderService? = null
 
     @RequestMapping(path=["/","/listCourses"], method = [RequestMethod.GET])
     fun listCourses(model: Model, @RequestParam(required = false) search: String? = null, @RequestParam(required = false) date: String? = null
@@ -123,15 +128,12 @@ class UsiController(val userRepository: UserRepository, val courseRepository: Co
 
             course.participants?.add(user)
             courseRepository.save(course)
+
+            mailSender?.sendMail(user.email,
+                "Registration for course ${course.courseName} succeeded",
+                "You have booked the course number ${course.id}, ${course.courseName}, with ${course.instructor?.firstName} ${course.instructor?.lastName} on ${course.date}, ${course.timeStart} - ${course.timeEnd}")
         }
 
-        val mailSender: MailSender
-
-        val message = SimpleMailMessage()
-        message.setTo("test@test.com")
-        message.setSubject("Test Mail myUSI")
-        message.setText("Test Mail myUsi")
-        //mailSender.send(message)
 
         return "redirect:listCourses"
     }
@@ -145,6 +147,10 @@ class UsiController(val userRepository: UserRepository, val courseRepository: Co
             if (course.participants?.contains(user) == true) {
                 course.participants?.remove(user)
             }
+
+            mailSender?.sendMail(user.email,
+                "Registration cancelled for course ${course.courseName}",
+                "You have successfully cancelled your registration for the course number ${course.id}, ${course.courseName}, with ${course.instructor?.firstName} ${course.instructor?.lastName} on ${course.date}, ${course.timeStart} - ${course.timeEnd}")
 
             courseRepository.save(course)
         }
