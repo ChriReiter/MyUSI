@@ -20,10 +20,9 @@
 
         <legend>Create a new course</legend>
         <div class="container border border-dark rounded-4 border-2 p-3 mb-4">
-            <h3>General Information</h3>
+            <h4>General Information</h4>
             <div class="form-floating">
-                <form:select path="category" id="selectCategory" cssClass="mdb-select md-form ${errors.hasFieldErrors('category') ? 'is-invalid' : ''}"
-                    searchable="Search here...">
+                <form:select path="category" id="selectCategory" cssClass="form-select mb-3 ${errors.hasFieldErrors('category') ? 'is-invalid' : ''}">
                     <form:option value=""></form:option>
                     <form:options items="${category}" itemValue="id" itemLabel="categoryName"/>
                 </form:select>
@@ -55,48 +54,49 @@
             </div>
         </div>
 
-        <h2>Location</h2>
         <div class="container border border-dark rounded-4 border-2 p-3 mb-4">
-            <div class="mb-3">
-                <label for="inputLocation" class="form-label">Location</label>
-                <form:select id="inputLocation" path="locations" cssClass="form-control ${errors.hasFieldErrors('department') ? 'is-invalid' : ''}">
+            <h4>Location</h4>
+            <div class="form-floating">
+                <form:select id="inputLocation" path="locations" cssClass="form-select mb-3 ${errors.hasFieldErrors('department') ? 'is-invalid' : ''}">
                     <form:option value=""> </form:option>
                     <form:options items="${locations}" itemValue="id" itemLabel="name" />
                 </form:select>
                 <form:errors path="locations" cssClass="invalid-feedback" />
+                <label for="inputLocation" class="form-label">Select location:</label>
             </div>
             <div class="mb-3">
                 <a href="createLocation" class="btn btn-primary">Create a new location</a>
             </div>
         </div>
 
-        <h2>Date</h2>
         <div class="container border border-dark rounded-4 border-2 p-3 mb-4">
-            <div class="mb-3">
-                <label for="inputDate" class="form-label">Date</label>
+            <h4>Date</h4>
+            <div class="form-floating mb-3">
                 <form:input path="date" class="form-control ${errors.hasFieldErrors('date') ? 'is-invalid' : ''}"
                             id="inputDate" placeholder="Date" type="date"/>
                 <form:errors path="date" cssClass="invalid-feedback" />
+                <label for="inputDate" class="form-label">Date</label>
             </div>
-            <div class="mb-3">
-                <label for="inputStartTime" class="form-label">Start Time</label>
-                <form:input path="timeStart" id="inputStartTime" type="time" cssStyle="width: 100%" class="form-control"/>
+            <div class="form-floating mb-3">
+                <form:input path="timeStart" id="inputStartTime" type="time" class="form-control"/>
                 <form:errors path="timeStart" cssClass="invalid-feedback" />
+                <label for="inputStartTime" class="form-label">Start Time</label>
             </div>
-            <div class="mb-3">
-                <label for="inputEndTime" class="form-label">End Time</label>
-                <form:input path="timeEnd" id="inputEndTime" type="time" cssStyle="width: 100%" class="form-control"/>
+            <div class="form-floating mb-3">
+                <form:input path="timeEnd" id="inputEndTime" type="time" class="form-control"/>
                 <form:errors path="timeEnd" cssClass="invalid-feedback" />
+                <label for="inputEndTime" class="form-label">End Time</label>
             </div>
         </div>
 
-        <h2>Upload Image</h2>
-
-        <div class="chooseImage">
-            <form:input path="" type="file" name="inputFile" id="inputFile"/>
-            <div class="image-preview" id="imagePreview">
-                <img src="" alt="Image Preview" class="image-preview-image">
-                <span class="image-preview-text">Image Preview</span>
+        <div class="container border border-dark rounded-4 border-2 p-3 mb-4">
+            <h4>Upload Image</h4>
+            <div class="chooseImage">
+                <form:input path="" type="file" name="inputFile" id="inputFile"/>
+                <div class="image-preview" id="imagePreview">
+                    <img src="" alt="Image Preview" class="image-preview-image">
+                    <span class="image-preview-text">Image Preview</span>
+                </div>
             </div>
         </div>
 
