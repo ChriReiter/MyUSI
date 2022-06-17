@@ -201,13 +201,13 @@
             <table data-toggle="table" class="table table-striped table-bordered" id="layoutTable" hidden>
                 <thead class="thread-dark">
                 <tr>
-                    <th data-sortable="true">No</th>
-                    <th data-sortable="true">Name</th>
+                    <th data-sortable="true">ID</th>
+                    <th data-sortable="true">Title</th>
                     <th data-sortable="true">Price</th>
-                    <th data-sortable="true">Free Spaces</th>
-                    <th data-sortable="true">When</th>
-                    <th data-sortable="true">Where</th>
-                    <th data-sortable="true">Who</th>
+                    <th data-sortable="true">Free Spots</th>
+                    <th data-sortable="true">Date</th>
+                    <th data-sortable="true">Location</th>
+                    <th data-sortable="true">Instructor</th>
                     <th>Actions</th>
                 </tr>
                 </thead>
@@ -217,7 +217,7 @@
                     <tr>
                         <td>${course.id}</td>
                         <td>${course.courseName}</td>
-                        <td>Cost: <fmt:formatNumber value="${course.price}" minFractionDigits="2" maxFractionDigits="2"/> €</td>
+                        <td><fmt:formatNumber value="${course.price}" minFractionDigits="2" maxFractionDigits="2"/> €</td>
                         <td>${course.participants.size()} / ${course.numSpaces}</td>
                         <td>
                             <fmt:parseDate value="${course.date}" pattern="yyyy-MM-dd" var="parsedDate"
