@@ -16,204 +16,122 @@
     <form:hidden path="id" />
     <form:hidden path="role"/>
 
-    <section class="vh-100 gradient-custom">
-        <div class="container border border-2 border-dark rounded-4 py-5 col-12 col-lg-11 col-xl-10">
-            <div class="row justify-content-center align-items-center ">
-                    <div class=" shadow-2-strong card-registration" style="border-radius: 15px;">
-                        <div class="card-body p-4 p-md-5">
-                            <h3 class="mb-4 pb-2 pb-md-0 mb-md-5">Register new User</h3>
-                            <form>
-                                <div class="row">
-                                    <div class="col-md-6 mb-4">
-                                        <div class="form-floating mb-3 mt-3">
-                                            <input type="text" id="firstName" class="form-control" placeholder="First Name"/>
-                                            <label for="firstName">First Name</label>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6 mb-4">
-                                        <div class="form-floating mb-3 mt-3">
-                                            <input type="text" id="lastName" class="form-control form-control-lg" placeholder="Last Name"/>
-                                            <label for="lastName">Last Name</label>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-6 mb-4 d-flex align-items-center">
+    <fieldset class="mb-5">
+    <legend>Register</legend>
+        <h2>Personal Information</h2>
+        <div class="container border border-dark rounded-4 border-2 p-3 mb-4 row">
+            <div class="col-md-6 col-12">
+                <div class="form-floating mb-3 mt-3">
+                    <form:input path="firstName" type="text" class="form-control" id="inputFirstName" placeholder="First Name" name="inputFirstName"/>
+                    <form:errors path="firstName" class="error"/>
+                    <label for="inputFirstName" class="form-label ${errors.hasFieldErrors('firstName') ? 'is-invalid' : ''}">First Name</label>
+                </div>
+            </div>
+            <div class="col-md-6 col-12">
+                <div class="form-floating mb-3 mt-3">
+                    <form:input path="lastName" type="text" class="form-control" id="inputLastName" placeholder="Last Name" name="inputLastName"/>
+                    <form:errors path="lastName" class="invalid-feedback" cssClass="error"/>
+                    <label for="inputLastName" class="form-label ${errors.hasFieldErrors('lastName') ? 'is-invalid' : ''}">Last Name</label>
+                </div>
+            </div>
+            <div class="col-md-6 col-12">
+                <div class="form-floating mb-3 mt-3">
+                    <form:input path="email" type="email" class="form-control" id="inputEmail" placeholder="email" name="inputEmail"/>
+                    <form:errors path="email" class="invalid-feedback" cssClass="error"/>
+                    <label for="inputEmail" class="form-label ${errors.hasFieldErrors('inputEmail') ? 'is-invalid' : ''}">Email</label>
+                </div>
+            </div>
+            <div class="col-md-6 col-12">
+                <div class="form-floating mb-3 mt-3">
+                    <form:input path="telephone" type="tel" class="form-control" id="inputTelephone" placeholder="Telephone" name="inputTelephone"/>
+                    <form:errors path="telephone" class="invalid-feedback" cssClass="error" />
+                    <label for="inputTelephone" class="form-label${errors.hasFieldErrors('telephone') ? 'is-invalid' : ''}">Telephone</label>
+                </div>
+            </div>
+            <div class="col-md-6 col-12">
+                <div class="form-floating mb-3 mt-3">
+                    <form:input path="dayOfBirth" type="date" class="form-control" id="inputdayOfBirth" placeholder="Birthday" name="inputdayOfBirth"/>
+                    <form:errors path="dayOfBirth" class="invalid-feedback" cssClass="error" />
+                    <label for="inputdayOfBirth" class="form-label${errors.hasFieldErrors('dayOfBirth') ? 'is-invalid' : ''}">Birthday</label>
+                </div>
+            </div>
 
-                                        <div class="form-floating mb-3 mt-3 datepicker w-100">
-                                            <input type="text" class="form-control form-control-lg" id="birthdayDate" placeholder="Birthday"/>
-                                            <label for="birthdayDate" class="form-label">Birthday</label>
-                                        </div>
+            <! ---------------- gender ------------------>
+            <div class="col-md-6 mb-4">
+<%--                <label for="genderRadio" class="form-label">Gender</label>--%>
+    <label for="genderRadio" class="form-label${errors.hasFieldErrors('genderRadio') ? 'is-invalid' : ''}">Gender</label>
+                <div id="genderRadio">
+                    <form:radiobutton class="form-check-input p-2" path = "gender" value = "GENDER_MALE" label = "Male" />
+                    <form:radiobutton class="form-check-input p-2" path = "gender" value = "GENDER_FEMALE" label = "Female" />
+                    <form:radiobutton class="form-check-input p-2" path = "gender" value = "GENDER_UNDISCLOSED" label = "Undisclosed" />
+                </div>
 
-                                    </div>
-                                    <div class="col-md-6 mb-4">
+                <form:errors path="gender" class="invalid-feedback" cssClass="error" />
 
-                                        <h6 class="mb-2 pb-1">Gender: </h6>
+            </div>
 
-                                        <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="femaleGender"
-                                                   value="option1" checked />
-                                            <label class="form-check-label" for="femaleGender">Female</label>
-                                        </div>
-
-                                        <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="maleGender"
-                                                   value="option2" />
-                                            <label class="form-check-label" for="maleGender">Male</label>
-                                        </div>
-
-                                        <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="otherGender"
-                                                   value="option3" />
-                                            <label class="form-check-label" for="otherGender">Other</label>
-                                        </div>
-
-                                    </div>
-                                </div>
-
-                                <div class="row">
-                                    <div class="col-md-6 mb-4 pb-2">
-
-                                        <div class="form-outline">
-                                            <input type="email" id="emailAddress" class="form-control form-control-lg" />
-                                            <label class="form-label" for="emailAddress">Email</label>
-                                        </div>
-
-                                    </div>
-                                    <div class="col-md-6 mb-4 pb-2">
-
-                                        <div class="form-outline">
-                                            <input type="tel" id="phoneNumber" class="form-control form-control-lg" />
-                                            <label class="form-label" for="phoneNumber">Phone Number</label>
-                                        </div>
-
-                                    </div>
-                                </div>
-
-                                <div class="row">
-                                    <div class="col-12">
-
-                                        <select class="select form-control-lg">
-                                            <option value="1" disabled>Choose option</option>
-                                            <option value="2">Subject 1</option>
-                                            <option value="3">Subject 2</option>
-                                            <option value="4">Subject 3</option>
-                                        </select>
-                                        <label class="form-label select-label">Choose option</label>
-
-                                    </div>
-                                </div>
-
-                                <div class="mt-4 pt-2">
-                                    <input class="btn btn-primary btn-lg" type="submit" value="Submit" />
-                                </div>
-
-                            </form>
-                        </div>
-                    </div>
+            <div class="col-md-12 col-12">
+                <div class="form-floating mb-3 mt-3">
+                    <form:input path="university" type="text" class="form-control" id="inputUniversity" placeholder="university" name="inputUniversity"/>
+                    <form:errors path="university" class="invalid-feedback" cssClass="error" />
+                    <label for="inputUniversity" class="form-label${errors.hasFieldErrors('inputUniversity') ? 'is-invalid' : ''}">University</label>
+                </div>
             </div>
         </div>
-    </section>
 
-    <fieldset>
-        <legend>Register</legend>
-        <div class="d-md-flex">
-            <div class="p-2">
-                <label for="inputFirstName" class="form-label ${errors.hasFieldErrors('firstName') ? 'is-invalid' : ''}">First Name</label>
-                <form:input path="firstName" id="inputFirstName" type="text" class="form-control"/>
-                <form:errors path="firstName" cssClass="invalid-feedback" />
+        <h2>Address</h2>
+        <div class="container border border-dark rounded-4 border-2 p-3 mb-4 row">
+            <div class="col-md-6 col-12">
+                <div class="form-floating mb-3 mt-3">
+                    <form:input path="street" type="text" class="form-control" id="inputStreet" placeholder="First Name" name="inputStreet"/>
+                    <form:errors path="street" class="invalid-feedback" cssClass="error" />
+                    <label for="inputStreet" class="form-label${errors.hasFieldErrors('street') ? 'is-invalid' : ''}">Street</label>
+                </div>
             </div>
-            <div class="p-2">
-                <label for="inputLastName" class="form-label ${errors.hasFieldErrors('lastName') ? 'is-invalid' : ''}">Last Name</label>
-                <form:input path="lastName" id="inputLastName" type="text" class="form-control"/>
-                <form:errors path="lastName" cssClass="invalid-feedback" />
+            <div class="col-md-6 col-12">
+                <div class="form-floating mb-3 mt-3">
+                    <form:input path="housenum" type="text" class="form-control" id="inputHousenum" placeholder="housenum" name="housenum"/>
+                    <form:errors path="housenum" class="invalid-feedback" cssClass="error" />
+                    <label for="inputHousenum" class="form-label${errors.hasFieldErrors('housenum') ? 'is-invalid' : ''}">Street Number</label>
+                </div>
             </div>
-            <div class="p-2">
-                <label for="inputEmail" class="form-label ${errors.hasFieldErrors('email') ? 'is-invalid' : ''}">Email</label>
-                <form:input path="email" id="inputEmail" type="email" class="form-control"/>
-                <form:errors path="email" cssClass="invalid-feedback" />
+            <div class="col-md-6 col-12">
+                <div class="form-floating mb-3 mt-3">
+                    <form:input path="zip" type="text" class="form-control" id="inputZip" placeholder="email" name="inputZip"/>
+                    <form:errors path="zip" class="invalid-feedback" cssClass="error" />
+                    <label for="inputZip" class="form-label${errors.hasFieldErrors('zip') ? 'is-invalid' : ''}">Zip</label>
+                </div>
+            </div>
+            <div class="col-md-6 col-12">
+                <div class="form-floating mb-3 mt-3">
+                    <form:input path="city" type="text" class="form-control" id="inputCity" placeholder="City" name="inputCity"/>
+                    <form:errors path="city" class="invalid-feedback" cssClass="error" />
+                    <label for="inputCity" class="form-label${errors.hasFieldErrors('city') ? 'is-invalid' : ''}">City</label>
+                </div>
             </div>
         </div>
-        <div class="d-md-flex">
-            <div class="p-2">
-                <label for="inputTelephone" class="form-label ${errors.hasFieldErrors('lastName') ? 'is-invalid' : ''}">Telephone</label>
-                <form:input path="telephone" id="inputTelephone" type="tel" class="form-control"/>
-                <form:errors path="email" cssClass="invalid-feedback" />
-            </div>
-            <div class="p-2">
-                <label for="inputDate" class="form-label">Birthday</label>
-                <form:input path="dayOfBirth" class="form-control ${errors.hasFieldErrors('dayOfBirth') ? 'is-invalid' : ''}"
-                            id="inputDate" placeholder="Date" type="date"
-                />
-                <form:errors path="dayOfBirth" cssClass="invalid-feedback" />
-            </div>
 
-            <div class="p-2">
-                <label for="inputGender" class="form-label">Gender</label>
-                <form:select id="inputGender" path="gender" cssClass="form-control ${errors.hasFieldErrors('department') ? 'is-invalid' : ''}">
-                    <form:option value="" label="">  </form:option>
-                    <form:option value="GENDER_MALE" label="male"> male </form:option>
-                    <form:option value="GENDER_FEMALE" label="female">female </form:option>
-                    <form:option value="GENDER_UNDISCLOSED" label="undisclosed">undisclosed</form:option>
-                </form:select>
+        <h2>Account</h2>
+        <div class="container border border-dark rounded-4 border-2 p-3 mb-4 row">
+            <div class="col-md-6 col-12">
+                <div class="form-floating mb-3 mt-3">
+                    <form:input path="username" type="text" class="form-control" id="inputUsername" placeholder="First Name" name="inputUsername"/>
+                    <form:errors path="username" class="invalid-feedback" cssClass="error" />
+                    <label for="inputUsername" class="form-label${errors.hasFieldErrors('username') ? 'is-invalid' : ''}">Username</label>
+                </div>
+            </div>
+            <div class="col-md-6 col-12">
+                <div class="form-floating mb-3 mt-3">
+                    <form:input path="password" type="password" class="form-control" id="inputPassword" placeholder="Password" name="inputPassword"/>
+                    <form:errors path="password" class="invalid-feedback" cssClass="error" />
+                    <label for="inputPassword" class="form-label${errors.hasFieldErrors('password') ? 'is-invalid' : ''}">Password</label>
+                </div>
             </div>
         </div>
         <div class="p-2">
-            <label for="inputUniversity" class="form-label ${errors.hasFieldErrors('university') ? 'is-invalid' : ''}">University</label>
-            <form:input path="university" id="inputUniversity" type="text" class="form-control" />
-            <form:errors path="university" cssClass="invalid-feedback" />
+            <button type="submit" class="btn btn-success">Register</button>
+            <a href="listCourses" class="btn btn-default">Cancel</a>
         </div>
-        <div class="d-md-flex">
-            <div class="p-2">
-                <label for="inputStreet" class="form-label ${errors.hasFieldErrors('street') ? 'is-invalid' : ''}">Street</label>
-                <form:input path="street" id="inputStreet" type="text" class="form-control"/>
-                <form:errors path="street" cssClass="invalid-feedback" />
-            </div>
-            <div class="p-2">
-                <label for="inputHousenum" class="form-label ${errors.hasFieldErrors('housenum') ? 'is-invalid' : ''}">Number</label>
-                <form:input path="housenum" id="inputHousenum" type="num" class="form-control"/>
-                <form:errors path="housenum" cssClass="invalid-feedback" />
-            </div>
-        </div>
-        <div class="d-md-flex">
-            <div class="p-2">
-                <label for="inputZip" class="form-label ${errors.hasFieldErrors('zip') ? 'is-invalid' : ''}">Zip</label>
-                <form:input path="zip" id="inputZip" type="text" class="form-control"/>
-                <form:errors path="zip" cssClass="invalid-feedback" />
-            </div>
-            <div class="p-2">
-                <label for="inputCity" class="form-label ${errors.hasFieldErrors('city') ? 'is-invalid' : ''}">City</label>
-                <form:input path="city" id="inputCity" type="text" class="form-control"/>
-                <form:errors path="city" cssClass="invalid-feedback" />
-            </div>
-            <div class="p-2">
-                <label for="inputCountry" class="form-label ${errors.hasFieldErrors('country') ? 'is-invalid' : ''}">Country</label>
-                <form:input path="country" id="inputCountry" type="text" class="form-control"/>
-                <form:errors path="country" cssClass="invalid-feedback" />
-            </div>
-        </div>
-
-
-
-        <div class="p-2">
-            <label for="inputUsername" class="form-label ${errors.hasFieldErrors('username') ? 'is-invalid' : ''}">Username</label>
-            <form:input path="username" id="inputUsername" type="text" class="form-control"/>
-        </div>
-        <div class="d-md-flex">
-            <div class="p-2">
-                <label for="inputPassword" class="form-label ${errors.hasFieldErrors('password') ? 'is-invalid' : ''}">Password</label>
-                <form:input path="password" id="inputPassword" type="password" class="form-control"/>
-            </div>
-            <div class="p-2">
-                <label for="inputPassword" class="form-label ${errors.hasFieldErrors('password') ? 'is-invalid' : ''}">Confirm Password</label>
-                <form:input path="password" id="inputPassword" type="password" class="form-control"/>
-            </div>
-        </div>
-            <div class="p-2">
-                <button type="submit" class="btn btn-success">Register</button>
-                <a href="listCourses" class="btn btn-default">Cancel</a>
-            </div>
-
     </fieldset>
 </form:form>
 

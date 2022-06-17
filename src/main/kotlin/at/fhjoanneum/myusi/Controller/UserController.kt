@@ -51,7 +51,8 @@ class UserController(val userRepository: UserRepository) {
     fun newUser(@ModelAttribute @Valid user: User, bindingResult: BindingResult, model: Model): String {//@Valid @ModelAttribute user: User, bindingResult: BindingResult, model: Model): String {
         val originalPassword = user.password
         if (bindingResult.hasErrors()) {
-            return "register"
+            model["errorMessage"]="Please fill out all the required Fields"
+            return register(model)
         }
         try {
             user.password = BCryptPasswordEncoder().encode(originalPassword)
@@ -59,10 +60,12 @@ class UserController(val userRepository: UserRepository) {
         }  catch (e: DataIntegrityViolationException) {
             user.password = originalPassword
             model["user"]=user
+            model["errorMessage"]="An Error occurred"
             return register(model)
         } catch (e: Exception) {
             user.password = originalPassword
             model["user"]=user
+            model["errorMessage"]="An Error occurred"
             return register(model)
         }
 

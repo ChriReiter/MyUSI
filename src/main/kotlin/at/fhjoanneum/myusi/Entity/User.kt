@@ -40,8 +40,6 @@ class User(
     var dayOfBirth: LocalDate? = null,
     @Enumerated(EnumType.STRING)
     var gender: Gender? = null,
-    @field:NotNull(message = "Field cannot be empty")
-    var country: String? = null,
     @field:Size(min = 2, max = 240)
     var city: String? = null,
     @field:Size(min = 2, max = 240)

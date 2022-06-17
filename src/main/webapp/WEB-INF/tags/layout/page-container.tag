@@ -73,12 +73,6 @@
     </c:if>
     <!-- Error message ----------------------------------------------------------- -->
 
-    <!-- Error message ----------------------------------------------------------- -->
-    <c:if test="${not empty errorMessage}">
-        <div class="alert alert-danger" role="alert">${errorMessage}</div>
-    </c:if>
-    <!-- Error message ----------------------------------------------------------- -->
-
     <!-- Warning message ----------------------------------------------------------- -->
     <c:if test="${not empty warningMessage}">
         <div class="alert alert-warning" role="warning">${warningMessage}</div>
