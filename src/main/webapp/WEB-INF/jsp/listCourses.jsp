@@ -64,6 +64,19 @@
                                                     </select>
                                                 </div>
                                             </div>
+                                            <div class="col">
+                                                <div class="col">
+                                                    <label for="categorySearch" class="form-label">Category</label>
+                                                    <select id="categorySearch" name="category" class="form-control" value="${param.category}">
+                                                        <option value=""></option>
+                                                        <c:forEach var="category" items="${category}">
+                                                            <option value="${category.id}"<c:if
+                                                                test="${param.category == category.id}"> selected</c:if>>${category.categoryName}
+                                                            </option>
+                                                        </c:forEach>
+                                                    </select>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>

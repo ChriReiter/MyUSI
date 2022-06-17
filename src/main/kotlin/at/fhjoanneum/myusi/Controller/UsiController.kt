@@ -43,13 +43,14 @@ class UsiController(val userRepository: UserRepository, val courseRepository: Co
     @RequestMapping(path=["/","/listCourses"], method = [RequestMethod.GET])
     fun listCourses(model: Model, @RequestParam(required = false) search: String? = null, @RequestParam(required = false) date: String? = null
                       , @RequestParam(required = false) timeStart: String? = null, @RequestParam(required = false) timeEnd: String? = null
-                      , @RequestParam(required = false) instructor: User? = null, @RequestParam(required = false) location: Location? = null
+                      , @RequestParam(required = false) instructor: User? = null, @RequestParam(required = false) location: Location? = null,
+                    @RequestParam(required = false) category: CourseCategory? = null
     ): String {
         if (date != null && date != "") {
             val date2 = LocalDate.parse(date, DateTimeFormatter.ISO_LOCAL_DATE)
-            model["courses"] = courseRepository.findByCourseName(search, date2, timeStart, timeEnd, instructor, location)//, date, instructor, location)
+            model["courses"] = courseRepository.findByCourseName(search, date2, timeStart, timeEnd, instructor, location, category)//, date, instructor, location)
         } else {
-            model["courses"] = courseRepository.findByCourseName(search, null, timeStart, timeEnd, instructor, location)//, date, instructor, location)
+            model["courses"] = courseRepository.findByCourseName(search, null, timeStart, timeEnd, instructor, location, category)//, date, instructor, location)
         }
         model["instructors"] = userRepository.findByRole(UserRole.ROLE_INSTRUCTOR)
         model["locations"] = locationRepository.findAll()

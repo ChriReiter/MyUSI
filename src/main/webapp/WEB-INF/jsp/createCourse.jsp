@@ -111,5 +111,3 @@
 
 <script src="webjars/dropzone/5.9.3/dist/dropzone.js"></script>
 <script src="/js/imageUpload.js"></script>
-
-
