@@ -152,8 +152,6 @@ class UsiController(val userRepository: UserRepository, val courseRepository: Co
                 "Registration for course ${course.courseName} succeeded",
                 "You have booked the course number ${course.id}, ${course.courseName}, with ${course.instructor?.firstName} ${course.instructor?.lastName} on ${course.date}, ${course.timeStart} - ${course.timeEnd}")
         }
-
-
         return "redirect:listCourses"
     }
 
@@ -195,7 +193,7 @@ class UsiController(val userRepository: UserRepository, val courseRepository: Co
                 }
                 model["locations"] = locationRepository.findAll()
                 return "listInstructorCourses"
-            }
+    }
 
     @Secured("ROLE_INSTRUCTOR")
     @RequestMapping(path=["/deleteCourse"], method = [RequestMethod.POST])
