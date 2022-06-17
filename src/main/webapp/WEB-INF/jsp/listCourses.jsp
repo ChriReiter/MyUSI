@@ -113,14 +113,14 @@
                                     <c:if test="${course.numSpaces - course.participants.size() > 0}">
                                         <div class="col" >
                                             <div class="container-sm" id="freeSpaces">
-                                                    ${course.participants.size()} / ${course.numSpaces}
+                                                    Free spots: ${course.numSpaces - course.participants.size()}
                                             </div>
                                         </div>
                                     </c:if>
                                     <c:if test="${course.numSpaces - course.participants.size() <= 0}">
                                         <div class="col" >
                                             <div class="container-sm" id="courseFull">
-                                                    ${course.participants.size()} / ${course.numSpaces}
+                                                    Free spots: ${course.numSpaces - course.participants.size()}
                                             </div>
                                         </div>
                                     </c:if>

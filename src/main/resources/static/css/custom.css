@@ -156,5 +156,7 @@ button::selection {
 }
 
 #courseFull {
-
+    border: 2px solid #1D1E2C;
+    border-radius: 30px;
+    background-color: #c44747;
 }
