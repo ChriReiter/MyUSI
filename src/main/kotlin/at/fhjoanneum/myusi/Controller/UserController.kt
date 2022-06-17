@@ -46,7 +46,9 @@ class UserController(val userRepository: UserRepository) {
     }
     @RequestMapping(path=["/register"], method = [RequestMethod.GET])
     fun register(model: Model): String {
-        model["user"] = User(username = "", password = "", role = UserRole.ROLE_USER, dayOfBirth = LocalDate.now())
+        if(!model.containsAttribute("user")){
+            model["user"] = User(username = "", password = "", role = UserRole.ROLE_USER, dayOfBirth = LocalDate.now())
+        }
         return "register"
     }
 
@@ -58,7 +60,8 @@ class UserController(val userRepository: UserRepository) {
         }
 
         if (bindingResult.hasErrors()) {
-            return "/register"
+            model["errorMessage"]="Please fill out all the required Fields"
+            return register(model)
         }
         try {
             user.password = BCryptPasswordEncoder().encode(originalPassword)
@@ -68,10 +71,14 @@ class UserController(val userRepository: UserRepository) {
                 "You have successfully registered your account for MyUSI application. Start booking courses now!")
         }  catch (e: DataIntegrityViolationException) {
             user.password = originalPassword
-            return "register"
+            model["user"]=user
+            model["errorMessage"]="An Error occurred"
+            return register(model)
         } catch (e: Exception) {
             user.password = originalPassword
-            return "register"
+            model["user"]=user
+            model["errorMessage"]="An Error occurred"
+            return register(model)
         }
 
 

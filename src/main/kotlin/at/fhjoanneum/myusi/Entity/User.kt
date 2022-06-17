@@ -25,12 +25,12 @@ class User(
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     var id: Int? = null,
     @Column(nullable = false, unique =true)
-    var username: String? = null,
+    var username: String,
     @Column(nullable = false, unique = true)
-    var password: String? = null,
-    @field:NotNull(message = "Field cannot be empty")
+    var password: String,
+    @field:Size(min = 1, max = 240, message = "Field cannot be empty")
     var firstName: String? = null,
-    @field:NotNull(message = "Field cannot be empty")
+    @field:Size(min = 1, max = 240, message = "Field cannot be empty")
     var lastName: String? = null,
     @field:NotNull
     var university: String? = null,
@@ -40,17 +40,15 @@ class User(
     var dayOfBirth: LocalDate? = null,
     @Enumerated(EnumType.STRING)
     var gender: Gender? = null,
-    @field:NotNull(message = "Field cannot be empty")
-    var country: String? = null,
-    @field:NotNull(message = "Field cannot be empty")
+    @field:Size(min = 2, max = 240)
     var city: String? = null,
-    @field:NotNull(message = "Field cannot be empty")
+    @field:Size(min = 2, max = 240)
     var zip: String? = null,
-    @field:NotNull(message = "Field cannot be empty")
+    @field:Size(min = 2, max = 240)
     var street: String? = null,
-    @field:NotNull(message = "Field cannot be empty")
+    @field:NotNull()
     var housenum: String? = null,
-    @field:NotNull(message = "Field cannot be empty")
+    @field:Size(min = 2, max = 240)
     var telephone: String? = null,
     @Enumerated(EnumType.STRING)
     var role: UserRole? = null
