@@ -48,16 +48,14 @@ class UserController(val userRepository: UserRepository) {
     fun register(model: Model): String {
         if(!model.containsAttribute("user")){
             model["user"] = User(username = "", password = "", role = UserRole.ROLE_USER, dayOfBirth = LocalDate.now())
+            model["passwordCheck"] = ""
         }
         return "register"
     }
 
     @RequestMapping("/newUser", method = [RequestMethod.POST])
-    fun newUser(@ModelAttribute @Valid user: User, @RequestParam(required = true) passwordCheck: String? = null, bindingResult: BindingResult, model: Model): String {//@Valid @ModelAttribute user: User, bindingResult: BindingResult, model: Model): String {
+    fun newUser(@ModelAttribute @Valid user: User, bindingResult: BindingResult, model: Model): String {//@Valid @ModelAttribute user: User, bindingResult: BindingResult, model: Model): String {
         val originalPassword = user.password
-        if (originalPassword != passwordCheck) {
-            return "/register"
-        }
 
         if (bindingResult.hasErrors()) {
             model["errorMessage"]="Please fill out all the required Fields"
