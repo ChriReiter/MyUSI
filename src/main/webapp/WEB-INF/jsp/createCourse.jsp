@@ -92,7 +92,7 @@
         <div class="container border border-dark rounded-4 border-2 p-3 mb-4">
             <h4>Upload Image</h4>
             <div class="chooseImage">
-                <form:input path="" type="file" name="inputFile" id="inputFile"/>
+                <form:input path="" type="file" name="inputFile" id="inputFile" accept=".jpg,.gif.png"/>
                 <div class="image-preview" id="imagePreview">
                     <img src="" alt="Image Preview" class="image-preview-image">
                     <span class="image-preview-text">Image Preview</span>

@@ -15,7 +15,7 @@
 </head>
 <body>
 <div class="text-end me-2">
-    <img src="/img/logo.svg" class="mt-2 mb-2">
+    <img src="/img/logo.png" class="img-fluid">
 </div>
 
 <nav class="navbar navbar-expand-lg mb-4">

@@ -59,18 +59,21 @@
     <h1 class="mt-4">Dates</h1>
     <table class="table table-bordered border-secondary">
         <thead>
-            <th scope="col">Date</th>
-            <th scope="col">Time</th>
-            <th scope="col">Location</th>
+            <th class="text-center align-middle" scope="col">Date</th>
+            <th class="text-center align-middle" scope="col">Time</th>
+            <th class="text-center align-middle" scope="col">Location</th>
         </thead>
         <tbody>
             <tr>
-                <td>
+                <td class="text-center align-middle">
                     <fmt:parseDate value="${course.date}" pattern="yyyy-MM-dd" var="parsedDate" type="date"/>
                     <fmt:formatDate value="${parsedDate}" type="date" pattern="dd.MM.yyyy"/>
                 </td>
-                <td> ${course.timeStart.substring(0, 5)} - ${course.timeEnd.substring(0, 5)}</td>
-                <td>${course.locations.name}</td>
+                <td class="text-center align-middle"> ${course.timeStart.substring(0, 5)} - ${course.timeEnd.substring(0, 5)}</td>
+                <td class="text-center align-middle"> ${course.locations.name} <br>
+                     ${course.locations.street} ${course.locations.housenum} <br>
+                     ${course.locations.zip} ${course.locations.city}, ${course.locations.country}
+                </td>
             </tr>
         </tbody>
     </table>
