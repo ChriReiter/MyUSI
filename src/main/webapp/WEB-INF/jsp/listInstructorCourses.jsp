@@ -10,9 +10,11 @@
 
 <layout:page-container title="Courses" activePage="listInstructorCourses">
 
-
-    <h2>Design 1</h2>
-            <div class="row">
+    <div class="form-check form-switch mb-3" style="justify-content: right">
+        <label for="flexSwitchCheckDefault">Toggle Design</label>
+        <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
+    </div>
+            <div class="row" id="layoutCard">
                 <c:forEach items="${courses}" var="course">
                     <div class="col-lg-4 col-md-6 col-sm-12">
                         <div class="card mb-5">
@@ -71,12 +73,25 @@
                                 <div class="card-footer">
                                     <div class="row">
                                         <div class="col">
-                                            <c:if test="${currentUser == ''}">
-                                                <form method="post" class="col" action="/courseRegistration?id=${course.id}">
-                                                    <sec:csrfInput/>
-                                                    <button id="bookCourseButton" type="submit" class="btn btn-outline-primary">Book Course</button>
-                                                </form>
-                                            </c:if>
+                                            <div class="col" style="align-content: center">
+                                                <sec:authorize access="hasRole('ROLE_INSTRUCTOR')">
+                                                    <c:if test="${currentUser == course.instructor.username}">
+                                                        <form method="post" class="col" action="/deleteCourse?id=${course.id}">
+                                                            <sec:csrfInput/>
+                                                            <button id="deleteCourseButton" type="submit" class="btn btn-outline-primary">Delete Course</button>
+                                                        </form>
+                                                    </c:if>
+                                                </sec:authorize>
+
+                                            </div>
+                                            <div class="col" style="align-content: center">
+                                                <c:if test="${currentUser == course.instructor.username}">
+                                                    <a href="/createCourse?id=${course.id}">
+                                                        <sec:csrfInput/>
+                                                        <button id="bookCourseButton" class="btn btn-outline-primary">Modify Course</button>
+                                                    </a>
+                                                </c:if>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -86,9 +101,7 @@
                 </c:forEach>
             </div>
 
-            <h2>Design 2</h2>
-
-            <table data-toggle="table" class="table table-striped table-bordered">
+            <table data-toggle="table" class="table table-striped table-bordered" id="layoutTable" hidden>
                 <thead class="thread-dark">
                 <tr>
                     <th data-sortable="true">No</th>
@@ -117,9 +130,27 @@
                         </td>
                         <td>${course.locations.name}</td>
                         <td>${course.instructor.firstName} ${course.instructor.lastName}</td>
-                        <sec:authorize access="hasRole('ROLE_ADMIN')">
-                            <td>Admin Actions</td>
-                        </sec:authorize>
+                        <td>
+                            <div class="col" style="align-content: center">
+                                <sec:authorize access="hasRole('ROLE_INSTRUCTOR')">
+                                    <c:if test="${currentUser == course.instructor.username}">
+                                        <form method="post" class="col" action="/deleteCourse?id=${course.id}">
+                                            <sec:csrfInput/>
+                                            <button id="deleteCourseButton" type="submit" class="btn btn-outline-primary">Delete Course</button>
+                                        </form>
+                                    </c:if>
+                                </sec:authorize>
+
+                            </div>
+                            <div class="col" style="align-content: center">
+                                <c:if test="${currentUser == course.instructor.username}">
+                                    <a href="/createCourse?id=${course.id}">
+                                        <sec:csrfInput/>
+                                        <button id="bookCourseButton" class="btn btn-outline-primary">Modify Course</button>
+                                    </a>
+                                </c:if>
+                            </div>
+                        </td>
 
                     </tr>
                 </c:forEach>
@@ -129,3 +160,5 @@
     </div>
 
 </layout:page-container>
+
+<script src="/js/switchLayout.js"></script>

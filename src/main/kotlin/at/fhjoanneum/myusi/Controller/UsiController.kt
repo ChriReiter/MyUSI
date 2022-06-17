@@ -16,6 +16,8 @@ import org.springframework.mail.MailSender
 import org.springframework.mail.SimpleMailMessage
 import org.springframework.security.access.annotation.Secured
 import org.springframework.security.config.annotation.web.builders.HttpSecurity
+import org.springframework.security.core.GrantedAuthority
+import org.springframework.security.core.authority.SimpleGrantedAuthority
 import org.springframework.security.core.context.SecurityContextHolder
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
 import org.springframework.stereotype.Controller
@@ -191,9 +193,28 @@ class UsiController(val userRepository: UserRepository, val courseRepository: Co
                 if (instructorCourses != null) {
                     model["courses"] = instructorCourses
                 }
-             //   model["instructors"] = userRepository.findByRole(UserRole.ROLE_INSTRUCTOR)
                 model["locations"] = locationRepository.findAll()
                 return "listInstructorCourses"
             }
+
+    @Secured("ROLE_INSTRUCTOR")
+    @RequestMapping(path=["/deleteCourse"], method = [RequestMethod.POST])
+    fun deleteCourse(@RequestParam(required = false) id: Int?, model: Model): String {
+        if (id != null) {
+            val courseToDelete: Course = courseRepository.findById(id).get()
+            val instructor: User = userRepository.findByUsername(SecurityContextHolder.getContext().authentication.name)
+            if (courseToDelete.instructor?.username == instructor.username || instructor.role == UserRole.ROLE_ADMIN) {
+                if (courseToDelete.participants != null) {
+                    for (user in courseToDelete.participants!!) {
+                        mailSender?.sendMail(user.email,
+                            "Registration cancelled for course ${courseToDelete.courseName}",
+                            "The course number ${courseToDelete.id}, ${courseToDelete.courseName}, with ${courseToDelete.instructor?.firstName} ${courseToDelete.instructor?.lastName} on ${courseToDelete.date}, ${courseToDelete.timeStart} - ${courseToDelete.timeEnd} was deleted. Therefore you registration has been cancelled.")
+                    }
+                }
+                courseRepository.delete(courseToDelete)
+            }
+        }
+        return "redirect:listCourses"
+    }
 }
 

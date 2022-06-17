@@ -159,6 +159,17 @@
                                             </c:if>
                                         </div>
                                         <div class="col" style="align-content: center">
+                                            <sec:authorize access="hasRole('ROLE_INSTRUCTOR')">
+                                                <c:if test="${currentUser == course.instructor.username}">
+                                                    <form method="post" class="col" action="/deleteCourse?id=${course.id}">
+                                                        <sec:csrfInput/>
+                                                        <button id="deleteCourseButton" type="submit" class="btn btn-outline-primary">Delete Course</button>
+                                                    </form>
+                                                </c:if>
+                                            </sec:authorize>
+
+                                        </div>
+                                        <div class="col" style="align-content: center">
                                             <c:if test="${currentUser == course.instructor.username}">
                                                 <a href="/createCourse?id=${course.id}">
                                                     <sec:csrfInput/>
@@ -189,6 +200,7 @@
                 </thead>
                 <tbody>
                 <c:forEach items="${courses}" var="course">
+
                     <tr>
                         <td>${course.id}</td>
                         <td>${course.courseName}</td>
@@ -202,6 +214,10 @@
                         <td>${course.locations.name}</td>
                         <td>${course.instructor.firstName} ${course.instructor.lastName}</td>
                         <td>
+                            <a href="/courseDetails?id=${course.id}">
+                                <sec:csrfInput/>
+                                <button id="courseDetails" class="btn btn-outline-primary">Course Details</button>
+                            </a>
                             <c:if test="${currentUser != ''}">
                                 <form method="post" class="col" action="/courseRegistration?id=${course.id}">
                                     <sec:csrfInput/>
