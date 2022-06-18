@@ -129,8 +129,8 @@
             </div>
         </div>
         <div class="p-2">
-            <button type="submit" class="btn btn-success">Register</button>
-            <a href="listCourses" class="btn btn-default">Cancel</a>
+            <button type="submit" class="btn btn-lightGreen m-2">Register</button>
+            <a href="listCourses" class="btn btn-default m-2">Cancel</a>
         </div>
     </fieldset>
 </form:form>

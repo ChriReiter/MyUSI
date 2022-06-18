@@ -122,14 +122,14 @@ button::selection {
     text-align: center;
 }
 
-.btn-outline-primary {
+.btn-lightGreen {
     background-color: #50FFB1;
     color: #1D1E2C;
-    border-color: #1D1E2C;
+    /*border-color: #1D1E2C;*/
     text-align: center;
 }
 
-.btn-outline-primary:hover {
+.btn-lightGreen:hover {
     background-color: #4FB286;
 }
 

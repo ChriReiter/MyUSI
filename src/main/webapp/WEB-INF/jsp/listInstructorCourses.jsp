@@ -72,27 +72,26 @@
                                 </div>
                                 <div class="card-footer">
                                     <div class="row">
-                                        <div class="col">
+                                        <div class="col" style="align-content: center">
+                                            <c:if test="${currentUser == course.instructor.username}">
+                                                <a href="/createCourse?id=${course.id}">
+                                                    <sec:csrfInput/>
+                                                    <button id="bookCourseButton" class="btn btn-warning m-2">Modify Course</button>
+                                                </a>
+                                            </c:if>
+                                        </div>
                                             <div class="col" style="align-content: center">
                                                 <sec:authorize access="hasRole('ROLE_INSTRUCTOR')">
                                                     <c:if test="${currentUser == course.instructor.username}">
                                                         <form method="post" class="col" action="/deleteCourse?id=${course.id}">
                                                             <sec:csrfInput/>
-                                                            <button id="deleteCourseButton" type="submit" class="btn btn-outline-primary">Delete Course</button>
+                                                            <button id="deleteCourseButton" type="submit" class="btn btn-danger m-2">Delete Course</button>
                                                         </form>
                                                     </c:if>
                                                 </sec:authorize>
 
                                             </div>
-                                            <div class="col" style="align-content: center">
-                                                <c:if test="${currentUser == course.instructor.username}">
-                                                    <a href="/createCourse?id=${course.id}">
-                                                        <sec:csrfInput/>
-                                                        <button id="bookCourseButton" class="btn btn-outline-primary">Modify Course</button>
-                                                    </a>
-                                                </c:if>
-                                            </div>
-                                        </div>
+
                                     </div>
                                 </div>
                             </div>

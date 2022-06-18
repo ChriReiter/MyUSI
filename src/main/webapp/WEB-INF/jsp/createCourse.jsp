@@ -30,7 +30,7 @@
                 <label for="selectCategory" class="form-label">Select category:</label>
             </div>
             <div class="mb-3">
-                <a href="createCategory" class="btn btn-primary">Create a new category</a>
+                <a href="createCategory" class="btn btn-lightGreen m-2">Create a new category</a>
             </div>
             <div class="form-floating mb-3 mt-3">
                 <form:input path="courseName" type="text" class="form-control" id="inputCourseName" placeholder="Course Name" name="inputCourseName"/>
@@ -65,7 +65,7 @@
                 <label for="inputLocation" class="form-label">Select location:</label>
             </div>
             <div class="mb-3">
-                <a href="createLocation" class="btn btn-primary">Create a new location</a>
+                <a href="createLocation" class="btn btn-lightGreen m-2">Create a new location</a>
             </div>
         </div>
 
@@ -92,7 +92,7 @@
         <div class="container border border-dark rounded-4 border-2 p-3 mb-4">
             <h4>Upload Image</h4>
             <div class="chooseImage">
-                <form:input path="" type="file" name="inputFile" id="inputFile" accept=".jpg,.gif.png"/>
+<%--                <form:input path="image" type="file" name="inputFile" id="inputFile" accept=".jpg,.gif.png"/>--%>
                 <div class="image-preview" id="imagePreview">
                     <img src="" alt="Image Preview" class="image-preview-image">
                     <span class="image-preview-text">Image Preview</span>
@@ -102,8 +102,8 @@
 
         <div></div>
         <div class="mb-3">
-            <button type="submit" class="btn btn-primary">Submit</button>
-            <a href="listCourses" class="btn btn-default">Cancel</a>
+            <button type="submit" class="btn btn-lightGreen m-2">Submit</button>
+            <a href="listCourses" class="btn btn-default m-2">Cancel</a>
         </div>
     </form:form>
 

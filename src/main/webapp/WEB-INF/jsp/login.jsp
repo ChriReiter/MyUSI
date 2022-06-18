@@ -28,21 +28,21 @@
             </div>
             <legend>Login</legend>
             <div class="mb-3">
-                <label for="inputUsername" class="form-label${errors.hasFieldErrors('username') ? 'is-invalid' : ''}">Username</label>
+                <label for="inputUsername" class="form-label ${errors.hasFieldErrors('username') ? 'is-invalid' : ''}">Username</label>
                 <form:input path="username" id="inputUsername" type="text" class="form-control"/>
             </div>
             <div class="mb-3">
-                <label for="inputPassword" class="form-label${errors.hasFieldErrors('password') ? 'is-invalid' : ''}">Password</label>
+                <label for="inputPassword" class="form-label ${errors.hasFieldErrors('password') ? 'is-invalid' : ''}">Password</label>
                 <form:input path="password" id="inputPassword" type="password" class="form-control"/>
             </div>
             <div class="mb-3">
-                <label for="rememberMe" class="form-label${errors.hasFieldErrors('password') ? 'is-invalid' : ''}">Remember Me</label>
-                <input id="rememberMe" path="rememberMe" name="rememberMe" type="checkbox"/>
+                <label for="rememberMe" class="form-label ${errors.hasFieldErrors('password') ? 'is-invalid' : ''}">Remember Me</label>
+                <input id="rememberMe" class="form-check-input" path="rememberMe" name="rememberMe" type="checkbox"/>
             </div>
 
 
             <div class="mb-3">
-                <button type="submit" class="btn btn-success">Login</button>
+                <button type="submit" class="btn btn-lightGreen m-2">Login</button>
                 <%--<a href="listCourses" class="btn btn-default">Cancel</a>--%>
             </div>
 

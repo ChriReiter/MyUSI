@@ -15,8 +15,8 @@
         <legend>Are you sure you want to logout?</legend>
         <fieldset>
             <div class="mb-3">
-                <button type="submit" class="btn btn-primary">Submit</button>
-                <a href="listCourses" class="btn btn-default">Cancel</a>
+                <button type="submit" class="btn btn-lightGreen m-2">Submit</button>
+                <a href="listCourses" class="btn btn-default m-2">Cancel</a>
             </div>
         </fieldset>
     </form:form>
