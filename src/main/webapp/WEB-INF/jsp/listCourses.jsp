@@ -113,14 +113,14 @@
                                     <c:if test="${course.numSpaces - course.participants.size() > 0}">
                                         <div class="col" >
                                             <div class="container-sm" id="freeSpaces">
-                                                    Free spots: ${course.numSpaces - course.participants.size()} / ${course.numSpaces}
+                                                    Free spots: ${course.numSpaces - course.participants.size()}/${course.numSpaces}
                                             </div>
                                         </div>
                                     </c:if>
                                     <c:if test="${course.numSpaces - course.participants.size() <= 0}">
                                         <div class="col" >
                                             <div class="container-sm" id="courseFull">
-                                                    Free spots: ${course.numSpaces - course.participants.size()} / ${course.numSpaces}
+                                                    Free spots: ${course.numSpaces - course.participants.size()}/${course.numSpaces}
                                             </div>
                                         </div>
                                     </c:if>
@@ -128,7 +128,7 @@
                             </div>
                             <a href="/courseDetails?id=${course.id}">
                                 <sec:csrfInput/>
-                                <img class="card-img-top" src="img/Screenshot (4).png" type="submit" />
+                                <img class="card-img-top img-fluid" style="width: 420px; height: 240px" src="files/${course.category.files.get(0).id}" type="submit" />
                             </a>
                             <div class="card-body">
                                 <div class="card-title d-flex align-items-center justify-content-center">
