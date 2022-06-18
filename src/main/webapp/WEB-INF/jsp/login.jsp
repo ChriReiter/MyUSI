@@ -35,12 +35,17 @@
                 <label for="inputPassword" class="form-label${errors.hasFieldErrors('password') ? 'is-invalid' : ''}">Password</label>
                 <form:input path="password" id="inputPassword" type="password" class="form-control"/>
             </div>
+            <div class="mb-3">
+                <label for="rememberMe" class="form-label${errors.hasFieldErrors('password') ? 'is-invalid' : ''}">Remember Me</label>
+                <input id="rememberMe" path="rememberMe" name="rememberMe" type="checkbox"/>
+            </div>
 
 
             <div class="mb-3">
                 <button type="submit" class="btn btn-success">Login</button>
                 <%--<a href="listCourses" class="btn btn-default">Cancel</a>--%>
             </div>
+
             <div class="mb-3">
                 <p>You don't have an account? Register <a href="register">here</a> </p>
             </div>
