@@ -25,9 +25,9 @@ class User(
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     var id: Int? = null,
     @Column(nullable = false, unique =true)
-    var username: String,
+    var username: String?,
     @Column(nullable = false, unique = true)
-    var password: String,
+    var password: String?,
     @field:Size(min = 1, max = 240, message = "Field cannot be empty")
     var firstName: String? = null,
     @field:Size(min = 1, max = 240, message = "Field cannot be empty")
