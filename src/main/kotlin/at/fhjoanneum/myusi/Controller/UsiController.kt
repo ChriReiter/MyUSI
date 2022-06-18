@@ -215,5 +215,14 @@ class UsiController(val userRepository: UserRepository, val courseRepository: Co
         }
         return "redirect:listCourses"
     }
+
+
+
+    @Secured("ROLE_INSTRUCTOR")
+    @RequestMapping(path=["/sendMailtoEnrolledUsers"], method = [RequestMethod.GET])
+    fun sendMailToEnrolledUsers(model: Model): String {
+        model["User"] = userRepository.findAll()
+        return "sendMailtoEnrolledUsers"
+    }
 }
 

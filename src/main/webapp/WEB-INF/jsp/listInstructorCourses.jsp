@@ -80,6 +80,14 @@
                                                 </a>
                                             </c:if>
                                         </div>
+                                        <div class="col" style="align-content: center">
+                                            <c:if test="${currentUser == course.instructor.username}">
+                                                <a href="/sendMailToEnrolledUsers?id=${course.id}">
+                                                    <sec:csrfInput/>
+                                                    <button id="mailToButton" class="btn btn-warning m-2">Mail Users</button>
+                                                </a>
+                                            </c:if>
+                                        </div>
                                             <div class="col" style="align-content: center">
                                                 <sec:authorize access="hasRole('ROLE_INSTRUCTOR')">
                                                     <c:if test="${currentUser == course.instructor.username}">
@@ -140,6 +148,14 @@
                                     </c:if>
                                 </sec:authorize>
 
+                            </div>
+                            <div class="col" style="align-content: center">
+                                <c:if test="${currentUser == course.instructor.username}">
+                                    <a href="/sendMailToEnrolledUsers?id=${course.id}">
+                                        <sec:csrfInput/>
+                                        <button id="mailToButton" class="btn btn-outline-primary">Mail Users</button>
+                                    </a>
+                                </c:if>
                             </div>
                             <div class="col" style="align-content: center">
                                 <c:if test="${currentUser == course.instructor.username}">
