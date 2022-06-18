@@ -46,7 +46,7 @@
                     </div>
                     <a href="/courseDetails?id=${course.id}">
                         <sec:csrfInput/>
-                        <img class="card-img-top" src="img/Screenshot (4).png" type="submit" />
+                        <img class="card-img-top img-fluid" style="width: 420px; height: 240px" src="files/${course.category.files.get(0).id}" type="submit" />
                     </a>
                     <div class="card-body">
                         <div class="card-title">
