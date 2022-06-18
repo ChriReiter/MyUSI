@@ -1,25 +1,15 @@
 package at.fhjoanneum.myusi.Controller
 
-import at.fhjoanneum.myusi.Converter.DateToStringConverter
 import at.fhjoanneum.myusi.Entity.*
 import at.fhjoanneum.myusi.Repository.CourseCategoryRepository
 import at.fhjoanneum.myusi.Repository.CourseRepository
 import at.fhjoanneum.myusi.Repository.LocationRepository
 import at.fhjoanneum.myusi.Repository.UserRepository
 import at.fhjoanneum.myusi.Service.MailSenderService
-import jdk.jfr.Category
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.dao.DataIntegrityViolationException
-import org.springframework.data.repository.findByIdOrNull
-import org.springframework.format.annotation.DateTimeFormat
-import org.springframework.mail.MailSender
-import org.springframework.mail.SimpleMailMessage
 import org.springframework.security.access.annotation.Secured
-import org.springframework.security.config.annotation.web.builders.HttpSecurity
-import org.springframework.security.core.GrantedAuthority
-import org.springframework.security.core.authority.SimpleGrantedAuthority
 import org.springframework.security.core.context.SecurityContextHolder
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
 import org.springframework.stereotype.Controller
 import org.springframework.ui.Model
 import org.springframework.ui.set
@@ -29,9 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RequestMethod
 import org.springframework.web.bind.annotation.RequestParam
 import java.time.LocalDate
-import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
-import java.util.*
 import javax.validation.Valid
 
 @Controller
@@ -179,6 +167,7 @@ class UsiController(val userRepository: UserRepository, val courseRepository: Co
     fun courseRegistration(model: Model, @RequestParam id: Int): String {
         val course: Course = courseRepository.findById(id).get()
         val username = SecurityContextHolder.getContext().authentication.name
+        val sender = "myusi.wappdev@gmail.com"
         if (username != "anonymousUser") {
             val user = userRepository.findByUsername(username)
 
@@ -186,7 +175,7 @@ class UsiController(val userRepository: UserRepository, val courseRepository: Co
             courseRepository.save(course)
 
             mailSender?.sendMail(
-                user.email,
+                sender, user.email,
                 "Registration for course ${course.courseName} succeeded",
                 "You have booked the course number ${course.id}, ${course.courseName}, with ${course.instructor?.firstName} ${course.instructor?.lastName} on ${course.date}, ${course.timeStart} - ${course.timeEnd}"
             )
@@ -197,6 +186,7 @@ class UsiController(val userRepository: UserRepository, val courseRepository: Co
     @RequestMapping(path = ["/courseDeregistration"], method = [RequestMethod.POST])
     fun courseRDeregistration(model: Model, @RequestParam id: Int): String {
         val course: Course = courseRepository.findById(id).get()
+        val sender = "myusi.wappdev@gmail.com"
         val username = SecurityContextHolder.getContext().authentication.name
         if (username != "anonymousUser") {
             val user = userRepository.findByUsername(username)
@@ -205,7 +195,7 @@ class UsiController(val userRepository: UserRepository, val courseRepository: Co
             }
 
             mailSender?.sendMail(
-                user.email,
+                sender, user.email,
                 "Registration cancelled for course ${course.courseName}",
                 "You have successfully cancelled your registration for the course number ${course.id}, ${course.courseName}, with ${course.instructor?.firstName} ${course.instructor?.lastName} on ${course.date}, ${course.timeStart} - ${course.timeEnd}"
             )
@@ -247,7 +237,7 @@ class UsiController(val userRepository: UserRepository, val courseRepository: Co
                 if (courseToDelete.participants != null) {
                     for (user in courseToDelete.participants!!) {
                         mailSender?.sendMail(
-                            user.email,
+                            instructor.email!!, user.email,
                             "Registration cancelled for course ${courseToDelete.courseName}",
                             "The course number ${courseToDelete.id}, ${courseToDelete.courseName}, with ${courseToDelete.instructor?.firstName} ${courseToDelete.instructor?.lastName} on ${courseToDelete.date}, ${courseToDelete.timeStart} - ${courseToDelete.timeEnd} was deleted. Therefore you registration has been cancelled."
                         )
@@ -266,7 +256,30 @@ class UsiController(val userRepository: UserRepository, val courseRepository: Co
         //model["User"] = userRepository.findAll()
         return "sendMailtoEnrolledUsers"
     }
+
+    @Secured("ROLE_INSTRUCTOR")
+    @RequestMapping(path = ["/submitMailToUsers"], method = [RequestMethod.GET])
+    fun submitMailToUsers(id: Int?): String {
+
+        val messageToUsers = ""
+
+        if (id != null) {
+            val instructor: User? =
+                userRepository.findByUsername(SecurityContextHolder.getContext().authentication.name)
+            val instructorsCourse: Course? = courseRepository.findCourseById(id)
+
+            for (user in instructorsCourse!!.participants!!) {
+                mailSender?.sendMail(
+                    instructor!!.email!!,
+                    user.email,
+                    "Information to course:  ${instructorsCourse.courseName}",
+                    messageToUsers
+                )
+            }
+            return "redirect:listCourses"
+        } else {
+            return "redirect:listCourses"
+        }
+    }
 }
-
-
 

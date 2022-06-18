@@ -181,7 +181,7 @@
                                         </div>
                                         <div class="col" style="align-content: center">
                                             <c:if test="${currentUser == course.instructor.username}">
-                                                <a href="/sendMailToEnrolledUsers?id=${course.id}">
+                                                <a href="/sendMailtoEnrolledUsers?id=${course.id}">
                                                     <sec:csrfInput/>
                                                     <button id="mailToButton" class="btn btn-warning m-2">Mail Users</button>
                                                 </a>
@@ -254,7 +254,7 @@
                             </c:if>
                             <div class="col" style="align-content: center">
                                 <c:if test="${currentUser == course.instructor.username}">
-                                <a href="/sendMailToEnrolledUsers?id=${course.id}">
+                                <a href="/sendMailtoEnrolledUsers?id=${course.id}">
                                     <sec:csrfInput/>
                                     <button id="mailToButton" class="btn btn-lightGreen m-2">Mail Users</button>
                                 </a>

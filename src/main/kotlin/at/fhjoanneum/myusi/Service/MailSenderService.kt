@@ -12,9 +12,9 @@ class MailSenderService {
     @Autowired
     val mailSender: MailSender? = null
 
-    fun sendMail(toEmail: String?, subject: String, body: String) {
+    fun sendMail(setFrom:String, toEmail: String?, subject: String, body: String) {
         val message: SimpleMailMessage = SimpleMailMessage()
-        message.setFrom("myusi.wappdev@gmail.com")
+        message.setFrom(setFrom)
         message.setTo(toEmail)
         message.setText(body)
         message.setSubject(subject)
