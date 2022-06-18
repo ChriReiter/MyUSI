@@ -180,12 +180,14 @@
                                             </c:if>
                                         </div>
                                         <div class="col" style="align-content: center">
-                                            <c:if test="${currentUser == course.instructor.username}">
-                                                <a href="/sendMailtoEnrolledUsers?id=${course.id}">
+                                            <sec:authorize access="hasRole('ROLE_INSTRUCTOR')">
+                                                <c:if test="${currentUser == course.instructor.username}">
+                                                 <a href="/sendMailtoEnrolledUsers?id=${course.id}">
                                                     <sec:csrfInput/>
                                                     <button id="mailToButton" class="btn btn-warning m-2">Mail Users</button>
                                                 </a>
-                                            </c:if>
+                                                </c:if>
+                                            </sec:authorize>
                                         </div>
                                         <div class="col p-2" style="align-content: center">
                                             <sec:authorize access="hasRole('ROLE_INSTRUCTOR')">

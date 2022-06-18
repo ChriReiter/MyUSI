@@ -29,6 +29,14 @@
         </button>
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <div class="navbar-nav">
+                <sec:authorize access="hasAuthority('ROLE_INSTRUCTOR')">
+                    <a class="nav-item nav-link" href="/createCourse" >Create Course</a>
+                </sec:authorize>
+                <sec:authorize access="hasAuthority('ROLE_INSTRUCTOR')">
+                    <a class="nav-item nav-link" href="/listInstructorCourses" >Show my Courses</a>
+                </sec:authorize>
+                </div>
             <ul class="navbar-nav ms-auto">
                 <li class="nav-item">
                     <span class="nav-link"><i class="bi bi-person"></i><c:out value="${currentUser}" /></span>
@@ -46,12 +54,7 @@
                         <c:if test="${currentUser == ''}">
                             <a class="dropdown-item" href="/login" class="nav-link">Login</a>
                         </c:if>
-                        <sec:authorize access="hasAuthority('ROLE_INSTRUCTOR')">
-                            <a class="dropdown-item" href="/createCourse" class="nav-link">Create Course</a>
-                        </sec:authorize>
-                        <sec:authorize access="hasAuthority('ROLE_INSTRUCTOR')">
-                            <a class="dropdown-item" href="/listInstructorCourses" class="nav-link">Show my Courses</a>
-                        </sec:authorize>
+
                     </div>
                 </li>
 
