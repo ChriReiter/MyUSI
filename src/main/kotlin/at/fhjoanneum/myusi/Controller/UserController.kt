@@ -34,7 +34,7 @@ class UserController(val userRepository: UserRepository) {
     val mailSender: MailSenderService? = null
 
     @RequestMapping(path=["/login"], method = [RequestMethod.GET])
-    fun login(model:Model): String {
+    fun login(model: Model): String {
 
         model["user"] = User(username = "", password = "", role = UserRole.ROLE_USER, dayOfBirth = LocalDate.now())
         return "login"

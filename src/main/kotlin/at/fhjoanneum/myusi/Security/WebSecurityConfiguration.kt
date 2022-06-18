@@ -29,7 +29,8 @@ class WebSecurityConfiguration : WebSecurityConfigurerAdapter() {
             .logout().logoutUrl("/performLogout").logoutSuccessUrl("/")
             .invalidateHttpSession(true).deleteCookies("JSESSIONID")
             .and()
-            .rememberMe().key("uniqueAndSecret").userDetailsService(userDetailsService);
+            .rememberMe().rememberMeParameter("rememberMe")
+            .key("uniqueAndSecret").userDetailsService(userDetailsService);
     }
 
 
