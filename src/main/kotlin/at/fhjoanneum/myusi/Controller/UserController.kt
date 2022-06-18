@@ -57,6 +57,8 @@ class UserController(val userRepository: UserRepository) {
     fun newUser(@ModelAttribute @Valid user: User, bindingResult: BindingResult, model: Model): String {//@Valid @ModelAttribute user: User, bindingResult: BindingResult, model: Model): String {
         val originalPassword = user.password
 
+        val sender = "myusi.wappdev@gmail.com"
+
         if (bindingResult.hasErrors()) {
             model["errorMessage"]="Please fill out all the required Fields"
             return register(model)
@@ -64,7 +66,7 @@ class UserController(val userRepository: UserRepository) {
         try {
             user.password = BCryptPasswordEncoder().encode(originalPassword)
             userRepository.save(user)
-            mailSender?.sendMail(user.email,
+            mailSender?.sendMail(sender, user.email,
                 "Successfully registered account for MyUSI",
                 "You have successfully registered your account for MyUSI application. Start booking courses now!")
         }  catch (e: DataIntegrityViolationException) {
