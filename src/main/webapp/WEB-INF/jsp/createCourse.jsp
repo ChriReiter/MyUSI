@@ -89,16 +89,16 @@
             </div>
         </div>
 
-        <div class="container border border-dark rounded-4 border-2 p-3 mb-4">
-            <h4>Upload Image</h4>
-            <div class="chooseImage">
-                <form:input path="" type="file" name="inputFile" id="inputFile" accept=".jpg,.gif.png"/>
-                <div class="image-preview" id="imagePreview">
-                    <img src="" alt="Image Preview" class="image-preview-image">
-                    <span class="image-preview-text">Image Preview</span>
-                </div>
-            </div>
-        </div>
+<%--        <div class="container border border-dark rounded-4 border-2 p-3 mb-4">--%>
+<%--            <h4>Upload Image</h4>--%>
+<%--            <div class="chooseImage">--%>
+<%--                <form:input path="" type="file" name="inputFile" id="inputFile" accept=".jpg,.gif.png"/>--%>
+<%--                <div class="image-preview" id="imagePreview">--%>
+<%--                    <img src="" alt="Image Preview" class="image-preview-image">--%>
+<%--                    <span class="image-preview-text">Image Preview</span>--%>
+<%--                </div>--%>
+<%--            </div>--%>
+<%--        </div>--%>
 
         <div></div>
         <div class="mb-3">
@@ -109,5 +109,5 @@
 
 </layout:page-container>
 
-<script src="webjars/dropzone/5.9.3/dist/dropzone.js"></script>
-<script src="/js/imageUpload.js"></script>
+<%--<script src="webjars/dropzone/5.9.3/dist/dropzone.js"></script>--%>
+<%--<script src="/js/imageUpload.js"></script>--%>

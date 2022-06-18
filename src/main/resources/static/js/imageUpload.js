@@ -1,6 +1,3 @@
-console.log("hi")
-
-
 const inpFile = document.getElementById("inputFile")
 const previewContainer = document.getElementById("imagePreview")
 const previewImage = previewContainer.querySelector(".image-preview-image")

@@ -28,6 +28,7 @@ import org.springframework.web.bind.annotation.ModelAttribute
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RequestMethod
 import org.springframework.web.bind.annotation.RequestParam
+import org.springframework.web.multipart.MultipartFile
 import java.time.LocalDate
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
@@ -125,11 +126,17 @@ class UsiController(val userRepository: UserRepository, val courseRepository: Co
     @RequestMapping(path=["/createCategory"], method = [RequestMethod.GET])
     fun createCategory(model: Model): String {
         model["course"] = CourseCategory()
+        model["category"] = CourseCategory()
         return "createCategory"
     }
+
     @Secured("ROLE_INSTRUCTOR")
     @RequestMapping("/newCategory", method = [RequestMethod.POST])
     fun newCategory(@ModelAttribute @Valid category: CourseCategory, bindingResult: BindingResult, model: Model): String {
+        if (bindingResult.hasErrors()) {
+            model["errorMessage"]="Category must have a name!"
+        }
+
         try {
             categoryRepository.save(category)
         } catch (e: DataIntegrityViolationException) {
