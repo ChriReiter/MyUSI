@@ -64,7 +64,8 @@ class UserController(val userRepository: UserRepository) {
         try {
             user.password = BCryptPasswordEncoder().encode(originalPassword)
             userRepository.save(user)
-            mailSender?.sendMail(user.email,
+            val sender = "myusi.wappdev@gmail.com"
+            mailSender?.sendMail(sender, user.email,
                 "Successfully registered account for MyUSI",
                 "You have successfully registered your account for MyUSI application. Start booking courses now!")
         }  catch (e: DataIntegrityViolationException) {
