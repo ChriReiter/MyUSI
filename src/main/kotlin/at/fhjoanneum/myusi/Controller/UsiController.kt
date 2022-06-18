@@ -281,5 +281,18 @@ class UsiController(val userRepository: UserRepository, val courseRepository: Co
             return "redirect:listCourses"
         }
     }
+
+    @RequestMapping(path = ["/listUserCourses"], method = [RequestMethod.GET])
+    fun listUserCourses(
+        model: Model, id: Int?
+    ): String? {
+        val loggedUserName = userRepository.findByUsername(SecurityContextHolder.getContext().authentication.name)
+        val userCourses = courseRepository.findCoursesByParticipantsContains(loggedUserName)
+        if (userCourses != null) {
+            model["courses"] = userCourses
+        }
+        model["locations"] = locationRepository.findAll()
+        return "listUserCourses"
+    }
 }
 

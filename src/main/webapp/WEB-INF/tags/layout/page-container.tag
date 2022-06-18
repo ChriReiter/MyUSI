@@ -36,6 +36,9 @@
                 <sec:authorize access="hasAuthority('ROLE_INSTRUCTOR')">
                     <a class="nav-item nav-link" href="/listInstructorCourses" >Show my Courses</a>
                 </sec:authorize>
+                <sec:authorize access="hasAuthority('ROLE_USER')">
+                    <a class="nav-item nav-link" href="/listUserCourses" >My booked Courses</a>
+                </sec:authorize>
                 </div>
             <ul class="navbar-nav ms-auto">
                 <li class="nav-item">
