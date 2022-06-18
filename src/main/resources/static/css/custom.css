@@ -160,3 +160,8 @@ button::selection {
     border-radius: 30px;
     background-color: #c44747;
 }
+
+iframe {
+    height: 400px;
+    width: 100%;
+}

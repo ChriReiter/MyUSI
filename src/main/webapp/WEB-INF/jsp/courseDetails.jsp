@@ -77,4 +77,17 @@
             </tr>
         </tbody>
     </table>
+
+    <h1 class="mt-4">Location</h1>
+    <iframe
+            style="border:0"
+            loading="lazy"
+            allowfullscreen
+            referrerpolicy="no-referrer-when-downgrade"
+            src="https://www.google.com/maps/embed/v1/place?key=AIzaSyDcnOuYLhfXBemiw1of6LbiBGoJFtht66Q
+    &q=${course.locations.name}, ${course.locations.city}+${course.locations.street}">
+    </iframe>
+
 </layout:page-container>
+
+<script src="/js/loadMap.js"></script>
