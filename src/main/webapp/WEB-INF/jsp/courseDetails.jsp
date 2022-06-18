@@ -35,7 +35,7 @@
                     <td class="text-success">${course.numSpaces - course.participants.size()}</td>
                 </c:if>
                 <c:if test="${course.numSpaces - course.participants.size() <= 0}">
-                    <td class="text-danger">${course.numSpaces - course.participants.size() > 0}</td>
+                    <td class="text-danger">${course.numSpaces - course.participants.size()}</td>
                 </c:if>
             </tr>
             <tr>
