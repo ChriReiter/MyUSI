@@ -157,7 +157,7 @@ class UsiController(val userRepository: UserRepository, val courseRepository: Co
     }
 
     @RequestMapping(path=["/courseDeregistration"], method = [RequestMethod.POST])
-    fun courseRDeregistration(model: Model, @RequestParam id: Int): String {
+    fun courseDeregistration(model: Model, @RequestParam id: Int): String {
         val course: Course = courseRepository.findById(id).get()
         val username = SecurityContextHolder.getContext().authentication.name
         if (username != "anonymousUser") {
@@ -191,6 +191,12 @@ class UsiController(val userRepository: UserRepository, val courseRepository: Co
         val instructorCourses = courseRepository.findCoursesByInstructor(userRepository.findByUsername(loggedUser))
                 if (instructorCourses != null) {
                     model["courses"] = instructorCourses
+                    val categories: MutableMap<String, Int> = mutableMapOf<String, Int>()
+                    for (category in categoryRepository.findAll()) {
+                        categories["category"] = instructorCourses.filter{it.category == category}.size
+                    }
+                    model.addAttribute("categories", categories)
+                    model["allCourses"] = courseRepository.findAll()
                 }
                 model["locations"] = locationRepository.findAll()
                 return "listInstructorCourses"
