@@ -24,7 +24,7 @@
                 <input type="email" id="email" path="emailToIntructor" style= height:420px;width:200px;>
             </div>
             <div class="mb-3">
-                <a href="submitMailToIntructor" class="btn btn-lightGreen m-2">Send Mail</a>
+                <a href="submitMailToInstructor" class="btn btn-lightGreen m-2">Send Mail</a>
             </div>
         </form>
     </form:form>
