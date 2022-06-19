@@ -9,10 +9,10 @@
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
 <layout:page-container title="Send Mail to all enrolled Users" activePage="sendMailtoEnrolledUsers">
-    <c:set var="errors" value="${requestScope['org.springframework.validation.BindingResult.user']}" />
+    <c:set var="errors" value="${requestScope['org.springframework.validation.BindingResult.User']}" />
 
-    <form:form method="post" action="submitMailToUsers" >
-        <form:hidden path="emailToUsers" />
+    <%--@elvariable id="messageClass" type="at.fhjoanneum.myusi.classes.MessageClass"--%>
+    <form:form method="post" action="submitMailToUsers" modelAttribute="messageClass">
 
 
 
