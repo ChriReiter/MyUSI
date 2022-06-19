@@ -62,7 +62,9 @@ Array.from(dropzones).forEach((dropzone) => {
 
     const dropzoneConfig = {
         url: "/file",
-        addRemoveLinks: true
+        addRemoveLinks: true,
+        maxFilesize: 10, //max size in MB
+        acceptedFiles: ".jpg,.jpeg,.png,.gif"
     };
     const myDropzone = new Dropzone(dropzone, dropzoneConfig);
     myDropzone.on('sending', function (file, xhr, formData) {
