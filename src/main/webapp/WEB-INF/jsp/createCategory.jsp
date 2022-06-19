@@ -16,7 +16,7 @@
         <form:hidden path="id" />
 
         <div class="container border border-dark rounded-4 border-2 p-3 mb-4">
-
+            <h4>Category Name</h4>
             <div class="form-floating">
                 <form:input path="categoryName" type="text" class="form-control mb-3" id="inputCategoryName" placeholder="Category Name" name="inputCategoryName"/>
                 <form:errors path="categoryName" cssClass="invalid-feedback" />
@@ -24,6 +24,7 @@
             </div>
             <fieldset>
                 <h4>Upload Image</h4>
+                <p>Please upload an image/logo for this category (.jpeg, .png, .gif):</p>
                 <div class="mb-3">
                     <file:file id="file" value="${category.files}" />
                 </div
