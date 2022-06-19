@@ -8,7 +8,7 @@
 <%@taglib prefix="layout" tagdir="/WEB-INF/tags/layout" %>
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
-<layout:page-container title="Send Mail to all enrolled Users" activePage="sendMailtoEnrolledUsers">
+<layout:page-container title="Send Mail to all enrolled Users" activePage="sendMailToEnrolledUsers">
     <c:set var="errors" value="${requestScope['org.springframework.validation.BindingResult.User']}" />
 
     <%--@elvariable id="messageClass" type="at.fhjoanneum.myusi.classes.MessageClass"--%>
