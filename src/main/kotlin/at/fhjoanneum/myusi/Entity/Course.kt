@@ -45,7 +45,7 @@ class Course (
 //    var file: File? = null
     //@OneToMany
     //var dates: List<CourseDate>? =  null
-){
+) : Comparable<Course>, Serializable {
     fun AddParticipant(user: User):Boolean {
         if(participants != null && numSpaces != null && numSpaces!! > participants!!.size){
             participants?.add(user)
@@ -61,11 +61,9 @@ class Course (
     fun RemoveParticipant(user: User, mailSender: MailSenderService?,sender:String):Boolean {
         if(participants != null && participants!!.contains(user)){
             participants?.remove(user)
-) : Comparable<Course>, Serializable {
 
-    override fun compareTo(other: Course): Int {
-        return compareValues(id, other.id)
-    }
+
+
 
             mailSender?.sendMail(
                 sender, user.email,
@@ -100,5 +98,8 @@ class Course (
 
     override fun hashCode(): Int {
         return id.hashCode()
+    }
+    override fun compareTo(other: Course): Int {
+        return compareValues(id, other.id)
     }
 }
