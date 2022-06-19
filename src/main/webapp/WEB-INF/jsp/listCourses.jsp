@@ -163,10 +163,25 @@
 
                                 <div class="card-body">
                                     <div class="row">
-                                        <div class="col" style="align-content: center">
+                                        <div class="col">
                                             <c:if test="${currentUser != ''}">
-                                                <form method="post" class="col p-2" action="/courseRegistration?id=${course.id}">
+                                                <form method="post" class="col" action="/courseRegistration?id=${course.id}">
                                                     <sec:csrfInput/>
+                                                    <button id="bookCourseButton${course.id}" type="submit" class="btn btn-success">Book Course</button>
+                                                </form>
+                                                <script>document.getElementById("bookCourseButton${course.id}").hidden = false</script>
+                                            </c:if>
+                                        </div>
+                                        <div class="col">
+                                            <c:forEach items="${course.participants}" var="participant">
+                                                <c:if test="${participant.username == currentUser}">
+                                                    <script>document.getElementById("bookCourseButton${course.id}").hidden = true</script>
+                                                    <form method="post" class="col" action="/courseDeregistration?id=${course.id}">
+                                                        <sec:csrfInput/>
+                                                        <button id="notBookCourseButton" type="submit" class="btn btn-danger">Cancel Booking</button>
+                                                    </form>
+                                                </c:if>
+                                            </c:forEach>
                                                     <button id="bookCourseButton" type="submit" class="btn btn-lightGreen">
                                                         <c:if test="${course.numSpaces > course.participants.size()}">
                                                             Book
@@ -178,6 +193,7 @@
                                                 </form>
                                             </c:if>
                                         </div>
+
                                         <div class="col p-2" style="align-content: center">
                                             <c:if test="${currentUser == course.instructor.username}">
                                                 <a href="/createCourse?id=${course.id}">
@@ -251,7 +267,7 @@
                                 <button id="courseDetails" class="btn btn-secondary m-2">Details</button>
                             </a>
                             <c:if test="${currentUser != ''}">
-                                <form method="post"  action="/courseRegistration?id=${course.id}">
+                                <form method="post" class="col" action="/courseRegistration?id=${course.id}">
                                     <sec:csrfInput/>
 <%--                                    <button id="bookCourseButton" type="submit" class="btn btn-lightGreen m-2">--%>
 <%--&lt;%&ndash;                                        <c:if test="${course.numSpaces <= course.participants.size}">Book Queue</c:if>&ndash;%&gt;--%>
@@ -267,8 +283,20 @@
                                             </c:if>
                                         </button>
 
+                                    <button id="bookCourseButton${course.id}" type="submit" class="btn btn-outline-primary">Book Course</button>
                                 </form>
+                                <script>document.getElementById("bookCourseButton${course.id}").hidden = false</script>
                             </c:if>
+                            <c:forEach items="${course.participants}" var="participant">
+                                <c:if test="${participant.username == currentUser}">
+                                    <script>document.getElementById("bookCourseButton${course.id}").hidden = true</script>
+                                    <form method="post" class="col" action="/courseDeregistration?id=${course.id}">
+                                        <sec:csrfInput/>
+                                        <button id="notBookCourseButton" type="submit" class="btn btn-outline-primary">Cancel Booking</button>
+                                    </form>
+                                </c:if>
+                            </c:forEach>
+        </div>
                             <c:if test="${currentUser == course.instructor.username}">
                                 <a href="/createCourse?id=${course.id}">
                                     <sec:csrfInput/>

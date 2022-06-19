@@ -72,6 +72,10 @@
                         </div>
                         <div class="card-footer">
                             <div class="row">
+                                <form method="post" class="col" action="/courseDeregistration?id=${course.id}">
+                                    <sec:csrfInput/>
+                                    <button id="notBookCourseButton" type="submit" class="btn btn-danger">Cancel Booking</button>
+                                </form>
                                 <div class="col" style="align-content: center">
                                     <c:if test="${currentUser == course.participants.contains(currentUser)}">
                                         <a href="/sendMailToInstructor?id=${course.id}">
@@ -138,6 +142,10 @@
                 <td>${course.locations.name}</td>
                 <td>${course.instructor.firstName} ${course.instructor.lastName}</td>
                 <td>
+                    <form method="post" class="col" action="/courseDeregistration?id=${course.id}">
+                        <sec:csrfInput/>
+                        <button id="notBookCourseButton" type="submit" class="btn btn-danger">Cancel Booking</button>
+                    </form>
                     <div class="col" style="align-content: center">
                         <sec:authorize access="hasRole('ROLE_INSTRUCTOR')">
                             <c:if test="${currentUser == course.instructor.username}">
