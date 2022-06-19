@@ -22,6 +22,7 @@ class WebSecurityConfiguration : WebSecurityConfigurerAdapter() {
             .antMatchers("/resources/**", "/static/**","/webjars/**","/css/*","/js/*","/img/*","/").permitAll()
             .antMatchers("/denyAccess").authenticated()
             //.anyRequest().authenticated()
+            .anyRequest().authenticated()
             .and()
             //.formLogin()
             .formLogin().loginPage("/login")
