@@ -66,7 +66,10 @@
             </div>
             <div class="mb-3">
                 <a href="createLocation" class="btn btn-primary">Create a new location</a>
+                <a href="editLocation?id=${location.id}" class="btn btn-primary">Edit location</a>
+                <a href="deleteLocation?id=${location.id}" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#confirmDelete">Delete location</a>
             </div>
+
         </div>
 
         <div class="container border border-dark rounded-4 border-2 p-3 mb-4">
@@ -106,6 +109,25 @@
             <a href="listCourses" class="btn btn-default">Cancel</a>
         </div>
     </form:form>
+
+    <!-- Modal -->
+    <div class="modal fade" id="confirmDelete" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Attention!</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    Do your really want to delete this location?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <a type="button" class="btn btn-danger btn-ok" >Delete</a>
+                </div>
+            </div>
+        </div>
+    </div>
 
 </layout:page-container>
 

@@ -7,5 +7,7 @@ import org.springframework.stereotype.Repository
 
 @Repository
 interface LocationRepository : JpaRepository<Location, Int> {
+   // fun findLocationById(id :Int?): Location
+  //  fun deleteLocationById(id :Int?): Location
 
 }
