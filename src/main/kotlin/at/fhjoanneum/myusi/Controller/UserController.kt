@@ -35,7 +35,6 @@ class UserController(val userRepository: UserRepository) {
 
     @RequestMapping(path=["/login"], method = [RequestMethod.GET])
     fun login(model: Model): String {
-
         model["user"] = User(username = "", password = "", role = UserRole.ROLE_USER, dayOfBirth = LocalDate.now())
         return "login"
     }
@@ -80,8 +79,6 @@ class UserController(val userRepository: UserRepository) {
             model["errorMessage"]="An Error occurred"
             return register(model)
         }
-
-
         return  "redirect:login"
     }
 }

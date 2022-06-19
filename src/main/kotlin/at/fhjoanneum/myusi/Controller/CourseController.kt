@@ -24,7 +24,7 @@ import java.time.format.DateTimeFormatter
 import javax.validation.Valid
 
 @Controller
-class UsiController(val userRepository: UserRepository, val courseRepository: CourseRepository, val locationRepository: LocationRepository, val categoryRepository: CourseCategoryRepository) {
+class CourseController(val userRepository: UserRepository, val courseRepository: CourseRepository, val locationRepository: LocationRepository, val categoryRepository: CourseCategoryRepository) {
 
     @Autowired
     val mailSender: MailSenderService? = null
@@ -67,7 +67,6 @@ class UsiController(val userRepository: UserRepository, val courseRepository: Co
         model["category"] = categoryRepository.findAll()
         return "listCourses"
     }
-
 
     @Secured("ROLE_INSTRUCTOR")
     @RequestMapping(path = ["/createCourse"], method = [RequestMethod.GET])
@@ -115,56 +114,6 @@ class UsiController(val userRepository: UserRepository, val courseRepository: Co
 
         return "redirect:listCourses"//"redirect:/editEmployee?id=" + employee.id
     }
-
-    @Secured("ROLE_INSTRUCTOR")
-    @RequestMapping(path = ["/createLocation"], method = [RequestMethod.GET])
-    fun createLocation(model: Model): String {
-        model["course"] = Location()
-        return "createLocation"
-    }
-
-    @Secured("ROLE_INSTRUCTOR")
-    @RequestMapping("/newLocation", method = [RequestMethod.POST])
-    fun newLocation(
-        @ModelAttribute @Valid location: Location,
-        bindingResult: BindingResult,
-        model: Model
-    ): String {//@Valid @ModelAttribute user: User, bindingResult: BindingResult, model: Model): String {
-        try {
-            locationRepository.save(location)
-        } catch (e: DataIntegrityViolationException) {
-            return "createLocation"
-        } catch (e: Exception) {
-            return "createLocation"
-        }
-        return "redirect:createCourse"
-    }
-
-    @Secured("ROLE_INSTRUCTOR")
-    @RequestMapping(path = ["/createCategory"], method = [RequestMethod.GET])
-    fun createCategory(model: Model): String {
-        model["course"] = CourseCategory()
-        model["category"] = CourseCategory()
-        return "createCategory"
-    }
-
-    @Secured("ROLE_INSTRUCTOR")
-    @RequestMapping("/newCategory", method = [RequestMethod.POST])
-    fun newCategory(@ModelAttribute @Valid category: CourseCategory, bindingResult: BindingResult, model: Model): String {
-        if (bindingResult.hasErrors()) {
-            model["errorMessage"]="Category must have a name!"
-        }
-
-        try {
-            categoryRepository.save(category)
-        } catch (e: DataIntegrityViolationException) {
-            return "createCategory"
-        } catch (e: Exception) {
-            return "createCategory"
-        }
-        return "redirect:createCourse"
-    }
-
     @RequestMapping(path = ["/courseRegistration"], method = [RequestMethod.POST])
     fun courseRegistration(model: Model, @RequestParam id: Int): String {
         val course: Course = courseRepository.findById(id).get()
@@ -229,6 +178,19 @@ class UsiController(val userRepository: UserRepository, val courseRepository: Co
         return "listInstructorCourses"
     }
 
+    @RequestMapping(path = ["/listUserCourses"], method = [RequestMethod.GET])
+    fun listUserCourses(
+        model: Model, id: Int?
+    ): String? {
+        val loggedUserName = userRepository.findByUsername(SecurityContextHolder.getContext().authentication.name)
+        val userCourses = courseRepository.findCoursesByParticipantsContains(loggedUserName)
+        if (userCourses != null) {
+            model["courses"] = userCourses
+        }
+        model["locations"] = locationRepository.findAll()
+        return "listUserCourses"
+    }
+
     @Secured("ROLE_INSTRUCTOR")
     @RequestMapping(path = ["/deleteCourse"], method = [RequestMethod.POST])
     fun deleteCourse(@RequestParam(required = false) id: Int?, model: Model): String {
@@ -250,51 +212,4 @@ class UsiController(val userRepository: UserRepository, val courseRepository: Co
         }
         return "redirect:listCourses"
     }
-
-
-    @Secured("ROLE_INSTRUCTOR")
-    @RequestMapping(path = ["/sendMailtoEnrolledUsers"], method = [RequestMethod.GET])
-    fun sendMailToEnrolledUsers(): String {
-        //model["User"] = userRepository.findAll()
-        return "sendMailtoEnrolledUsers"
-    }
-
-    @Secured("ROLE_INSTRUCTOR")
-    @RequestMapping(path = ["/submitMailToUsers"], method = [RequestMethod.GET])
-    fun submitMailToUsers(id: Int?): String {
-
-        val messageToUsers = ""
-
-        if (id != null) {
-            val instructor: User? =
-                userRepository.findByUsername(SecurityContextHolder.getContext().authentication.name)
-            val instructorsCourse: Course? = courseRepository.findCourseById(id)
-
-            for (user in instructorsCourse!!.participants!!) {
-                mailSender?.sendMail(
-                    instructor!!.email!!,
-                    user.email,
-                    "Information to course:  ${instructorsCourse.courseName}",
-                    messageToUsers
-                )
-            }
-            return "redirect:listCourses"
-        } else {
-            return "redirect:listCourses"
-        }
-    }
-
-    @RequestMapping(path = ["/listUserCourses"], method = [RequestMethod.GET])
-    fun listUserCourses(
-        model: Model, id: Int?
-    ): String? {
-        val loggedUserName = userRepository.findByUsername(SecurityContextHolder.getContext().authentication.name)
-        val userCourses = courseRepository.findCoursesByParticipantsContains(loggedUserName)
-        if (userCourses != null) {
-            model["courses"] = userCourses
-        }
-        model["locations"] = locationRepository.findAll()
-        return "listUserCourses"
-    }
 }
-
