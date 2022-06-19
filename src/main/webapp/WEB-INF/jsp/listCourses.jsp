@@ -115,21 +115,35 @@
                             <div class="card-body">
                                 <div class="row">
                                     <div class="col">
-                                        <div class="container-sm" id="courseNumber">
-                                            #${course.id}
+<%--                                        <div class="container-sm" id="courseNumber">--%>
+<%--                                            <p class="align-middle"> #${course.id} </p>--%>
+<%--                                        </div>--%>
+                                        <div class="rounded-pill" id="courseNumber">
+                                            <p class="align-middle text-center"> #${course.id} </p>
                                         </div>
                                     </div>
                                     <c:if test="${course.numSpaces - course.participants.size() > 0}">
                                         <div class="col" >
-                                            <div class="container-sm" id="freeSpaces">
-                                                    Free spots: ${course.numSpaces - course.participants.size()}/${course.numSpaces}
+<%--                                            <div class="container-sm" id="freeSpaces">--%>
+<%--                                                    Free spots: ${course.numSpaces - course.participants.size()}/${course.numSpaces}--%>
+<%--                                            </div>--%>
+                                            <div class="progress rounded-pill" style="height:30px">
+                                                <div class="progress-bar progress-bar-lightGreen" style="width:${100*(course.numSpaces - course.participants.size())/course.numSpaces}%">
+                                                        <c:if test="${((course.numSpaces - course.participants.size())/course.numSpaces) > 0.5}">Free spots: </c:if>${course.numSpaces - course.participants.size()}/${course.numSpaces}
+                                                </div>
                                             </div>
                                         </div>
                                     </c:if>
                                     <c:if test="${course.numSpaces - course.participants.size() <= 0}">
                                         <div class="col" >
-                                            <div class="container-sm" id="courseFull">
+<%--                                            <div class="container-sm" id="courseFull">--%>
+<%--                                                    Free spots: ${course.numSpaces - course.participants.size()}/${course.numSpaces}--%>
+<%--                                            </div>--%>
+
+                                            <div class="progress rounded-pill" style="height:30px">
+                                                <div class="progress-bar bg-danger" style="width:100%">
                                                     Free spots: ${course.numSpaces - course.participants.size()}/${course.numSpaces}
+                                                </div>
                                             </div>
                                         </div>
                                     </c:if>
@@ -199,38 +213,30 @@
                                                 </c:if>
                                             </c:forEach>
                                         </div>
-
-                                        <div class="col p-2" style="align-content: center">
+                                        <sec:authorize access="hasRole('ROLE_INSTRUCTOR') || hasRole('ROLE_ADMIN')">
                                             <c:if test="${currentUser == course.instructor.username}">
-                                                <a href="/createCourse?id=${course.id}">
-                                                    <sec:csrfInput/>
-                                                    <button id="bookCourseButton" class="btn btn-warning">Modify</button>
-                                                </a>
-                                            </c:if>
-                                        </div>
-                                        <div class="col" style="align-content: center">
-                                            <sec:authorize access="hasRole('ROLE_INSTRUCTOR')">
-                                                <c:if test="${currentUser == course.instructor.username}">
-                                                 <a href="/sendMailToEnrolledUsers?id=${course.id}">
-                                                    <sec:csrfInput/>
-                                                    <button id="mailToButton" class="btn btn-warning m-2">Mail Users</button>
-                                                </a>
-                                                </c:if>
-                                            </sec:authorize>
-                                        </div>
 
-                                        <div class="col p-2" style="align-content: center">
-                                            <sec:authorize access="hasRole('ROLE_INSTRUCTOR')">
-                                                <c:if test="${currentUser == course.instructor.username}">
-                                                    <form method="post" class="col" action="/deleteCourse?id=${course.id}">
+                                            <hr class="mt-3">
+                                            <div class="col col-4 w-auto">
+                                                    <a href="/createCourse?id=${course.id}">
                                                         <sec:csrfInput/>
-                                                        <button id="deleteCourseButton" type="submit" class="btn btn-danger">Delete</button>
-                                                    </form>
-                                                </c:if>
-                                            </sec:authorize>
-
-                                        </div>
-
+                                                        <button id="bookCourseButton" class="btn btn-outline-secondary">Modify</button>
+                                                    </a>
+                                            </div>
+                                            <div class="col col-4 w-auto">
+                                                     <a href="/sendMailToEnrolledUsers?id=${course.id}">
+                                                        <sec:csrfInput/>
+                                                        <button id="mailToButton" class="btn btn-outline-secondary">Mail Users</button>
+                                                    </a>
+                                            </div>
+                                            <div class="col col-4 w-auto">
+                                                        <form method="post" class="col" action="/deleteCourse?id=${course.id}">
+                                                            <sec:csrfInput/>
+                                                            <button id="deleteCourseButton" type="submit" class="btn btn-outline-danger">Delete</button>
+                                                        </form>
+                                            </div>
+                                                    </c:if>
+                                        </sec:authorize>
                                     </div>
                                 </div>
                             </div>
