@@ -15,13 +15,13 @@
             <form id="searchform">
                 <div class="container-startscreen">
                     <div class="row">
-                        <div class="col">
+                        <div class="col-12 col-sm-10">
                             <input id="inputSearch" name="search" class="form-control" style="width: 100%" value="${param.search}"/>
                         </div>
-                        <div class="col-sm-1">
+                        <div class="col-3 col-sm-1">
                             <button id="searchButton" type="submit"><i class="bi bi-search"></i></button>
                         </div>
-                        <div class="col-sm-1">
+                        <div class="col-2 col-sm-1">
                             <a id="toggleDropdown" class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                                data-bs-toggle="dropdown"
                                aria-haspopup="true" aria-expanded="false">
