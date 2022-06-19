@@ -1,7 +1,10 @@
 package at.fhjoanneum.myusi.Entity
 
+import at.fhjoanneum.myusi.Service.MailSenderService
 import jdk.jfr.Timestamp
+import org.apache.commons.logging.Log
 import org.springframework.format.annotation.DateTimeFormat
+import java.sql.Date
 import java.sql.Time
 import java.time.LocalDate
 import java.time.LocalDateTime
@@ -31,6 +34,8 @@ class Course (
     var instructor: User? = null,
     @ManyToMany
     var participants: MutableSet<User>? = null,
+    @ManyToMany
+    var waitingQueue: MutableList<User>? = null,
     @ManyToOne
     var locations: Location? = null,
     @ManyToOne
@@ -40,5 +45,43 @@ class Course (
     //@OneToMany
     //var dates: List<CourseDate>? =  null
 ){
+    fun AddParticipant(user: User):Boolean {
+        if(participants != null && numSpaces != null && numSpaces!! > participants!!.size){
+            participants?.add(user)
+            return true
+        }else if(waitingQueue != null && participants != null &&numSpaces != null && (!waitingQueue!!.contains(user) || !participants!!.contains(user))){
+            waitingQueue?.add(user)
+            return false
+        }else{
+            return false
+        }
+    }
 
+    fun RemoveParticipant(user: User, mailSender: MailSenderService?,sender:String):Boolean {
+        if(participants != null && participants!!.contains(user)){
+            participants?.remove(user)
+
+            mailSender?.sendMail(
+                sender, user.email,
+                "Registration cancelled for course $courseName",
+                "You have successfully cancelled your registration for the course number ${id}, ${courseName}, with ${instructor?.firstName} ${instructor?.lastName} on ${date}, $timeStart - $timeEnd"
+            )
+        }else if(waitingQueue != null && waitingQueue!!.contains(user)){
+            waitingQueue?.remove(user)
+            ReorderQueue()
+        } else{
+            return false
+        }
+        return true
+    }
+    private fun ReorderQueue(){
+        try {
+            if(participants != null && numSpaces != null && numSpaces!! > participants!!.size){
+                participants?.add(waitingQueue!![0])
+                waitingQueue?.removeAt(0)
+            }
+        }catch(e: Exception){
+        }
+
+    }
 }

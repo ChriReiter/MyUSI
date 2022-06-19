@@ -40,7 +40,12 @@
             </tr>
             <tr>
                 <th>Waiting Queue</th>
-                <td>----placeholder----</td>
+                <c:if test="${course.waitingQueue.size() == 0}">
+                    <td class="text-success">0</td>
+                </c:if>
+                <c:if test="${course.waitingQueue.size() > 0}">
+                    <td class="text-danger">${course.numSpaces - course.waitingQueue.size()}</td>
+                </c:if>
             </tr>
             <tr>
                 <th>Description</th>

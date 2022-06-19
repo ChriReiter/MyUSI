@@ -114,6 +114,7 @@ class CourseController(val userRepository: UserRepository, val courseRepository:
 
         return "redirect:listCourses"//"redirect:/editEmployee?id=" + employee.id
     }
+
     @RequestMapping(path = ["/courseRegistration"], method = [RequestMethod.POST])
     fun courseRegistration(model: Model, @RequestParam id: Int): String {
         val course: Course = courseRepository.findById(id).get()
@@ -121,15 +122,21 @@ class CourseController(val userRepository: UserRepository, val courseRepository:
         val sender = "myusi.wappdev@gmail.com"
         if (username != "anonymousUser") {
             val user = userRepository.findByUsername(username)
-
-            course.participants?.add(user)
+            val addedToParticipants = course.AddParticipant(user)
             courseRepository.save(course)
-
-            mailSender?.sendMail(
-                sender, user.email,
-                "Registration for course ${course.courseName} succeeded",
-                "You have booked the course number ${course.id}, ${course.courseName}, with ${course.instructor?.firstName} ${course.instructor?.lastName} on ${course.date}, ${course.timeStart} - ${course.timeEnd}"
-            )
+            if(addedToParticipants){
+                mailSender?.sendMail(
+                    sender, user.email,
+                    "Registration for course ${course.courseName} succeeded",
+                    "You have booked the course number ${course.id}, ${course.courseName}, with ${course.instructor?.firstName} ${course.instructor?.lastName} on ${course.date}, ${course.timeStart} - ${course.timeEnd}"
+                )
+            }else{
+                mailSender?.sendMail(
+                    sender, user.email,
+                    "You are now in the waiting List of ${course.courseName}",
+                    "You have booked the course number ${course.id}, ${course.courseName}, with ${course.instructor?.firstName} ${course.instructor?.lastName} on ${course.date}, ${course.timeStart} - ${course.timeEnd}"
+                )
+            }
         }
         return "redirect:listCourses"
     }
@@ -141,15 +148,7 @@ class CourseController(val userRepository: UserRepository, val courseRepository:
         val username = SecurityContextHolder.getContext().authentication.name
         if (username != "anonymousUser") {
             val user = userRepository.findByUsername(username)
-            if (course.participants?.contains(user) == true) {
-                course.participants?.remove(user)
-            }
-
-            mailSender?.sendMail(
-                sender, user.email,
-                "Registration cancelled for course ${course.courseName}",
-                "You have successfully cancelled your registration for the course number ${course.id}, ${course.courseName}, with ${course.instructor?.firstName} ${course.instructor?.lastName} on ${course.date}, ${course.timeStart} - ${course.timeEnd}"
-            )
+            course.RemoveParticipant(user,mailSender,sender)
 
             courseRepository.save(course)
         }

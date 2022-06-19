@@ -30,7 +30,7 @@
                 <label for="selectCategory" class="form-label">Select category:</label>
             </div>
             <div class="mb-3">
-                <a href="createCategory" class="btn btn-primary">Create a new category</a>
+                <a href="createCategory" class="btn btn-lightGreen">Create a new category</a>
             </div>
             <div class="form-floating mb-3 mt-3">
                 <form:input path="courseName" type="text" class="form-control" id="inputCourseName" placeholder="Course Name" name="inputCourseName"/>
@@ -65,7 +65,7 @@
                 <label for="inputLocation" class="form-label">Select location:</label>
             </div>
             <div class="mb-3">
-                <a href="createLocation" class="btn btn-primary">Create a new location</a>
+                <a href="createLocation" class="btn btn-lightGreen">Create a new location</a>
             </div>
         </div>
 
@@ -102,7 +102,7 @@
 
         <div></div>
         <div class="mb-3">
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <button type="submit" class="btn btn-lightGreen">Submit</button>
             <a href="listCourses" class="btn btn-default">Cancel</a>
         </div>
     </form:form>

@@ -167,7 +167,14 @@
                                             <c:if test="${currentUser != ''}">
                                                 <form method="post" class="col p-2" action="/courseRegistration?id=${course.id}">
                                                     <sec:csrfInput/>
-                                                    <button id="bookCourseButton" type="submit" class="btn btn-lightGreen">Book</button>
+                                                    <button id="bookCourseButton" type="submit" class="btn btn-lightGreen">
+                                                        <c:if test="${course.numSpaces > course.participants.size()}">
+                                                            Book
+                                                        </c:if>
+                                                        <c:if test="${course.numSpaces <= course.participants.size()}">
+                                                            Add Queue
+                                                        </c:if>
+                                                    </button>
                                                 </form>
                                             </c:if>
                                         </div>
@@ -245,7 +252,20 @@
                             <c:if test="${currentUser != ''}">
                                 <form method="post"  action="/courseRegistration?id=${course.id}">
                                     <sec:csrfInput/>
-                                    <button id="bookCourseButton" type="submit" class="btn btn-lightGreen m-2">Book</button>
+<%--                                    <button id="bookCourseButton" type="submit" class="btn btn-lightGreen m-2">--%>
+<%--&lt;%&ndash;                                        <c:if test="${course.numSpaces <= course.participants.size}">Book Queue</c:if>&ndash;%&gt;--%>
+<%--&lt;%&ndash;                                        <c:if test="${course.numSpaces > course.participants.size}">Book</c:if>&ndash;%&gt;--%>
+<%--                                    </button>--%>
+
+                                        <button id="bookCourseButton" type="submit" class="btn btn-lightGreen m-2">
+                                            <c:if test="${course.numSpaces > course.participants.size()}">
+                                                Book
+                                            </c:if>
+                                            <c:if test="${course.numSpaces <= course.participants.size()}">
+                                                Add Queue
+                                            </c:if>
+                                        </button>
+
                                 </form>
                             </c:if>
                             <c:if test="${currentUser == course.instructor.username}">

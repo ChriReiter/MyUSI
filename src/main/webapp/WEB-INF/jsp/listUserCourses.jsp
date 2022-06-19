@@ -143,7 +143,7 @@
                             <c:if test="${currentUser == course.instructor.username}">
                                 <form method="post" class="col" action="/deleteCourse?id=${course.id}">
                                     <sec:csrfInput/>
-                                    <button id="deleteCourseButton" type="submit" class="btn btn-outline-primary">Delete Course</button>
+                                    <button id="deleteCourseButton" type="submit" class="btn btn-danger m-2">Delete Course</button>
                                 </form>
                             </c:if>
                         </sec:authorize>
@@ -153,7 +153,7 @@
                         <c:if test="${currentUser == course.instructor.username}">
                             <a href="/sendMailtoEnrolledUsers?id=${course.id}">
                                 <sec:csrfInput/>
-                                <button id="mailToButton" class="btn btn-outline-primary">Mail Users</button>
+                                <button id="mailToButton" class="btn btn btn-lightGreen m-2">Mail Users</button>
                             </a>
                         </c:if>
                     </div>
@@ -161,7 +161,7 @@
                         <c:if test="${currentUser == course.instructor.username}">
                             <a href="/createCourse?id=${course.id}">
                                 <sec:csrfInput/>
-                                <button id="bookCourseButton" class="btn btn-outline-primary">Modify Course</button>
+                                <button id="bookCourseButton" class="btn btn-warning m-2">Modify Course</button>
                             </a>
                         </c:if>
                     </div>
