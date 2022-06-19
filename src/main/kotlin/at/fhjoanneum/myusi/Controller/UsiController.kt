@@ -6,6 +6,7 @@ import at.fhjoanneum.myusi.Repository.CourseRepository
 import at.fhjoanneum.myusi.Repository.LocationRepository
 import at.fhjoanneum.myusi.Repository.UserRepository
 import at.fhjoanneum.myusi.Service.MailSenderService
+import at.fhjoanneum.myusi.classes.MessageClass
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.dao.DataIntegrityViolationException
 import org.springframework.security.access.annotation.Secured
@@ -252,16 +253,17 @@ class UsiController(val userRepository: UserRepository, val courseRepository: Co
 
     @Secured("ROLE_INSTRUCTOR")
     @RequestMapping(path = ["/sendMailtoEnrolledUsers"], method = [RequestMethod.GET])
-    fun sendMailToEnrolledUsers(): String {
-        //model["User"] = userRepository.findAll()
+    fun sendMailToEnrolledUsers(model :Model): String {
+        model["messageClass"] = MessageClass(messageTo = "")
         return "sendMailtoEnrolledUsers"
     }
 
     @Secured("ROLE_INSTRUCTOR")
-    @RequestMapping(path = ["/submitMailToUsers"], method = [RequestMethod.GET])
-    fun submitMailToUsers(id: Int?): String {
+    @RequestMapping(path = ["/submitMailToUsers"], method = [RequestMethod.POST])
+    fun submitMailToUsers( @ModelAttribute @Valid messageClass: MessageClass, model: Model, id: Int?): String {
 
-        val messageToUsers = ""
+        val messageToUsers = messageClass.messageTo
+
 
         if (id != null) {
             val instructor: User? =
