@@ -1,5 +1,6 @@
 package at.fhjoanneum.myusi.Controller
 
+import at.fhjoanneum.myusi.Entity.Course
 import at.fhjoanneum.myusi.Entity.CourseCategory
 import at.fhjoanneum.myusi.Repository.CourseCategoryRepository
 import at.fhjoanneum.myusi.Repository.CourseRepository
@@ -30,6 +31,7 @@ class CategoryController(val categoryRepository: CourseCategoryRepository) {
     fun newCategory(@ModelAttribute @Valid category: CourseCategory, bindingResult: BindingResult, model: Model): String {
         if (bindingResult.hasErrors()) {
             model["errorMessage"]="Category must have a name!"
+            return createCategory(model)
         }
 
         try {
@@ -41,5 +43,4 @@ class CategoryController(val categoryRepository: CourseCategoryRepository) {
         }
         return "redirect:createCourse"
     }
-
 }

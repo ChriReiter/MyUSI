@@ -1,5 +1,6 @@
 package at.fhjoanneum.myusi.Entity
 
+import java.io.Serializable
 import javax.persistence.Entity
 import javax.persistence.GeneratedValue
 import javax.persistence.GenerationType
@@ -23,9 +24,20 @@ class Location(
     var street: String? = null,
     @field:NotNull()
     var housenum: String? = null,
+) : Comparable<Location>, Serializable {
+    override fun compareTo(other: Location): Int {
+        return compareValues(id, other.id)
+    }
 
-    //var latitude
-    //var longitude
-    //var altitude
-) {
+    override fun equals(other: Any?): Boolean {
+        if (this === other) return true
+        if (javaClass != other?.javaClass) return false
+        other as Location
+        if (id != other.id) return false
+        return true
+    }
+
+    override fun hashCode(): Int {
+        return id.hashCode()
+    }
 }

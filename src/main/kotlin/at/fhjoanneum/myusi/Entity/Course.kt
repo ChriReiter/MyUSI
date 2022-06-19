@@ -5,6 +5,7 @@ import jdk.jfr.Timestamp
 import org.apache.commons.logging.Log
 import org.springframework.format.annotation.DateTimeFormat
 import java.sql.Date
+import java.io.Serializable
 import java.sql.Time
 import java.time.LocalDate
 import java.time.LocalDateTime
@@ -60,6 +61,11 @@ class Course (
     fun RemoveParticipant(user: User, mailSender: MailSenderService?,sender:String):Boolean {
         if(participants != null && participants!!.contains(user)){
             participants?.remove(user)
+) : Comparable<Course>, Serializable {
+
+    override fun compareTo(other: Course): Int {
+        return compareValues(id, other.id)
+    }
 
             mailSender?.sendMail(
                 sender, user.email,
@@ -83,5 +89,16 @@ class Course (
         }catch(e: Exception){
         }
 
+    }
+    override fun equals(other: Any?): Boolean {
+        if (this === other) return true
+        if (javaClass != other?.javaClass) return false
+        other as Course
+        if (id != other.id) return false
+        return true
+    }
+
+    override fun hashCode(): Int {
+        return id.hashCode()
     }
 }

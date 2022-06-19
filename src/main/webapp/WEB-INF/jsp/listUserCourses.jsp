@@ -73,10 +73,10 @@
                         <div class="card-footer">
                             <div class="row">
                                 <div class="col" style="align-content: center">
-                                    <c:if test="${currentUser == course.instructor.username}">
-                                        <a href="/createCourse?id=${course.id}">
+                                    <c:if test="${currentUser == course.participants.contains(currentUser)}">
+                                        <a href="/sendMailToInstructor?id=${course.id}">
                                             <sec:csrfInput/>
-                                            <button id="bookCourseButton" class="btn btn-warning m-2">Modify Course</button>
+                                            <button id="mailToInstructor" class="btn btn-warning m-2">Mail to Instructor</button>
                                         </a>
                                     </c:if>
                                 </div>
