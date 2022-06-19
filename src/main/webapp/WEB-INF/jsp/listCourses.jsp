@@ -48,8 +48,11 @@
                                             <select id="instructorSearch" name="instructor" class="form-control" value="${param.instructor}">
                                                 <option value=""></option>
                                                 <c:forEach var="instructor" items="${instructors}">
-                                                    <option value="${instructor.id}"<c:if
-                                                            test="${param.instructor == instructor.id}"> selected</c:if>>${instructor.firstName} ${instructor.lastName}</option>
+                                                    <option value="${instructor.id}"
+                                                            <c:if test="${param.instructor == instructor.id}">
+                                                                selected
+                                                            </c:if>
+                                                    >${instructor.firstName} ${instructor.lastName}</option>
                                                 </c:forEach>
                                             </select>
                                             <div class="col">
@@ -58,8 +61,11 @@
                                                     <select id="locationSearch" name="location" class="form-control" value="${param.location}">
                                                         <option value=""></option>
                                                         <c:forEach var="location" items="${locations}">
-                                                            <option value="${location.id}"<c:if
-                                                                    test="${param.location == location.id}"> selected</c:if>>${location.name}</option>
+                                                            <option value="${location.id}"
+                                                                    <c:if test="${param.location == location.id}">
+                                                                        selected
+                                                                    </c:if>
+                                                            >${location.name}</option>
                                                         </c:forEach>
                                                     </select>
                                                 </div>
@@ -70,8 +76,11 @@
                                                     <select id="categorySearch" name="category" class="form-control" value="${param.category}">
                                                         <option value=""></option>
                                                         <c:forEach var="category" items="${category}">
-                                                            <option value="${category.id}"<c:if
-                                                                test="${param.category == category.id}"> selected</c:if>>${category.categoryName}
+                                                            <option value="${category.id}"
+                                                                    <c:if test="${param.category == category.id}">
+                                                                        selected
+                                                                    </c:if>
+                                                            >${category.categoryName}
                                                             </option>
                                                         </c:forEach>
                                                     </select>
@@ -100,7 +109,7 @@
 
 
             <div class="row" id="layoutCard">
-                <c:forEach items="${courses}" var="course">
+    <c:forEach items="${courses}" var="course">
                     <div class="col-lg-4 col-md-6 col-sm-12">
                         <div class="card mb-5">
                             <div class="card-body">
@@ -131,6 +140,7 @@
                                 <img class="card-img-top img-fluid" style="width: 420px; height: 240px" src="files/${course.category.files.get(0).id}" type="submit" />
                             </a>
                             <div class="card-body">
+
                                 <div class="card-title d-flex align-items-center justify-content-center">
                                     <h4>${course.courseName}</h4>
                                 </div>
@@ -167,7 +177,13 @@
                                             <c:if test="${currentUser != ''}">
                                                 <form method="post" class="col" action="/courseRegistration?id=${course.id}">
                                                     <sec:csrfInput/>
-                                                    <button id="bookCourseButton${course.id}" type="submit" class="btn btn-success">Book Course</button>
+                                                    <button id="bookCourseButton${course.id}" type="submit" class="btn btn-lightGreen">
+                                                        <c:if test="${course.numSpaces > course.participants.size()}">
+                                                        Book
+                                                        </c:if>
+                                                        <c:if test="${course.numSpaces <= course.participants.size()}">
+                                                        Add Queue
+                                                        </c:if>
                                                 </form>
                                                 <script>document.getElementById("bookCourseButton${course.id}").hidden = false</script>
                                             </c:if>
@@ -182,16 +198,6 @@
                                                     </form>
                                                 </c:if>
                                             </c:forEach>
-                                                    <button id="bookCourseButton" type="submit" class="btn btn-lightGreen">
-                                                        <c:if test="${course.numSpaces > course.participants.size()}">
-                                                            Book
-                                                        </c:if>
-                                                        <c:if test="${course.numSpaces <= course.participants.size()}">
-                                                            Add Queue
-                                                        </c:if>
-                                                    </button>
-                                                </form>
-                                            </c:if>
                                         </div>
 
                                         <div class="col p-2" style="align-content: center">
@@ -269,12 +275,7 @@
                             <c:if test="${currentUser != ''}">
                                 <form method="post" class="col" action="/courseRegistration?id=${course.id}">
                                     <sec:csrfInput/>
-<%--                                    <button id="bookCourseButton" type="submit" class="btn btn-lightGreen m-2">--%>
-<%--&lt;%&ndash;                                        <c:if test="${course.numSpaces <= course.participants.size}">Book Queue</c:if>&ndash;%&gt;--%>
-<%--&lt;%&ndash;                                        <c:if test="${course.numSpaces > course.participants.size}">Book</c:if>&ndash;%&gt;--%>
-<%--                                    </button>--%>
-
-                                        <button id="bookCourseButton" type="submit" class="btn btn-lightGreen m-2">
+                                        <button id="bookCourseButton${course.id}" type="submit" class="btn btn-lightGreen m-2">
                                             <c:if test="${course.numSpaces > course.participants.size()}">
                                                 Book
                                             </c:if>
@@ -282,8 +283,6 @@
                                                 Add Queue
                                             </c:if>
                                         </button>
-
-                                    <button id="bookCourseButton${course.id}" type="submit" class="btn btn-outline-primary">Book Course</button>
                                 </form>
                                 <script>document.getElementById("bookCourseButton${course.id}").hidden = false</script>
                             </c:if>
@@ -292,7 +291,7 @@
                                     <script>document.getElementById("bookCourseButton${course.id}").hidden = true</script>
                                     <form method="post" class="col" action="/courseDeregistration?id=${course.id}">
                                         <sec:csrfInput/>
-                                        <button id="notBookCourseButton" type="submit" class="btn btn-outline-primary">Cancel Booking</button>
+                                        <button id="notBookCourseButton" type="submit" class="btn btn-danger">Cancel Booking</button>
                                     </form>
                                 </c:if>
                             </c:forEach>
