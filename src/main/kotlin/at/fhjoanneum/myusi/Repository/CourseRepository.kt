@@ -14,13 +14,13 @@ import java.time.LocalDateTime
 
 @Repository
 interface CourseRepository : JpaRepository<Course, Int> {
-    @Query("SELECT c FROM Course AS c WHERE :search IS NULL OR LOWER(c.courseName) LIKE CONCAT('%', COALESCE(LOWER(:search), ''), '%') " +
+    @Query("SELECT c FROM Course AS c WHERE (:search IS NULL OR LOWER(c.courseName) LIKE CONCAT('%', COALESCE(LOWER(:search), ''), '%') " +
             "AND (:date IS NULL OR c.date = :date) " +
             "AND (:timeStart IS NULL OR :timeStart = '' OR c.timeStart >= :timeStart) " +
             "AND (:timeEnd IS NULL OR :timeEnd = '' OR c.timeEnd <= :timeEnd) " +
             "AND (:instructor IS NULL OR c.instructor = :instructor) " +
             "AND (:location IS NULL OR c.locations = :location) " +
-            "AND (:category IS NULL OR c.category = :category)" +
+            "AND (:category IS NULL OR c.category = :category))" +
             "AND (c.date >= CURRENT_DATE)"
     )
     fun findByCourseName(@Param("search") search: String?, @Param("date") date: LocalDate?
