@@ -94,6 +94,103 @@
     <!-- Messages ----------------------------------------------------------- -->
     <jsp:doBody/>
 </div>
+
+<!-- Footer -->
+<footer class="text-center text-lg-start text-muted" style="background-color: #1D1E2C;">
+    <!-- Section: Social media -->
+    <section
+            class="d-flex justify-content-center justify-content-lg-between p-4"
+            style="background-color: #1D1E2C"
+    >
+    </section>
+    <!-- Section: Social media -->
+
+    <!-- Section: Links  -->
+    <section class="" style="background-color: #1D1E2C">
+        <div class="container text-center text-md-start mt-5">
+            <!-- Grid row -->
+            <div class="row mt-3" style="background-color: #1D1E2C">
+                <!-- Grid column -->
+                <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
+                    <!-- Content -->
+                    <h6 class="text-uppercase fw-bold mb-4" style="color: #4FB286">
+                        <i class="fas fa-gem me-3"></i>MyUSI
+                    </h6>
+                    <p style="color: #50FFB1">
+                        An amazing web application to book your favorite USI courses,
+                        just create an account and start your journey!
+                    </p>
+                </div>
+                <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
+                    <!-- Links -->
+                    <h6 class="text-uppercase fw-bold mb-4"style="color: #4FB286">
+                        Courses
+                    </h6>
+                    <p style="color: #50FFB1">
+                        <a href="/listCourses" class="text-reset">All courses</a>
+                    </p>
+                    <p style="color: #50FFB1">
+                        <a href="/listUserCourses" class="text-reset">My booked courses</a>
+                    </p>
+                    <sec:authorize access="hasAuthority('ROLE_INSTRUCTOR')">
+                        <p style="color: #50FFB1">
+                            <a href="/listInstructorCourses" class="text-reset">My courses</a>
+                        </p>
+                        <p style="color: #50FFB1">
+                            <a href="/createCourse" class="text-reset">Create Course</a>
+                        </p>
+                        <p style="color: #50FFB1">
+                            <a href="/createLocation" class="text-reset">Create Location</a>
+                        </p>
+                        <p style="color: #50FFB1">
+                            <a href="/createCategory" class="text-reset">Create Category</a>
+                        </p>
+                    </sec:authorize>
+
+                </div>
+                    <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
+                        <!-- Links -->
+
+                        <h6 class="text-uppercase fw-bold mb-4" style="color: #4FB286">
+                            Instructor Options
+                        </h6>
+                        <p style="color: #50FFB1">
+                            <a href="/termsAndConditions" class="text-reset" >Terms and Conditions</a>
+                        </p>
+                        <p style="color: #50FFB1">
+                            <a href="/imprint" class="text-reset">Imprint</a>
+                        </p>
+                        <p style="color: #50FFB1">
+                            <a href="/privacyPolicy" class="text-reset">Privacy Policy</a>
+                        </p>
+                    </div>
+
+                <!-- Grid column -->
+
+                <!-- Grid column -->
+                <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
+                    <h6 class="text-uppercase fw-bold mb-4" style="color: #4FB286">
+                        Contact
+                    </h6>
+                    <p style="color: #50FFB1"><i class="bi bi-house"></i> Eckertstrasse 30i, 8020 Graz, Austria</p>
+                    <p style="color: #50FFB1">
+                        <i class="bi bi-envelope"></i>
+                        myusi.wappdev@gmail.com
+                    </p>
+                    <p style="color: #50FFB1"><i class="bi bi-phone-fill"></i> +43 664 1234567</p>
+                </div>
+                <!-- Grid column -->
+            </div>
+            <!-- Grid row -->
+        </div>
+    </section>
+
+    <div class="text-center p-4" style="background-color: #1D1E2C;">
+
+    </div>
+    <!-- Copyright -->
+</footer>
+<!-- Footer -->
 <bootstrap:bootstrap-js/>
 <script src="/js/custom.js"></script>
 </body>

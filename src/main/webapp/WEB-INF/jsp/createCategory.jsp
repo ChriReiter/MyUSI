@@ -12,7 +12,7 @@
 <layout:page-container title="Create a new Category" activePage="createCategory">
     <c:set var="errors" value="${requestScope['org.springframework.validation.BindingResult.category']}" />
     <%--@elvariable id="course" type="at.fhjoanneum.myusi.Entity.CourseCategory"--%>
-    <form:form modelAttribute="course" method="post" action="newCategory">
+    <form:form modelAttribute="category" method="post" action="newCategory">
         <form:hidden path="id" />
 
         <div class="container border border-dark rounded-4 border-2 p-3 mb-4">

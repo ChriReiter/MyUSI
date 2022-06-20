@@ -4,6 +4,8 @@
 
 html, body {
     background: #D7CDCC;
+    padding: 0;
+    margin: 0;
 }
 
 head {
@@ -165,3 +167,4 @@ iframe {
     height: 400px;
     width: 100%;
 }
+

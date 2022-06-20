@@ -9,7 +9,6 @@
 <%@taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 
 <layout:page-container title="Courses" activePage="listCourses">
-
     <div class="row">
         <div class="col-md-12 mt-4">
             <form id="searchform">
@@ -326,3 +325,4 @@
 </layout:page-container>
 
 <script src="/js/switchLayout.js"></script>
+<script src="/js/browserGame.js"></script>
