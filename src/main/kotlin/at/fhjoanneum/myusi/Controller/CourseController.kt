@@ -50,7 +50,7 @@ class CourseController(val userRepository: UserRepository, val courseRepository:
                 instructor,
                 location,
                 category
-            )//, date, instructor, location)
+            )
         } else {
             model["courses"] = courseRepository.findByCourseName(
                 search,
@@ -60,7 +60,7 @@ class CourseController(val userRepository: UserRepository, val courseRepository:
                 instructor,
                 location,
                 category
-            )//, date, instructor, location)
+            )
         }
         model["instructors"] = userRepository.findByRole(UserRole.ROLE_INSTRUCTOR)
         model["locations"] = locationRepository.findAll()

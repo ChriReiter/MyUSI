@@ -20,8 +20,9 @@ interface CourseRepository : JpaRepository<Course, Int> {
             "AND (:timeEnd IS NULL OR :timeEnd = '' OR c.timeEnd <= :timeEnd) " +
             "AND (:instructor IS NULL OR c.instructor = :instructor) " +
             "AND (:location IS NULL OR c.locations = :location) " +
-            "AND (:category IS NULL OR c.category = :category)")
-    //AND (:date IS NULL OR c.date = :date) AND (:timeStart IS NULL OR c.timeStart = :timeStart) AND (:instructor IS NULL OR c.instructor = :instructor) AND (:location IS NULL OR c.locations = :location)
+            "AND (:category IS NULL OR c.category = :category)" +
+            "AND (c.date >= CURRENT_DATE)"
+    )
     fun findByCourseName(@Param("search") search: String?, @Param("date") date: LocalDate?
     , @Param("timeStart") timeStart: String?, @Param("timeEnd") timeEnd: String?
     , @Param("instructor") instructor: User?, @Param("location") location: Location?
@@ -33,5 +34,8 @@ interface CourseRepository : JpaRepository<Course, Int> {
     fun findCoursesByInstructor(@Param("instructor")instructor: User?): List<Course>?
 
     fun findCoursesByParticipantsContains(@Param("user")user :User?): List<Course>?
+
+    @Query("SELECT c FROM Course AS c WHERE c.date >= CURRENT_DATE")
+    override fun findAll(): MutableList<Course>
 
 }
