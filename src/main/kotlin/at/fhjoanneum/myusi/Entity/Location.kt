@@ -14,6 +14,8 @@ class Location(
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     var id: Int? = null,
     var name: String? = null,
+    @field:NotNull
+    var country: String? = null,
     @field:Size(min = 2, max = 240)
     var city: String? = null,
     @field:Size(min = 2, max = 240)
@@ -22,6 +24,7 @@ class Location(
     var street: String? = null,
     @field:NotNull()
     var housenum: String? = null,
+
 ) : Comparable<Location>, Serializable {
     override fun compareTo(other: Location): Int {
         return compareValues(id, other.id)
