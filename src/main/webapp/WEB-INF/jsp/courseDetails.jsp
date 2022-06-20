@@ -100,7 +100,7 @@
                             <script>document.getElementById("bookCourseButton${course.id}").hidden = true</script>
                             <form method="post" class="col" action="/courseDeregistration?id=${course.id}">
                                 <sec:csrfInput/>
-                                <button id="notBookCourseButton" type="submit" class="btn btn-danger">Cancel Booking</button>
+                                <button id="notBookCourseButton" type="submit" class="btn btn-danger mt-2">Cancel Booking</button>
                             </form>
                         </c:if>
                     </c:forEach>
