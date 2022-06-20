@@ -4,6 +4,8 @@ import at.fhjoanneum.myusi.Entity.Course
 import at.fhjoanneum.myusi.Entity.CourseCategory
 import at.fhjoanneum.myusi.Repository.CourseCategoryRepository
 import at.fhjoanneum.myusi.Repository.CourseRepository
+import at.fhjoanneum.myusi.Repository.FileRepository
+import at.fhjoanneum.myusi.Service.FileService
 import org.springframework.dao.DataIntegrityViolationException
 import org.springframework.security.access.annotation.Secured
 import org.springframework.stereotype.Controller
@@ -41,6 +43,7 @@ class CategoryController(val categoryRepository: CourseCategoryRepository) {
         } catch (e: Exception) {
             return "createCategory"
         }
+
         return "redirect:createCourse"
     }
 }

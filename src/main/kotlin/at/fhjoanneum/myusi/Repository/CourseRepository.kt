@@ -1,9 +1,6 @@
 package at.fhjoanneum.myusi.Repository
 
-import at.fhjoanneum.myusi.Entity.Course
-import at.fhjoanneum.myusi.Entity.CourseCategory
-import at.fhjoanneum.myusi.Entity.Location
-import at.fhjoanneum.myusi.Entity.User
+import at.fhjoanneum.myusi.Entity.*
 import org.springframework.data.jpa.repository.JpaRepository
 import org.springframework.data.jpa.repository.Query
 import org.springframework.data.repository.query.Param
@@ -33,5 +30,4 @@ interface CourseRepository : JpaRepository<Course, Int> {
     fun findCoursesByInstructor(@Param("instructor")instructor: User?): List<Course>?
 
     fun findCoursesByParticipantsContains(@Param("user")user :User?): List<Course>?
-
 }

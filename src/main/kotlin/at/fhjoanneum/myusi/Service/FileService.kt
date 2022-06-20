@@ -3,6 +3,7 @@ package at.fhjoanneum.myusi.Service
 import at.fhjoanneum.myusi.Entity.CourseCategory
 import at.fhjoanneum.myusi.Entity.File
 import at.fhjoanneum.myusi.Repository.CourseCategoryRepository
+import at.fhjoanneum.myusi.Repository.CourseRepository
 import at.fhjoanneum.myusi.Repository.FileRepository
 import org.springframework.stereotype.Service
 import org.springframework.web.multipart.MultipartFile
@@ -12,9 +13,10 @@ import java.nio.file.Paths
 import java.nio.file.StandardOpenOption
 import javax.transaction.Transactional
 import kotlin.io.path.deleteIfExists
+import kotlin.reflect.typeOf
 
 @Service
-class FileService(val fileRepository: FileRepository, val courseCategoryRepository: CourseCategoryRepository) {
+class FileService(val fileRepository: FileRepository, val categoryRepository: CourseCategoryRepository) {
     fun save(file: File) = fileRepository.save(file)
     @Transactional
     fun createFile(dto: MultipartFile): File {
@@ -29,7 +31,9 @@ class FileService(val fileRepository: FileRepository, val courseCategoryReposito
         File(contentType = dto.contentType, size = dto.size,
             originalFileName = dto.originalFilename)
     fun retrievePath(id: Int): Path = Paths.get("src/main/resources/static/files/$id")
+
     fun findById(id: Int) = fileRepository.findById(id).get()
+
     fun delete(id: Int) {
         fileRepository.delete(findById(id))
         Paths.get("src/main/resources/static/files/$id").deleteIfExists()

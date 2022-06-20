@@ -63,8 +63,9 @@ Array.from(dropzones).forEach((dropzone) => {
     const dropzoneConfig = {
         url: "/file",
         addRemoveLinks: true,
-        maxFilesize: 10, //max size in MB
-        acceptedFiles: ".jpg,.jpeg,.png,.gif"
+        maxFilesize: 2, //max size in MB
+        acceptedFiles: ".jpg,.jpeg,.png,.gif",
+        maxFiles: 1
     };
     const myDropzone = new Dropzone(dropzone, dropzoneConfig);
     myDropzone.on('sending', function (file, xhr, formData) {
@@ -74,5 +75,11 @@ Array.from(dropzones).forEach((dropzone) => {
         myDropzone.removeFile(file);
         files.push(response);
         renderFilesContainer();
+    });
+    myDropzone.on('addedfile', function (file) {
+        if (files.length > 0) {
+            this.removeFile(file);
+            alert("Upload only 1 file!");
+        }
     });
 });

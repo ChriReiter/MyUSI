@@ -28,10 +28,10 @@
                 <form:errors path="category" cssClass="invalid-feedback"/>
                 <label for="selectCategory" class="form-label">Select category:</label>
             </div>
-            <div class="mb-3">
+            <div class="mb-3 mt-1">
                 <a href="createCategory" class="btn btn-lightGreen">Create a new category</a>
             </div>
-            <div class="form-floating mb-3 mt-3">
+            <div class="form-floating mb-3">
                 <form:input path="courseName" type="text" class="form-control" id="inputCourseName" placeholder="Course Name" name="inputCourseName"/>
                 <form:errors path="courseName" cssClass="invalid-feedback" />
                 <label for="inputCourseName" class="form-label${errors.hasFieldErrors('courseName') ? 'is-invalid' : ''}">Course Name</label>
@@ -56,14 +56,14 @@
         <div class="container border border-dark rounded-4 border-2 p-3 mb-4">
             <h4>Location</h4>
             <div class="form-floating">
-                <form:select id="inputLocation" path="locations" cssClass="form-select mb-3 ${errors.hasFieldErrors('department') ? 'is-invalid' : ''}">
+                <form:select id="inputLocation" path="locations" cssClass="form-select ${errors.hasFieldErrors('department') ? 'is-invalid' : ''}">
                     <form:option value=""> </form:option>
                     <form:options items="${locations}" itemValue="id" itemLabel="name" />
                 </form:select>
                 <form:errors path="locations" cssClass="invalid-feedback" />
                 <label for="inputLocation" class="form-label">Select location:</label>
             </div>
-            <div class="mb-3">
+            <div class="mb-3 mt-1">
                 <a href="createLocation" class="btn btn-lightGreen">Create a new location</a>
             </div>
         </div>

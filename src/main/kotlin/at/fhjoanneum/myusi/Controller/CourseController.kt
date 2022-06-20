@@ -50,7 +50,7 @@ class CourseController(val userRepository: UserRepository, val courseRepository:
                 instructor,
                 location,
                 category
-            )//, date, instructor, location)
+            )
         } else {
             model["courses"] = courseRepository.findByCourseName(
                 search,
@@ -60,7 +60,7 @@ class CourseController(val userRepository: UserRepository, val courseRepository:
                 instructor,
                 location,
                 category
-            )//, date, instructor, location)
+            )
         }
         model["instructors"] = userRepository.findByRole(UserRole.ROLE_INSTRUCTOR)
         model["locations"] = locationRepository.findAll()
@@ -96,22 +96,20 @@ class CourseController(val userRepository: UserRepository, val courseRepository:
     fun newCourse(
         @ModelAttribute @Valid course: Course, bindingResult: BindingResult, model: Model,
         @RequestParam(required = false) file: String? = null
-    ): String {//@Valid @ModelAttribute user: User, bindingResult: BindingResult, model: Model): String {
+    ): String {
         if (bindingResult.hasErrors()) {
             return populateCreateCourseModel(model)
         }
         try {
             val username = SecurityContextHolder.getContext().authentication.name
             course.instructor = userRepository.findByUsername(username)
-            //course.instructor = SecurityContextHolder.getContext().authentication.name.
             courseRepository.save(course)
         } catch (e: DataIntegrityViolationException) {
             return populateCreateCourseModel(model)
         } catch (e: Exception) {
             return populateCreateCourseModel(model)
         }
-
-        return "redirect:listCourses"//"redirect:/editEmployee?id=" + employee.id
+        return "redirect:listCourses"
     }
 
     @RequestMapping(path = ["/courseRegistration"], method = [RequestMethod.POST])
