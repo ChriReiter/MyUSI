@@ -18,8 +18,8 @@ class WebSecurityConfiguration : WebSecurityConfigurerAdapter() {
             .authorizeRequests()
             //.antMatchers("/**").authenticated()
             //.antMatchers(HttpMethod.GET, "/", "/login").permitAll()
-            .antMatchers("/login","/register","/newUser").permitAll()
-            .antMatchers("/resources/**", "/static/**","/webjars/**","/css/*","/js/*","/img/*","/").permitAll()
+            .antMatchers("/login","/register","/newUser").permitAll() //controller access
+            .antMatchers("/resources/**", "/static/**","/webjars/**","/css/*","/js/*","/img/*","/").permitAll() //resource access
             .antMatchers("/denyAccess").authenticated()
             //.anyRequest().authenticated()
             .and()

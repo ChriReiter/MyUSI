@@ -2,6 +2,7 @@ package at.fhjoanneum.myusi.Controller
 
 import at.fhjoanneum.myusi.Entity.Course
 import at.fhjoanneum.myusi.Entity.Location
+import at.fhjoanneum.myusi.Repository.CourseRepository
 import at.fhjoanneum.myusi.Repository.LocationRepository
 import org.springframework.dao.DataIntegrityViolationException
 import org.springframework.security.access.annotation.Secured
@@ -17,13 +18,19 @@ import org.springframework.web.bind.annotation.RequestParam
 import javax.validation.Valid
 
 @Controller
-class LocationController(val locationRepository: LocationRepository) {
+class LocationController(val locationRepository: LocationRepository, val courseRepository: CourseRepository) {
 
     @Secured("ROLE_INSTRUCTOR")
     @RequestMapping(path = ["/createLocation"], method = [RequestMethod.GET])
     fun createLocation(model: Model): String {
         model["course"] = Location()
         return "createLocation"
+    }
+    @Secured("ROLE_INSTRUCTOR")
+    @RequestMapping(path = ["/editLocations"], method = [RequestMethod.GET])
+    fun editLocations(model: Model): String {
+        model["locations"] = locationRepository.findAll()
+        return "editLocations"
     }
 
     @Secured("ROLE_INSTRUCTOR")
@@ -48,14 +55,34 @@ class LocationController(val locationRepository: LocationRepository) {
     fun deleteLocation(model: Model, @RequestParam id: Int): String {
 
         if (locationRepository.findById(id).isPresent) {
+            if(id == 0){
+                model["errorMessage"] = "Cannot delete Location 0"
+                return editLocations(model)
+            }
             var location = Location(id)
-            model["location"] = if (id != null) {
-                "Location having Id ${location.id} deleted"
-            } else return ""
 
-            locationRepository.deleteById(id)
+            if (id != null) {
+                model["location"] =  "Location having Id ${location.id} deleted"
+                model["locations"] = locationRepository.findAll()
+            }
+            else {
+                return ""
+            }
+
+            val courses = courseRepository.findCoursesByLocationsId(id)?.toList()
+            if (courses != null) {
+                for (course in courses){
+                    course.locations = locationRepository.findById(0).get()
+                    courseRepository.save(course)
+                }
+            }
+            try{
+                locationRepository.deleteById(id)
+            }catch(e:Exception){
+                model["errorMessage"] = "Error while deleting"
+            }
         }
-        return "createCourse"
+        return "redirect:editLocations"
     }
 
     @Secured("ROLE_INSTRUCTOR")
