@@ -24,18 +24,32 @@
         <tbody>
         <c:forEach items="${locations}" var="location">
             <c:if test="${location.id != 0}">
-            <tr>
-                <th scope="row">${location.id}</th>
-                <td>${location.name}</td>
-                <td>${location.street}</td>
-                <td>${location.housenum}</td>
-                <td>${location.zip}</td>
-                <td>${location.city}</td>
-                <td>${location.country}</td>
-                <td>
-                    <a type="button" class="btn btn-danger" href="/deleteLocation?id=${location.id}">Delete</a>
-                </td>
-            </tr>
+                    <tr>
+                        <th scope="row">
+                               <c:out value="${location.id}"></c:out>
+                        </th>
+                        <td>
+                                <c:out value="${location.name}"></c:out>
+                        </td>
+                        <td>
+                                <c:out value="${location.street}"></c:out>
+                        </td>
+                        <td>
+                                <c:out value="${location.housenum}"></c:out>
+                        </td>
+                        <td>
+                                <c:out value="${location.zip}"></c:out>
+                        </td>
+                        <td>
+                                <c:out value="${location.city}"></c:out>
+                        </td>
+                        <td>
+                                <c:out value="${location.country}"></c:out>
+                        </td>
+                        <td>
+                            <a type="button" class="btn btn-danger" href="/deleteLocation?id=${location.id}">Delete</a>
+                        </td>
+                    </tr>
             </c:if>
         </c:forEach>
 
