@@ -231,12 +231,6 @@
                                                 </c:if>
                                             </c:forEach>
                                         </div>
-                                        <sec:authorize access="hasRole('ROLE_INSTRUCTOR') || hasRole('ROLE_ADMIN') || hasRole('ROLE_USER')">
-                                            <a href="/sendMailToInstructor?id=${course.id}">
-                                                <sec:csrfInput/>
-                                                <button id="mailToInstructorButton" class="btn btn-lightGreen m-2">Mail Instructor</button>
-                                            </a>
-                                        </sec:authorize>
 
                                         <sec:authorize access="hasRole('ROLE_INSTRUCTOR') && !hasRole('ROLE_ADMIN')">
                                             <c:if test="${currentUser == course.instructor.username }">
@@ -379,12 +373,6 @@
         </a>
         </sec:authorize>
 
-        <c:if test="${currentUser == course.participants.contains(currentUser)}">
-            <a href="/sendMailToInstructor?id=${course.id}">
-                <sec:csrfInput/>
-                <button id="mailToInstructorButton" class="btn btn-lightGreen m-2">Mail Instructor</button>
-            </a>
-        </c:if>
         <c:if test="${currentUser == course.instructor.username}">
             <a href="/sendMailToEnrolledUsers?id=${course.id}">
                 <sec:csrfInput/>

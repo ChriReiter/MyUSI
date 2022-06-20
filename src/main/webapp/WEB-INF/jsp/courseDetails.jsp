@@ -82,48 +82,62 @@
                      ${course.locations.zip} ${course.locations.city}, ${course.locations.country}
                 </td>
                 <td>
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="col">
-                                <c:if test="${currentUser != ''}">
-                                    <form method="post" class="col" action="/courseRegistration?id=${course.id}">
-                                        <sec:csrfInput/>
-                                        <button id="bookCourseButton${course.id}" type="submit" class="btn btn-lightGreen">
-                                            <c:if test="${course.numSpaces > course.participants.size()}">
-                                            Book
-                                            </c:if>
-                                            <c:if test="${course.numSpaces <= course.participants.size()}">
-                                            Add Queue
-                                            </c:if>
-                                    </form>
-                                    <script>document.getElementById("bookCourseButton${course.id}").hidden = false</script>
-                                </c:if>
-                            </div>
-                                <c:forEach items="${course.participants}" var="participant">
-                                    <c:if test="${participant.username == currentUser}">
-                                        <script>document.getElementById("bookCourseButton${course.id}").hidden = true</script>
-                                        <form method="post" class="col" action="/courseDeregistration?id=${course.id}">
+                    <table class="table table-borderless">
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <c:if test="${currentUser != ''}">
+                                        <form method="post" class="col" action="/courseRegistration?id=${course.id}">
                                             <sec:csrfInput/>
-                                            <button id="notBookCourseButton" type="submit" class="btn btn-danger">Cancel Booking</button>
+                                            <button id="bookCourseButton${course.id}" type="submit" class="btn btn-lightGreen">
+                                                <c:if test="${course.numSpaces > course.participants.size()}">
+                                                Book
+                                                </c:if>
+                                                <c:if test="${course.numSpaces <= course.participants.size()}">
+                                                Add Queue
+                                                </c:if>
                                         </form>
+                                        <script>document.getElementById("bookCourseButton${course.id}").hidden = false</script>
                                     </c:if>
-                                </c:forEach>
-                            </div>
-                    </div>
+                                    <c:forEach items="${course.participants}" var="participant">
+                                        <c:if test="${participant.username == currentUser}">
+                                            <script>document.getElementById("bookCourseButton${course.id}").hidden = true</script>
+                                            <form method="post" class="col" action="/courseDeregistration?id=${course.id}">
+                                                <sec:csrfInput/>
+                                                <button id="notBookCourseButton" type="submit" class="btn btn-danger">Cancel Booking</button>
+                                            </form>
+                                        </c:if>
+                                    </c:forEach>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <c:if test="${currentUser == course.participants.contains(currentUser)}">
+                                        <a href="/sendMailToInstructor?id=${course.id}">
+                                            <sec:csrfInput/>
+                                            <button id="mailToInstructorButton" class="btn btn-outline-secondary m-2">Mail Instructor</button>
+                                        </a>
+                                    </c:if>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </td>
             </tr>
         </tbody>
     </table>
 
     <h1 class="mt-4">Location</h1>
-    <iframe
-            style="border:0"
-            loading="lazy"
-            allowfullscreen
-            referrerpolicy="no-referrer-when-downgrade"
-            src="https://www.google.com/maps/embed/v1/place?key=AIzaSyDcnOuYLhfXBemiw1of6LbiBGoJFtht66Q
+    <div class="mb-3">
+        <iframe
+                style="border:0"
+                loading="lazy"
+                allowfullscreen
+                referrerpolicy="no-referrer-when-downgrade"
+                src="https://www.google.com/maps/embed/v1/place?key=AIzaSyDcnOuYLhfXBemiw1of6LbiBGoJFtht66Q
     &q=${course.locations.name}, ${course.locations.city}+${course.locations.street}">
-    </iframe>
+        </iframe>
+    </div>
 
 </layout:page-container>
 <script src="/js/phaser.js"></script>
