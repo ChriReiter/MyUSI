@@ -14,8 +14,6 @@ class Location(
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     var id: Int? = null,
     var name: String? = null,
-    @field:NotNull
-    var country: String? = null,
     @field:Size(min = 2, max = 240)
     var city: String? = null,
     @field:Size(min = 2, max = 240)
