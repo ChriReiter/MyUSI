@@ -40,28 +40,19 @@ class CourseController(val userRepository: UserRepository, val courseRepository:
         @RequestParam(required = false) location: Location? = null,
         @RequestParam(required = false) category: CourseCategory? = null
     ): String {
+        var date2:LocalDate? = null
         if (date != null && date != "") {
-            val date2 = LocalDate.parse(date, DateTimeFormatter.ISO_LOCAL_DATE)
-            model["courses"] = courseRepository.findByCourseName(
-                search,
-                date2,
-                timeStart,
-                timeEnd,
-                instructor,
-                location,
-                category
-            )
-        } else {
-            model["courses"] = courseRepository.findByCourseName(
-                search,
-                null,
-                timeStart,
-                timeEnd,
-                instructor,
-                location,
-                category
-            )
+            date2 = LocalDate.parse(date, DateTimeFormatter.ISO_LOCAL_DATE)
         }
+        model["courses"] = courseRepository.findByCourseName(
+            search,
+            date2,
+            timeStart,
+            timeEnd,
+            instructor,
+            location,
+            category
+        )
         model["instructors"] = userRepository.findByRole(UserRole.ROLE_INSTRUCTOR)
         model["locations"] = locationRepository.findAll()
         model["category"] = categoryRepository.findAll()
