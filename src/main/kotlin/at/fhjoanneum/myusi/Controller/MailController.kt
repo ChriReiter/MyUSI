@@ -31,7 +31,7 @@ class MailController(val userRepository: UserRepository, val courseRepository: C
     }
 
     @Secured("ROLE_INSTRUCTOR")
-    @RequestMapping(path = ["/submitMailToUsers"], method = [RequestMethod.POST])
+    @RequestMapping(path = ["/submitMailToUsers"], method = [RequestMethod.GET])
     fun submitMailToUsers(@ModelAttribute @Valid messageClass: MessageClass, model: Model, id: Int?): String {
 
         val messageToUsers = messageClass.messageTo
@@ -63,7 +63,7 @@ class MailController(val userRepository: UserRepository, val courseRepository: C
     }
 
     @Secured("ROLE_USER")
-    @RequestMapping(path = ["/submitMailToInstructor"], method = [RequestMethod.POST])
+    @RequestMapping(path = ["/submitMailToInstructor"], method = [RequestMethod.GET])
     fun submitMailToInstructor(@ModelAttribute @Valid messageClass: MessageClass, model: Model, id: Int?): String {
 
         val messageToInstructor = messageClass.messageTo
@@ -74,14 +74,14 @@ class MailController(val userRepository: UserRepository, val courseRepository: C
             val actualCourse: Course? = courseRepository.findCourseById(id)
 
                     mailSender?.sendMail(user!!.email!!,
-                    actualCourse!!.instructor!!.email,
-                    "Dear ${actualCourse.instructor}" ,
+                    actualCourse?.instructor?.email,
+                    "Dear ${actualCourse?.instructor}," ,
                     messageToInstructor
                 )
         } else {
-            return "redirect:listCourses"
+            return "redirect:listInstructorCourses"
         }
-        return "redirect:listCourses"
+        return "redirect:listInstructorCourses"
     }
 }
 

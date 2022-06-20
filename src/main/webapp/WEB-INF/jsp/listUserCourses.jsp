@@ -172,11 +172,11 @@
 
                     </div>
                     <div class="col" style="align-content: center">
-                        <c:if test="${currentUser == course.instructor.username}">
-                            <a href="/sendMailtoEnrolledUsers?id=${course.id}">
-                                <sec:csrfInput/>
-                                <button id="mailToButton" class="btn btn btn-lightGreen m-2">Mail Users</button>
-                            </a>
+                       <c:if test="${course.participants.contains(currentUser)}">
+                        <a href="/sendMailToInstructor?id=${course.id}">
+                            <sec:csrfInput/>
+                            <button id="mailToInstructor" class="btn btn-secondary m-2">Mail to Instructor</button>
+                        </a>
                         </c:if>
                     </div>
                     <div class="col" style="align-content: center">
