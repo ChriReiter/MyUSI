@@ -91,14 +91,6 @@
                                     <button id="notBookCourseButton" type="submit" class="btn btn-danger m-2">Cancel Booking</button>
                                 </form>
                                 <div class="col" style="align-content: center">
-                                    <c:if test="${currentUser == course.participants.contains(currentUser)}">
-                                        <a href="/sendMailToInstructor?id=${course.id}">
-                                            <sec:csrfInput/>
-                                            <button id="mailToInstructor" class="btn btn-secondary m-2">Mail to Instructor</button>
-                                        </a>
-                                    </c:if>
-                                </div>
-                                <div class="col" style="align-content: center">
                                     <sec:authorize access="hasRole('ROLE_INSTRUCTOR') && !hasRole('ROLE_ADMIN')">
                                     <c:if test="${currentUser == course.instructor.username}">
                                         <a href="/sendMailtoEnrolledUsers?id=${course.id}">
