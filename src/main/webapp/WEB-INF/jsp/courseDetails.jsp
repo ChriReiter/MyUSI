@@ -99,41 +99,16 @@
                                     <script>document.getElementById("bookCourseButton${course.id}").hidden = false</script>
                                 </c:if>
                             </div>
-                            <c:forEach items="${course.participants}" var="participant">
-                                <c:if test="${participant.username == currentUser}">
-                                    <script>document.getElementById("bookCourseButton${course.id}").hidden = true</script>
-                                    <form method="post" class="col" action="/courseDeregistration?id=${course.id}">
-                                        <sec:csrfInput/>
-                                        <button id="notBookCourseButton" type="submit" class="btn btn-danger">Cancel Booking</button>
-                                    </form>
-                                </c:if>
-                            </c:forEach>
-                            <sec:authorize access="hasRole('ROLE_INSTRUCTOR') || hasRole('ROLE_ADMIN')">
-                                <c:if test="${currentUser == course.instructor.username}">
-
-                                    <hr class="mt-3">
-                                    <div class="col col-4 w-auto">
-                                        <a href="/createCourse?id=${course.id}">
+                                <c:forEach items="${course.participants}" var="participant">
+                                    <c:if test="${participant.username == currentUser}">
+                                        <script>document.getElementById("bookCourseButton${course.id}").hidden = true</script>
+                                        <form method="post" class="col" action="/courseDeregistration?id=${course.id}">
                                             <sec:csrfInput/>
-                                            <button id="bookCourseButton" class="btn btn-outline-secondary">Modify</button>
-                                        </a>
-                                    </div>
-                                    <div class="col col-4 w-auto">
-                                        <a href="/sendMailToEnrolledUsers?id=${course.id}">
-                                            <sec:csrfInput/>
-                                            <button id="mailToButton" class="btn btn-outline-secondary">Mail Users</button>
-                                        </a>
-                                    </div>
-                                    <div class="col col-4 w-auto">
-                                        <form method="post" class="col" action="/deleteCourse?id=${course.id}">
-                                            <sec:csrfInput/>
-                                            <button id="deleteCourseButton" type="submit" class="btn btn-outline-danger">Delete</button>
+                                            <button id="notBookCourseButton" type="submit" class="btn btn-danger">Cancel Booking</button>
                                         </form>
-                                    </div>
-                                </c:if>
-                            </sec:authorize>
-                        </div>
-                    </div>
+                                    </c:if>
+                                </c:forEach>
+                            </div>
                     </div>
                 </td>
             </tr>
