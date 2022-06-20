@@ -21,7 +21,7 @@ class CategoryController(val categoryRepository: CourseCategoryRepository) {
     @Secured("ROLE_INSTRUCTOR")
     @RequestMapping(path = ["/createCategory"], method = [RequestMethod.GET])
     fun createCategory(model: Model): String {
-        model["course"] = CourseCategory()
+        //model["course"] = CourseCategory()
         model["category"] = CourseCategory()
         return "createCategory"
     }
@@ -41,6 +41,7 @@ class CategoryController(val categoryRepository: CourseCategoryRepository) {
         } catch (e: Exception) {
             return "createCategory"
         }
+        //return "redirect:createCourse"
         return "redirect:createCourse"
     }
 }

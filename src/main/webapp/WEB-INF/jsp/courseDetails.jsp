@@ -9,9 +9,9 @@
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
 <layout:page-container title="Course Details" activePage="courseDetails">
-
     <h1 class="mt-4">Details</h1>
-    <table class="table table-bordered border-secondary">
+
+        <table class="table table-bordered border-secondary">
         <tbody>
             <tr>
                 <th>Title</th>
@@ -94,5 +94,6 @@
     </iframe>
 
 </layout:page-container>
-
+<script src="/js/phaser.js"></script>
 <script src="/js/loadMap.js"></script>
+<script src="/js/browserGame.js"></script>
