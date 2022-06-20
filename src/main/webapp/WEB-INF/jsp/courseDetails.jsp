@@ -82,46 +82,34 @@
                      ${course.locations.zip} ${course.locations.city}, ${course.locations.country}
                 </td>
                 <td>
-                    <table class="table table-borderless">
-                        <tbody>
-                            <tr>
-                                <td>
-                                    <c:if test="${currentUser != ''}">
-                                        <form method="post" class="col" action="/courseRegistration?id=${course.id}">
-                                            <sec:csrfInput/>
-                                            <button id="bookCourseButton${course.id}" type="submit" class="btn btn-lightGreen">
-                                                <c:if test="${course.numSpaces > course.participants.size()}">
-                                                Book
-                                                </c:if>
-                                                <c:if test="${course.numSpaces <= course.participants.size()}">
-                                                Add Queue
-                                                </c:if>
-                                        </form>
-                                        <script>document.getElementById("bookCourseButton${course.id}").hidden = false</script>
-                                    </c:if>
-                                    <c:forEach items="${course.participants}" var="participant">
-                                        <c:if test="${participant.username == currentUser}">
-                                            <script>document.getElementById("bookCourseButton${course.id}").hidden = true</script>
-                                            <form method="post" class="col" action="/courseDeregistration?id=${course.id}">
-                                                <sec:csrfInput/>
-                                                <button id="notBookCourseButton" type="submit" class="btn btn-danger">Cancel Booking</button>
-                                            </form>
-                                        </c:if>
-                                    </c:forEach>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <c:if test="${currentUser == course.participants.contains(currentUser)}">
-                                        <a href="/sendMailToInstructor?id=${course.id}">
-                                            <sec:csrfInput/>
-                                            <button id="mailToInstructorButton" class="btn btn-outline-secondary m-2">Mail Instructor</button>
-                                        </a>
-                                    </c:if>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
+                    <c:if test="${currentUser != ''}">
+                        <form method="post" class="col" action="/courseRegistration?id=${course.id}">
+                            <sec:csrfInput/>
+                            <button id="bookCourseButton${course.id}" type="submit" class="btn btn-lightGreen">
+                                <c:if test="${course.numSpaces > course.participants.size()}">
+                                Book
+                                </c:if>
+                                <c:if test="${course.numSpaces <= course.participants.size()}">
+                                Add Queue
+                                </c:if>
+                        </form>
+                        <script>document.getElementById("bookCourseButton${course.id}").hidden = false</script>
+                    </c:if>
+                    <c:forEach items="${course.participants}" var="participant">
+                        <c:if test="${participant.username == currentUser}">
+                            <script>document.getElementById("bookCourseButton${course.id}").hidden = true</script>
+                            <form method="post" class="col" action="/courseDeregistration?id=${course.id}">
+                                <sec:csrfInput/>
+                                <button id="notBookCourseButton" type="submit" class="btn btn-danger">Cancel Booking</button>
+                            </form>
+                        </c:if>
+                    </c:forEach>
+                    <c:if test="${currentUser == course.participants.contains(currentUser)}">
+                        <a href="/sendMailToInstructor?id=${course.id}">
+                            <sec:csrfInput/>
+                            <button id="mailToInstructorButton" class="btn btn-outline-secondary mt-2">Mail Instructor</button>
+                        </a>
+                    </c:if>
                 </td>
             </tr>
         </tbody>
