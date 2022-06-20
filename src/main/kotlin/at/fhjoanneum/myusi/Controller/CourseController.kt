@@ -157,7 +157,9 @@ class CourseController(val userRepository: UserRepository, val courseRepository:
         model: Model, instructor: User?
     ): String? {
         val loggedUser = SecurityContextHolder.getContext().authentication.name
-        val instructorCourses = courseRepository.findCoursesByInstructor(userRepository.findByUsername(loggedUser))
+//        val instructorCourses = courseRepository.findCoursesByInstructor(userRepository.findByUsername(loggedUser))
+        val instructorCourses = courseRepository.findCoursesByInstructorAndDateGreaterThanEqual(userRepository.findByUsername(loggedUser), LocalDate.now())
+
         if (instructorCourses != null) {
             model["courses"] = instructorCourses
         }
@@ -170,7 +172,7 @@ class CourseController(val userRepository: UserRepository, val courseRepository:
         model: Model, id: Int?
     ): String? {
         val loggedUserName = userRepository.findByUsername(SecurityContextHolder.getContext().authentication.name)
-        val userCourses = courseRepository.findCoursesByParticipantsContains(loggedUserName)
+        val userCourses = courseRepository.findCoursesByParticipantsContainsAndDateGreaterThanEqual(loggedUserName, LocalDate.now())
         if (userCourses != null) {
             model["courses"] = userCourses
         }

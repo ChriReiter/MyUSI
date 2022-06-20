@@ -28,9 +28,9 @@ interface CourseRepository : JpaRepository<Course, Int> {
 
     fun findCourseById(@Param("id") id: Int?): Course
 
-    fun findCoursesByInstructor(@Param("instructor")instructor: User?): List<Course>?
+    fun findCoursesByInstructorAndDateGreaterThanEqual(@Param("instructor")instructor: User?, @Param("date")date: LocalDate?): List<Course>?
 
-    fun findCoursesByParticipantsContains(@Param("user")user :User?): List<Course>?
+    fun findCoursesByParticipantsContainsAndDateGreaterThanEqual(@Param("user")user :User?, @Param("date")date: LocalDate?): List<Course>?
 
     fun findCoursesByLocationsId(@Param("locationsId")locationsId: Int?): List<Course>?
 
