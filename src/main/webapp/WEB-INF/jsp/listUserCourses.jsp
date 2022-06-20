@@ -99,15 +99,23 @@
                                     </c:if>
                                 </div>
                                 <div class="col" style="align-content: center">
+                                    <sec:authorize access="hasRole('ROLE_INSTRUCTOR') && !hasRole('ROLE_ADMIN')">
                                     <c:if test="${currentUser == course.instructor.username}">
                                         <a href="/sendMailtoEnrolledUsers?id=${course.id}">
                                             <sec:csrfInput/>
                                             <button id="mailToButton" class="btn btn-secondary m-2">Mail Users</button>
                                         </a>
                                     </c:if>
+                                    </sec:authorize>
+                                    <sec:authorize access="hasRole('ROLE_ADMIN')">
+                                        <a href="/sendMailtoEnrolledUsers?id=${course.id}">
+                                            <sec:csrfInput/>
+                                            <button id="mailToButton" class="btn btn-secondary m-2">Mail Users</button>
+                                        </a>
+                                    </sec:authorize>
                                 </div>
                                 <div class="col" style="align-content: center">
-                                    <sec:authorize access="hasRole('ROLE_INSTRUCTOR')">
+                                    <sec:authorize access="hasRole('ROLE_INSTRUCTOR') && !hasRole('ROLE_ADMIN')">
                                         <c:if test="${currentUser == course.instructor.username}">
                                             <form method="post" class="col" action="/deleteCourse?id=${course.id}">
                                                 <sec:csrfInput/>
@@ -115,7 +123,12 @@
                                             </form>
                                         </c:if>
                                     </sec:authorize>
-
+                                    <sec:authorize access="hasRole('ROLE_ADMIN')">
+                                    <form method="post" class="col" action="/deleteCourse?id=${course.id}">
+                                        <sec:csrfInput/>
+                                        <button id="deleteCourseButton" type="submit" class="btn btn-danger m-2">Delete Course</button>
+                                    </form>
+                                    </sec:authorize>
                                 </div>
 
                             </div>
@@ -172,20 +185,30 @@
 
                     </div>
                     <div class="col" style="align-content: center">
+                        <sec:authorize access="hasRole('ROLE_INSTRUCTOR') && !hasRole('ROLE_ADMIN')">
                        <c:if test="${course.participants.contains(currentUser)}">
                         <a href="/sendMailToInstructor?id=${course.id}">
                             <sec:csrfInput/>
                             <button id="mailToInstructor" class="btn btn-secondary m-2">Mail to Instructor</button>
                         </a>
                         </c:if>
+                        </sec:authorize>
+                        <sec:authorize access="hasRole('ROLE_ADMIN')">
+                            <a href="/sendMailtoEnrolledUsers?id=${course.id}">
+                                <sec:csrfInput/>
+                                <button id="mailToButton" class="btn btn btn-lightGreen m-2">Mail Users</button>
+                            </a>
+                        </sec:authorize>
                     </div>
                     <div class="col" style="align-content: center">
+                        <sec:authorize access="hasRole('ROLE_INSTRUCTOR') && !hasRole('ROLE_ADMIN')">
                         <c:if test="${currentUser == course.instructor.username}">
                             <a href="/createCourse?id=${course.id}">
                                 <sec:csrfInput/>
                                 <button id="bookCourseButton" class="btn btn-secondary m-2">Modify Course</button>
                             </a>
                         </c:if>
+                        </sec:authorize>
                     </div>
                 </td>
 

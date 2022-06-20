@@ -15,13 +15,15 @@
                 <div class="container-startscreen">
                     <div class="row">
                         <div class="col-12 col-sm-10">
-                            <input id="inputSearch" name="search" class="form-control" style="width: 100%" value="${param.search}"/>
+                            <input id="inputSearch" name="search" class="form-control" style="width: 100%"
+                                   value="${param.search}"/>
                         </div>
                         <div class="col-3 col-sm-1">
                             <button id="searchButton" type="submit"><i class="bi bi-search"></i></button>
                         </div>
                         <div class="col-2 col-sm-1">
-                            <a id="toggleDropdown" class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                            <a id="toggleDropdown" class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
+                               role="button"
                                data-bs-toggle="dropdown"
                                aria-haspopup="true" aria-expanded="false">
                             </a>
@@ -29,22 +31,26 @@
                                 <div class="row">
                                     <div class="col">
                                         <label for="dateSearch" class="form-label">Date</label>
-                                        <input id="dateSearch" name="date" class="form-control" type="date" value="${param.date}"/>
+                                        <input id="dateSearch" name="date" class="form-control" type="date"
+                                               value="${param.date}"/>
                                     </div>
                                     <div class="col">
                                         <label for="timeStartSearch" class="form-label">Start</label>
-                                        <input id="timeStartSearch" name="timeStart" class="form-control" type="time" value="${param.timeStart}"/>
+                                        <input id="timeStartSearch" name="timeStart" class="form-control" type="time"
+                                               value="${param.timeStart}"/>
                                     </div>
                                     <div class="col">
                                         <label for="timeEndSearch" class="form-label">End</label>
-                                        <input id="timeEndSearch" name="timeEnd" class="form-control" type="time" value="${param.timeEnd}"/>
+                                        <input id="timeEndSearch" name="timeEnd" class="form-control" type="time"
+                                               value="${param.timeEnd}"/>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col">
                                         <div class="col">
                                             <label for="instructorSearch" class="form-label">Instructor</label>
-                                            <select id="instructorSearch" name="instructor" class="form-control" value="${param.instructor}">
+                                            <select id="instructorSearch" name="instructor" class="form-control"
+                                                    value="${param.instructor}">
                                                 <option value=""></option>
                                                 <c:forEach var="instructor" items="${instructors}">
                                                     <option value="${instructor.id}"
@@ -57,7 +63,8 @@
                                             <div class="col">
                                                 <div class="col">
                                                     <label for="locationSearch" class="form-label">Location</label>
-                                                    <select id="locationSearch" name="location" class="form-control" value="${param.location}">
+                                                    <select id="locationSearch" name="location" class="form-control"
+                                                            value="${param.location}">
                                                         <option value=""></option>
                                                         <c:forEach var="location" items="${locations}">
                                                             <option value="${location.id}"
@@ -72,7 +79,8 @@
                                             <div class="col">
                                                 <div class="col">
                                                     <label for="categorySearch" class="form-label">Category</label>
-                                                    <select id="categorySearch" name="category" class="form-control" value="${param.category}">
+                                                    <select id="categorySearch" name="category" class="form-control"
+                                                            value="${param.category}">
                                                         <option value=""></option>
                                                         <c:forEach var="category" items="${category}">
                                                             <option value="${category.id}"
@@ -88,7 +96,8 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-sm-1" style="width: 30px; padding-top: 5%; margin-right: 5%; margin-left: auto;">
+                                <div class="col-sm-1"
+                                     style="width: 30px; padding-top: 5%; margin-right: 5%; margin-left: auto;">
                                     <button type="submit"><i class="bi bi-search"></i></button>
                                 </div>
                             </div>
@@ -99,12 +108,10 @@
             </form>
 
 
-
             <div class="form-check form-switch mb-3" style="justify-content: right">
                 <label for="flexSwitchCheckDefault">Toggle Design</label>
                 <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
             </div>
-
 
 
             <div class="row" id="layoutCard">
@@ -114,34 +121,37 @@
                             <div class="card-body">
                                 <div class="row">
                                     <div class="col">
-<%--                                        <div class="container-sm" id="courseNumber">--%>
-<%--                                            <p class="align-middle"> #${course.id} </p>--%>
-<%--                                        </div>--%>
+                                            <%--                                        <div class="container-sm" id="courseNumber">--%>
+                                            <%--                                            <p class="align-middle"> #${course.id} </p>--%>
+                                            <%--                                        </div>--%>
                                         <div class="rounded-pill" id="courseNumber">
                                             <p class="align-middle text-center"> #${course.id} </p>
                                         </div>
                                     </div>
                                     <c:if test="${course.numSpaces - course.participants.size() > 0}">
-                                        <div class="col" >
-<%--                                            <div class="container-sm" id="freeSpaces">--%>
-<%--                                                    Free spots: ${course.numSpaces - course.participants.size()}/${course.numSpaces}--%>
-<%--                                            </div>--%>
+                                        <div class="col">
+                                                <%--                                            <div class="container-sm" id="freeSpaces">--%>
+                                                <%--                                                    Free spots: ${course.numSpaces - course.participants.size()}/${course.numSpaces}--%>
+                                                <%--                                            </div>--%>
                                             <div class="progress rounded-pill" style="height:30px">
-                                                <div class="progress-bar progress-bar-lightGreen" style="width:${100*(course.numSpaces - course.participants.size())/course.numSpaces}%">
-                                                        <c:if test="${((course.numSpaces - course.participants.size())/course.numSpaces) > 0.5}">Free spots: </c:if>${course.numSpaces - course.participants.size()}/${course.numSpaces}
+                                                <div class="progress-bar progress-bar-lightGreen"
+                                                     style="width:${100*(course.numSpaces - course.participants.size())/course.numSpaces}%">
+                                                    <c:if test="${((course.numSpaces - course.participants.size())/course.numSpaces) > 0.5}">Free spots: </c:if>${course.numSpaces - course.participants.size()}
+                                                    /${course.numSpaces}
                                                 </div>
                                             </div>
                                         </div>
                                     </c:if>
                                     <c:if test="${course.numSpaces - course.participants.size() <= 0}">
-                                        <div class="col" >
-<%--                                            <div class="container-sm" id="courseFull">--%>
-<%--                                                    Free spots: ${course.numSpaces - course.participants.size()}/${course.numSpaces}--%>
-<%--                                            </div>--%>
+                                        <div class="col">
+                                                <%--                                            <div class="container-sm" id="courseFull">--%>
+                                                <%--                                                    Free spots: ${course.numSpaces - course.participants.size()}/${course.numSpaces}--%>
+                                                <%--                                            </div>--%>
 
                                             <div class="progress rounded-pill" style="height:30px">
                                                 <div class="progress-bar bg-danger" style="width:100%">
-                                                    Free spots: ${course.numSpaces - course.participants.size()}/${course.numSpaces}
+                                                    Free
+                                                    spots: ${course.numSpaces - course.participants.size()}/${course.numSpaces}
                                                 </div>
                                             </div>
                                         </div>
@@ -150,7 +160,8 @@
                             </div>
                             <a href="/courseDetails?id=${course.id}">
                                 <sec:csrfInput/>
-                                <img class="card-img-top img-fluid" style="width: 420px; height: 240px" src="files/${course.category.files.get(0).id}" type="submit" />
+                                <img class="card-img-top img-fluid" style="width: 420px; height: 240px"
+                                     src="files/${course.category.files.get(0).id}" type="submit"/>
                             </a>
                             <div class="card-body">
 
@@ -171,7 +182,9 @@
                                         <th>Date:</th>
                                         <td><fmt:parseDate value="${course.date}" pattern="yyyy-MM-dd" var="parsedDate"
                                                            type="date"/>
-                                            <fmt:formatDate value="${parsedDate}" type="date" pattern="dd.MM.yyyy"/>, ${course.timeStart.substring(0, 5)} - ${course.timeEnd.substring(0, 5)}</td>
+                                            <fmt:formatDate value="${parsedDate}" type="date"
+                                                            pattern="dd.MM.yyyy"/>, ${course.timeStart.substring(0, 5)}
+                                            - ${course.timeEnd.substring(0, 5)}</td>
                                     </tr>
                                     <tr>
                                         <th>Location:</th>
@@ -179,7 +192,8 @@
                                     </tr>
                                     <tr>
                                         <th>Price:</th>
-                                        <td><fmt:formatNumber value="${course.price}" type="currency" currencySymbol="€"/></td>
+                                        <td><fmt:formatNumber value="${course.price}" type="currency"
+                                                              currencySymbol="€"/></td>
                                     </tr>
                                     </tbody>
                                 </table>
@@ -188,9 +202,11 @@
                                     <div class="row">
                                         <div class="col">
                                             <c:if test="${currentUser != ''}">
-                                                <form method="post" class="col" action="/courseRegistration?id=${course.id}">
+                                                <form method="post" class="col"
+                                                      action="/courseRegistration?id=${course.id}">
                                                     <sec:csrfInput/>
-                                                    <button id="bookCourseButton${course.id}" type="submit" class="btn btn-lightGreen">
+                                                    <button id="bookCourseButton${course.id}" type="submit"
+                                                            class="btn btn-lightGreen">
                                                         <c:if test="${course.numSpaces > course.participants.size()}">
                                                         Book
                                                         </c:if>
@@ -205,9 +221,12 @@
                                             <c:forEach items="${course.participants}" var="participant">
                                                 <c:if test="${participant.username == currentUser}">
                                                     <script>document.getElementById("bookCourseButton${course.id}").hidden = true</script>
-                                                    <form method="post" class="col" action="/courseDeregistration?id=${course.id}">
+                                                    <form method="post" class="col"
+                                                          action="/courseDeregistration?id=${course.id}">
                                                         <sec:csrfInput/>
-                                                        <button id="notBookCourseButton" type="submit" class="btn btn-danger">Cancel Booking</button>
+                                                        <button id="notBookCourseButton" type="submit"
+                                                                class="btn btn-danger">Cancel Booking
+                                                        </button>
                                                     </form>
                                                 </c:if>
                                             </c:forEach>
@@ -219,29 +238,63 @@
                                             </a>
                                         </sec:authorize>
 
-                                        <sec:authorize access="hasRole('ROLE_INSTRUCTOR') || hasRole('ROLE_ADMIN')">
-                                            <c:if test="${currentUser == course.instructor.username}">
+                                        <sec:authorize access="hasRole('ROLE_INSTRUCTOR') && !hasRole('ROLE_ADMIN')">
+                                            <c:if test="${currentUser == course.instructor.username }">
 
-                                            <hr class="mt-3">
-                                            <div class="col col-4 w-auto">
+                                                <hr class="mt-3">
+                                                <div class="col col-4 w-auto">
                                                     <a href="/createCourse?id=${course.id}">
                                                         <sec:csrfInput/>
-                                                        <button id="bookCourseButton" class="btn btn-outline-secondary">Modify</button>
+                                                        <button id="bookCourseButton" class="btn btn-outline-secondary">
+                                                            Modify
+                                                        </button>
                                                     </a>
+                                                </div>
+                                                <div class="col col-4 w-auto">
+                                                    <a href="/sendMailToEnrolledUsers?id=${course.id}">
+                                                        <sec:csrfInput/>
+                                                        <button id="mailToButton" class="btn btn-outline-secondary">Mail
+                                                            Users
+                                                        </button>
+                                                    </a>
+                                                </div>
+                                                <div class="col col-4 w-auto">
+                                                    <form method="post" class="col"
+                                                          action="/deleteCourse?id=${course.id}">
+                                                        <sec:csrfInput/>
+                                                        <button id="deleteCourseButton" type="submit"
+                                                                class="btn btn-outline-danger">Delete
+                                                        </button>
+                                                    </form>
+                                                </div>
+                                            </c:if>
+                                        </sec:authorize>
+                                        <sec:authorize access="hasRole('ROLE_ADMIN')">
+                                            <hr class="mt-3">
+                                             <div class="col col-4 w-auto">
+                                                <a href="/createCourse?id=${course.id}">
+                                                    <sec:csrfInput/>
+                                                    <button id="bookCourseButton" class="btn btn-outline-secondary">
+                                                        Modify
+                                                    </button>
+                                                </a>
                                             </div>
                                             <div class="col col-4 w-auto">
-                                                     <a href="/sendMailToEnrolledUsers?id=${course.id}">
-                                                        <sec:csrfInput/>
-                                                        <button id="mailToButton" class="btn btn-outline-secondary">Mail Users</button>
-                                                    </a>
+                                                <a href="/sendMailToEnrolledUsers?id=${course.id}">
+                                                    <sec:csrfInput/>
+                                                    <button id="mailToButton" class="btn btn-outline-secondary">Mail
+                                                        Users
+                                                    </button>
+                                                </a>
                                             </div>
-                                             <div class="col col-4 w-auto">
-                                                        <form method="post" class="col" action="/deleteCourse?id=${course.id}">
-                                                            <sec:csrfInput/>
-                                                            <button id="deleteCourseButton" type="submit" class="btn btn-outline-danger">Delete</button>
-                                                        </form>
+                                            <div class="col col-4 w-auto">
+                                                <form method="post" class="col" action="/deleteCourse?id=${course.id}">
+                                                    <sec:csrfInput/>
+                                                    <button id="deleteCourseButton" type="submit"
+                                                            class="btn btn-outline-danger">Delete
+                                                    </button>
+                                                </form>
                                             </div>
-                                                    </c:if>
                                         </sec:authorize>
                                     </div>
                                 </div>
@@ -267,72 +320,84 @@
                 <tbody>
                 <c:forEach items="${courses}" var="course">
 
-                    <tr>
-                        <td>${course.id}</td>
-                        <td>${course.courseName}</td>
-                        <td><fmt:formatNumber value="${course.price}" minFractionDigits="2" maxFractionDigits="2"/> €</td>
-                        <td>${course.participants.size()} / ${course.numSpaces}</td>
-                        <td>
-                            <fmt:parseDate value="${course.date}" pattern="yyyy-MM-dd" var="parsedDate"
-                                           type="date"/>
-                            <fmt:formatDate value="${parsedDate}" type="date" pattern="dd.MM.yyyy"/>, ${course.timeStart.substring(0, 5)} - ${course.timeEnd.substring(0, 5)}
-                        </td>
-                        <td>${course.locations.name}</td>
-                        <td>${course.instructor.firstName} ${course.instructor.lastName}</td>
-                        <td>
-                            <a href="/courseDetails?id=${course.id}">
-                                <sec:csrfInput/>
-                                <button id="courseDetails" class="btn btn-secondary m-2">Details</button>
-                            </a>
-                            <c:if test="${currentUser != ''}">
-                                <form method="post" class="col" action="/courseRegistration?id=${course.id}">
-                                    <sec:csrfInput/>
-                                        <button id="bookCourseButton${course.id}" type="submit" class="btn btn-lightGreen m-2">
-                                            <c:if test="${course.numSpaces > course.participants.size()}">
-                                                Book
-                                            </c:if>
-                                            <c:if test="${course.numSpaces <= course.participants.size()}">
-                                                Add Queue
-                                            </c:if>
-                                        </button>
-                                </form>
-                                <script>document.getElementById("bookCourseButton${course.id}").hidden = false</script>
-                            </c:if>
-                            <c:forEach items="${course.participants}" var="participant">
-                                <c:if test="${participant.username == currentUser}">
-                                    <script>document.getElementById("bookCourseButton${course.id}").hidden = true</script>
-                                    <form method="post" class="col" action="/courseDeregistration?id=${course.id}">
-                                        <sec:csrfInput/>
-                                        <button id="notBookCourseButton" type="submit" class="btn btn-danger">Cancel Booking</button>
-                                    </form>
+                <tr>
+                    <td>${course.id}</td>
+                    <td>${course.courseName}</td>
+                    <td><fmt:formatNumber value="${course.price}" minFractionDigits="2" maxFractionDigits="2"/> €</td>
+                    <td>${course.participants.size()} / ${course.numSpaces}</td>
+                    <td>
+                        <fmt:parseDate value="${course.date}" pattern="yyyy-MM-dd" var="parsedDate"
+                                       type="date"/>
+                        <fmt:formatDate value="${parsedDate}" type="date"
+                                        pattern="dd.MM.yyyy"/>, ${course.timeStart.substring(0, 5)}
+                        - ${course.timeEnd.substring(0, 5)}
+                    </td>
+                    <td>${course.locations.name}</td>
+                    <td>${course.instructor.firstName} ${course.instructor.lastName}</td>
+                    <td>
+                        <a href="/courseDetails?id=${course.id}">
+                            <sec:csrfInput/>
+                            <button id="courseDetails" class="btn btn-secondary m-2">Details</button>
+                        </a>
+                        <c:if test="${currentUser != ''}">
+                        <form method="post" class="col" action="/courseRegistration?id=${course.id}">
+                            <sec:csrfInput/>
+                            <button id="bookCourseButton${course.id}" type="submit" class="btn btn-lightGreen m-2">
+                                <c:if test="${course.numSpaces > course.participants.size()}">
+                                    Book
                                 </c:if>
-                            </c:forEach>
+                                <c:if test="${course.numSpaces <= course.participants.size()}">
+                                    Add Queue
+                                </c:if>
+                            </button>
+                        </form>
+                        <script>document.getElementById("bookCourseButton${course.id}").hidden = false</script>
+                        </c:if>
+                        <c:forEach items="${course.participants}" var="participant">
+                        <c:if test="${participant.username == currentUser}">
+                        <script>document.getElementById("bookCourseButton${course.id}").hidden = true</script>
+                        <form method="post" class="col" action="/courseDeregistration?id=${course.id}">
+                            <sec:csrfInput/>
+                            <button id="notBookCourseButton" type="submit" class="btn btn-danger m-2">Cancel Booking
+                            </button>
+                        </form>
+                        </c:if>
+                        </c:forEach>
         </div>
-                            <c:if test="${currentUser == course.instructor.username}">
-                                <a href="/createCourse?id=${course.id}">
-                                    <sec:csrfInput/>
-                                    <button id="bookCourseButton" class="btn btn-warning m-2">Modify</button>
-                                </a>
-                            </c:if>
-                             <c:if test="${currentUser == course.participants.contains(currentUser)}">
-                                <a href="/sendMailToInstructor?id=${course.id}">
-                                    <sec:csrfInput/>
-                                    <button id="mailToInstructorButton" class="btn btn-lightGreen m-2">Mail Instructor</button>
-                                </a>
-                                </c:if>
-                            <c:if test="${currentUser == course.instructor.username}">
-                                <a href="/sendMailToEnrolledUsers?id=${course.id}">
-                                    <sec:csrfInput/>
-                                    <button id="mailToButton" class="btn btn-lightGreen m-2">Mail Users</button>
-                                </a>
-                            </c:if>
-                        </td>
+        <sec:authorize access="hasRole('ROLE_INSTRUCTOR') && !hasRole('ROLE_ADMIN')">
+        <c:if test="${currentUser == course.instructor.username}">
+            <a href="/createCourse?id=${course.id}">
+                <sec:csrfInput/>
+                <button id="bookCourseButton" class="btn btn-outline-secondary m-2">Modify</button>
+            </a>
+        </c:if>
+        </sec:authorize>
+        <sec:authorize access="hasRole('ROLE_ADMIN')">
+        <a href="/createCourse?id=${course.id}">
+            <sec:csrfInput/>
+            <button id="bookCourseButton" class="btn btn-outline-secondary m-2">Modify</button>
+        </a>
+        </sec:authorize>
 
-                    </tr>
-                </c:forEach>
-                </tbody>
-            </table>
-        </div>
+        <c:if test="${currentUser == course.participants.contains(currentUser)}">
+            <a href="/sendMailToInstructor?id=${course.id}">
+                <sec:csrfInput/>
+                <button id="mailToInstructorButton" class="btn btn-lightGreen m-2">Mail Instructor</button>
+            </a>
+        </c:if>
+        <c:if test="${currentUser == course.instructor.username}">
+            <a href="/sendMailToEnrolledUsers?id=${course.id}">
+                <sec:csrfInput/>
+                <button id="mailToButton" class="btn btn-lightGreen m-2">Mail Users</button>
+            </a>
+        </c:if>
+        </td>
+
+        </tr>
+        </c:forEach>
+        </tbody>
+        </table>
+    </div>
     </div>
 
 </layout:page-container>

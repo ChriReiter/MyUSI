@@ -84,34 +84,4 @@ class LocationController(val locationRepository: LocationRepository, val courseR
         }
         return "redirect:editLocations"
     }
-
-    @Secured("ROLE_INSTRUCTOR")
-    @RequestMapping(path = ["/editLocation"], method = [RequestMethod.GET])
-    fun editLocation(id: Int?, model: Model): String {
-/*
-        if (id != null) {
-            if (courseRepository.findById(id)
-                    .get().instructor?.username != SecurityContextHolder.getContext().authentication.name
-            ) {
-                return "redirect:listCourses"
-            }
-        }
- */
-        model["location"] = if (id == null) Location()
-        else locationRepository.findById(id).orElse(Location())
-
-        return "editLocation"
-    }
-
-
-
-    @Secured("ROLE_INSTRUCTOR")
-    @RequestMapping("/saveLocation", method = [RequestMethod.POST])
-    fun saveLocation(
-        @ModelAttribute @Valid location: Location, bindingResult: BindingResult, model: Model,
-        @RequestParam(required = false) file: String? = null
-    ): String {
-
-        return "create Course"
-    }
 }

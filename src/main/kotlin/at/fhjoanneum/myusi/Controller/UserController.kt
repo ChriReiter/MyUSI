@@ -55,7 +55,6 @@ class UserController(val userRepository: UserRepository) {
     @RequestMapping("/newUser", method = [RequestMethod.POST])
     fun newUser(@ModelAttribute @Valid user: User, bindingResult: BindingResult, model: Model): String {//@Valid @ModelAttribute user: User, bindingResult: BindingResult, model: Model): String {
         val originalPassword = user.password
-
         val sender = "myusi.wappdev@gmail.com"
 
         if (bindingResult.hasErrors()) {
