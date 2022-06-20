@@ -12,7 +12,7 @@
     <c:set var="errors" value="${requestScope['org.springframework.validation.BindingResult.User']}" />
 
     <%--@elvariable id="messageClass" type="at.fhjoanneum.myusi.classes.MessageClass"--%>
-    <form:form method="post" action="submitMailToUsers" modelAttribute="messageClass">
+
 
 
 
@@ -21,12 +21,28 @@
     <form action="/action_page.php">
         <label for="email">Enter your email:</label>
         <div>
-        <input type="email" id="email" path="emailToUsers" style= height:420px;width:200px;>
+        <input type="test" id="email" path="emailToUsers" style= height:300px;width:400px;>
         </div>
         <div class="mb-3">
-            <a href="submitMailToUsers" class="btn btn-lightGreen m-2">Send Mail</a>
+            <a href="submitMailToUsers" class="btn btn-lightGreen m-2" data-bs-toggle="modal" data-bs-target="#confirmSend">Send Mail</a>
         </div>
     </form>
-    </form:form>
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="confirmSend" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    Email sent succesfully!
+                </div>
+
+            </div>
+        </div>
+    </div>
 
 </layout:page-container>

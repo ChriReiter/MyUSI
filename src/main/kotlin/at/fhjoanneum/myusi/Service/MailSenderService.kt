@@ -12,11 +12,11 @@ class MailSenderService {
     @Autowired
     val mailSender: MailSender? = null
 
-    fun sendMail(setFrom:String, toEmail: String?, subject: String, body: String) {
+    fun sendMail(setFrom:String, toEmail: String?, subject: String, body: String?) {
         val message: SimpleMailMessage = SimpleMailMessage()
         message.setFrom(setFrom)
         message.setTo(toEmail)
-        message.setText(body)
+        message.setText(body!!)
         message.setSubject(subject)
 
         mailSender?.send(message)

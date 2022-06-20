@@ -5,5 +5,5 @@ import org.springframework.web.bind.annotation.PostMapping
 
 
 
-class MessageClass(var messageTo :String)
+class MessageClass(var messageTo :String?)
 

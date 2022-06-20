@@ -213,6 +213,13 @@
                                                 </c:if>
                                             </c:forEach>
                                         </div>
+                                        <sec:authorize access="hasRole('ROLE_INSTRUCTOR') || hasRole('ROLE_ADMIN') || hasRole('ROLE_USER')">
+                                            <a href="/sendMailToInstructor?id=${course.id}">
+                                                <sec:csrfInput/>
+                                                <button id="mailToInstructorButton" class="btn btn-lightGreen m-2">Mail Instructor</button>
+                                            </a>
+                                        </sec:authorize>
+
                                         <sec:authorize access="hasRole('ROLE_INSTRUCTOR') || hasRole('ROLE_ADMIN')">
                                             <c:if test="${currentUser == course.instructor.username}">
 
@@ -229,7 +236,7 @@
                                                         <button id="mailToButton" class="btn btn-outline-secondary">Mail Users</button>
                                                     </a>
                                             </div>
-                                            <div class="col col-4 w-auto">
+                                             <div class="col col-4 w-auto">
                                                         <form method="post" class="col" action="/deleteCourse?id=${course.id}">
                                                             <sec:csrfInput/>
                                                             <button id="deleteCourseButton" type="submit" class="btn btn-outline-danger">Delete</button>
