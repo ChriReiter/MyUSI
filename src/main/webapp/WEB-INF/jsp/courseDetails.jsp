@@ -77,7 +77,7 @@
                 <td class="text-center align-middle"> ${course.timeStart.substring(0, 5)} - ${course.timeEnd.substring(0, 5)}</td>
                 <td class="text-center align-middle"> ${course.locations.name} <br>
                      ${course.locations.street} ${course.locations.housenum} <br>
-                     ${course.locations.zip} ${course.locations.city}
+                     ${course.locations.zip} ${course.locations.city}, ${course.locations.country}
                 </td>
             </tr>
         </tbody>

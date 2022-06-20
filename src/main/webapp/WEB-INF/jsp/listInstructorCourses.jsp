@@ -18,7 +18,7 @@
                 <c:forEach items="${courses}" var="course">
                     <div class="col-lg-4 col-md-6 col-sm-12">
                         <div class="card mb-5">
-                            <div class="card-header">
+                            <div class="card-body">
                                 <div class="row">
                                     <div class="col">
                                         <div class="rounded-pill" id="courseNumber">

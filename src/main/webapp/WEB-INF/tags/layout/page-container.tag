@@ -14,16 +14,17 @@
     <link href="/css/custom.css" rel="stylesheet"/>
 </head>
 <body>
-<div class="text-end me-2">
-    <img src="/img/logo.png" class="img-fluid">
-</div>
+<a href="/">
+    <div class="text-end me-2">
+        <img src="/img/logo.png" class="img-fluid">
+    </div>
+</a>
 
 <nav class="navbar navbar-expand-lg mb-4">
     <div class="container">
         <a class="navbar-brand" href="/">MyUSI</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-<%--            <span class="navbar-toggler-icon"></span>--%>
             <i class="bi bi-list darkgreen"></i>
 
         </button>

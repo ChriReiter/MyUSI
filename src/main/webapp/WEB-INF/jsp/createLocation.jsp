@@ -37,18 +37,25 @@
                     <label for="inputHousenum" class="form-label${errors.hasFieldErrors('housenum') ? 'is-invalid' : ''}">Number</label>
                 </div>
             </div>
-            <div class="col-md-6 col-12">
+            <div class="col-md-4 col-12">
                 <div class="form-floating mb-3 mt-3">
                     <form:input path="zip" type="number" step="1" class="form-control" id="zip" placeholder="Zip" name="inputZip"/>
                     <form:errors path="zip" cssClass="invalid-feedback" />
                     <label for="inputZip" class="form-label${errors.hasFieldErrors('zip') ? 'is-invalid' : ''}">Zip Code</label>
                 </div>
             </div>
-            <div class="col-md-6 col-12">
+            <div class="col-md-4 col-12">
                 <div class="form-floating mb-3 mt-3">
                     <form:input path="city" type="text" class="form-control" id="inputCity" placeholder="City" name="inputCity"/>
                     <form:errors path="city" cssClass="invalid-feedback" />
                     <label for="inputCity" class="form-label${errors.hasFieldErrors('city') ? 'is-invalid' : ''}">City</label>
+                </div>
+            </div>
+            <div class="col-md-4 col-12">
+                <div class="form-floating mb-3 mt-3">
+                    <form:input path="country" type="text" class="form-control" id="inputCountry" placeholder="Country" name="inputCountry"/>
+                    <form:errors path="country" cssClass="invalid-feedback" />
+                    <label for="inputCity" class="form-label${errors.hasFieldErrors('country') ? 'is-invalid' : ''}">Country</label>
                 </div>
             </div>
 

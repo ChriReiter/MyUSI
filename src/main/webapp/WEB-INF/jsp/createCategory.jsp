@@ -15,6 +15,7 @@
     <form:form modelAttribute="category" method="post" action="newCategory">
         <form:hidden path="id" />
 
+        <legend>Create a new category</legend>
         <div class="container border border-dark rounded-4 border-2 p-3 mb-4">
             <h4>Category Name</h4>
             <div class="form-floating">

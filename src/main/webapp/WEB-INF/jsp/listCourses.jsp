@@ -108,7 +108,7 @@
 
 
             <div class="row" id="layoutCard">
-    <c:forEach items="${courses}" var="course">
+                <c:forEach items="${courses}" var="course">
                     <div class="col-lg-4 col-md-6 col-sm-12">
                         <div class="card mb-5">
                             <div class="card-body">
