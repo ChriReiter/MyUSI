@@ -32,4 +32,6 @@ interface CourseRepository : JpaRepository<Course, Int> {
 
     fun findCoursesByParticipantsContains(@Param("user")user :User?): List<Course>?
 
+    fun findCoursesByLocationsId(@Param("locationsId")locationsId: Int?): List<Course>?
+
 }

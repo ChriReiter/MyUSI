@@ -130,7 +130,7 @@ class CourseController(val userRepository: UserRepository, val courseRepository:
     }
 
     @RequestMapping(path = ["/courseDeregistration"], method = [RequestMethod.POST])
-    fun courseRDeregistration(model: Model, @RequestParam id: Int): String {
+    fun courseDeregistration(model: Model, @RequestParam id: Int): String {
         val course: Course = courseRepository.findById(id).get()
         val sender = "myusi.wappdev@gmail.com"
         val username = SecurityContextHolder.getContext().authentication.name

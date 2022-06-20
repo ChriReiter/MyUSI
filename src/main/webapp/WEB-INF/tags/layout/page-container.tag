@@ -13,6 +13,7 @@
     <bootstrap:bootstrap-css/>
     <link href="/css/custom.css" rel="stylesheet"/>
 </head>
+
 <body>
 <a href="/">
     <div class="text-end me-2">
@@ -32,18 +33,18 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <div class="navbar-nav">
                 <sec:authorize access="hasAuthority('ROLE_INSTRUCTOR')">
-                    <a class="nav-item nav-link" href="/createCourse" >Create Course</a>
+                    <a class="nav-item nav-link" href="/createCourse">Create Course</a>
                 </sec:authorize>
                 <sec:authorize access="hasAuthority('ROLE_INSTRUCTOR')">
-                    <a class="nav-item nav-link" href="/listInstructorCourses" >Show my Courses</a>
+                    <a class="nav-item nav-link" href="/listInstructorCourses">Show my Courses</a>
                 </sec:authorize>
                 <sec:authorize access="hasAuthority('ROLE_USER')">
-                    <a class="nav-item nav-link" href="/listUserCourses" >My booked Courses</a>
+                    <a class="nav-item nav-link" href="/listUserCourses">My booked Courses</a>
                 </sec:authorize>
-                </div>
+            </div>
             <ul class="navbar-nav ms-auto">
                 <li class="nav-item">
-                    <span class="nav-link"><i class="bi bi-person"></i><c:out value="${currentUser}" /></span>
+                    <span class="nav-link"><i class="bi bi-person"></i><c:out value="${currentUser}"/></span>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
@@ -69,7 +70,6 @@
 
 
 <div class="container" role="main">
-
 
 
     <!-- Messages ----------------------------------------------------------- -->
@@ -124,7 +124,7 @@
                 </div>
                 <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
                     <!-- Links -->
-                    <h6 class="text-uppercase fw-bold mb-4"style="color: #4FB286">
+                    <h6 class="text-uppercase fw-bold mb-4" style="color: #4FB286">
                         Courses
                     </h6>
                     <p style="color: #50FFB1">
@@ -149,22 +149,22 @@
                     </sec:authorize>
 
                 </div>
-                    <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
-                        <!-- Links -->
+                <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
+                    <!-- Links -->
 
-                        <h6 class="text-uppercase fw-bold mb-4" style="color: #4FB286">
-                            Instructor Options
-                        </h6>
-                        <p style="color: #50FFB1">
-                            <a href="/termsAndConditions" class="text-reset" >Terms and Conditions</a>
-                        </p>
-                        <p style="color: #50FFB1">
-                            <a href="/imprint" class="text-reset">Imprint</a>
-                        </p>
-                        <p style="color: #50FFB1">
-                            <a href="/privacyPolicy" class="text-reset">Privacy Policy</a>
-                        </p>
-                    </div>
+                    <h6 class="text-uppercase fw-bold mb-4" style="color: #4FB286">
+                        Instructor Options
+                    </h6>
+                    <p style="color: #50FFB1">
+                        <a href="/termsAndConditions" class="text-reset">Terms and Conditions</a>
+                    </p>
+                    <p style="color: #50FFB1">
+                        <a href="/imprint" class="text-reset">Imprint</a>
+                    </p>
+                    <p style="color: #50FFB1">
+                        <a href="/privacyPolicy" class="text-reset">Privacy Policy</a>
+                    </p>
+                </div>
 
                 <!-- Grid column -->
 
