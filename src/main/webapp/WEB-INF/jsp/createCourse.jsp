@@ -17,6 +17,7 @@
         <form:hidden path="participants"/>
         <form:hidden path="instructor"/>
 
+
         <legend>Create a new course</legend>
         <div class="container border border-dark rounded-4 border-2 p-3 mb-4">
             <h4>General Information</h4>
@@ -56,7 +57,7 @@
         <div class="container border border-dark rounded-4 border-2 p-3 mb-4">
             <h4>Location</h4>
             <div class="form-floating">
-                <form:select id="inputLocation" path="locations" cssClass="form-select mb-3 ${errors.hasFieldErrors('department') ? 'is-invalid' : ''}">
+                <form:select id="inputLocation" modelAttribute="locations" path="locations" cssClass="form-select mb-3 ${errors.hasFieldErrors('department') ? 'is-invalid' : ''}">
                     <form:option value=""> </form:option>
                     <form:options items="${locations}" itemValue="id" itemLabel="name" />
                 </form:select>
@@ -65,6 +66,7 @@
             </div>
             <div class="mb-3">
                 <a href="createLocation" class="btn btn-lightGreen">Create a new location</a>
+                <a href="editLocations" class="btn btn-lightGreen">Edit locations</a>
             </div>
         </div>
 
@@ -90,7 +92,7 @@
 
         <div></div>
         <div class="mb-3">
-            <button type="submit" class="btn btn-lightGreen">Submit</button>
+            <button type="submit" class="btn btn-lightGreen">Create</button>
             <a href="listCourses" class="btn btn-default">Cancel</a>
         </div>
     </form:form>
