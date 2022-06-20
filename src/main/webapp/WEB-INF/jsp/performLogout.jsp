@@ -12,10 +12,10 @@
 <layout:page-container title="Are you sure you want to logout?" activePage="performLogout">
     <%--@elvariable id="user" type="at.fhjoanneum.myusi.Entity.User"--%>
     <form:form method="post" action="${logoutUrl}">
-        <legend>Are you sure you want to logout?</legend>
+        <legend>Are you sure you want to log out?</legend>
         <fieldset>
             <div class="mb-3">
-                <button type="submit" class="btn btn-lightGreen m-2">Submit</button>
+                <button type="submit" class="btn btn-lightGreen m-2">Logout</button>
                 <a href="listCourses" class="btn btn-default m-2">Cancel</a>
             </div>
         </fieldset>

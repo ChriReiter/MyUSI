@@ -111,7 +111,6 @@ class CourseController(val userRepository: UserRepository, val courseRepository:
             return populateCreateCourseModel(model)
         }
 
-
         return "redirect:listCourses"//"redirect:/editEmployee?id=" + employee.id
     }
 

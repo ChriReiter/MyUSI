@@ -13,43 +13,41 @@
     <%--@elvariable id="course" type="at.fhjoanneum.myusi.Entity.Location"--%>
     <form:form modelAttribute="course" method="post" action="newLocation">
         <form:hidden path="id" />
-        <fieldset>
-            <div class="mb-3">
-                <label for="inputName" class="form-label${errors.hasFieldErrors('name') ? 'is-invalid' : ''}">Name</label>
-                <form:input path="name" id="inputName"/>
+
+        <legend>Create a new course</legend>
+        <div class="container border border-dark rounded-4 border-2 p-3 mb-4">
+            <div class="form-floating mb-3 mt-3">
+                <form:input path="name" type="text" class="form-control" id="inputName" placeholder="Location Name" name="inputName"/>
                 <form:errors path="name" cssClass="invalid-feedback" />
+                <label for="inputName" class="form-label${errors.hasFieldErrors('name') ? 'is-invalid' : ''}">Name</label>
             </div>
-            <div class="mb-3">
-                <label for="inputStreet" class="form-label${errors.hasFieldErrors('street') ? 'is-invalid' : ''}">Street</label>
-                <form:input path="street" id="inputStreet"/>
+            <div class="form-floating mb-3 mt-3">
+                <form:input path="street" type="text" class="form-control" id="inputStreet" placeholder="Street" name="inputStreet"/>
                 <form:errors path="street" cssClass="invalid-feedback" />
+                <label for="inputStreet" class="form-label${errors.hasFieldErrors('street') ? 'is-invalid' : ''}">Street</label>
             </div>
-            <div class="mb-3">
-                <label for="inputHousenum" class="form-label${errors.hasFieldErrors('housenum') ? 'is-invalid' : ''}">Number</label>
-                <form:input path="housenum" id="inputHousenum"/>
+            <div class="form-floating mb-3 mt-3">
+                <form:input path="housenum" type="number" step="1" class="form-control" id="inputHousenum" placeholder="House Number" name="inputHousenum"/>
                 <form:errors path="housenum" cssClass="invalid-feedback" />
+                <label for="inputHousenum" class="form-label${errors.hasFieldErrors('housenum') ? 'is-invalid' : ''}">Number</label>
             </div>
-            <div class="mb-3">
-                <label for="inputZip" class="form-label${errors.hasFieldErrors('zip') ? 'is-invalid' : ''}">Zip</label>
-                <form:input path="zip" id="inputZip"/>
+            <div class="form-floating mb-3 mt-3">
+                <form:input path="zip" type="number" step="1" class="form-control" id="zip" placeholder="Zip" name="inputZip"/>
                 <form:errors path="zip" cssClass="invalid-feedback" />
+                <label for="inputZip" class="form-label${errors.hasFieldErrors('zip') ? 'is-invalid' : ''}">Zip Code</label>
             </div>
-            <div class="mb-3">
-                <label for="inputCity" class="form-label${errors.hasFieldErrors('city') ? 'is-invalid' : ''}">City</label>
-                <form:input path="city" id="inputCity"/>
+            <div class="form-floating mb-3 mt-3">
+                <form:input path="city" type="text" class="form-control" id="inputCity" placeholder="City" name="inputCity"/>
                 <form:errors path="city" cssClass="invalid-feedback" />
+                <label for="inputCity" class="form-label${errors.hasFieldErrors('city') ? 'is-invalid' : ''}">City</label>
             </div>
+
             <div class="mb-3">
-                <label for="inputCountry" class="form-label${errors.hasFieldErrors('country') ? 'is-invalid' : ''}">Country</label>
-                <form:input path="country" id="inputCountry"/>
-                <form:errors path="country" cssClass="invalid-feedback" />
-            </div>
-            <div class="mb-3">
-                <button type="submit" class="btn btn-primary">Submit</button>
+                <button type="submit" class="btn btn-lightGreen">Submit</button>
                 <a href="createCourse" class="btn btn-default">Cancel</a>
             </div>
-        </fieldset>
-    </form:form>
+        </div>
 
+    </form:form>
 </layout:page-container>
 

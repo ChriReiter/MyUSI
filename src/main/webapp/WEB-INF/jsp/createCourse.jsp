@@ -17,12 +17,11 @@
         <form:hidden path="participants"/>
         <form:hidden path="instructor"/>
 
-
         <legend>Create a new course</legend>
         <div class="container border border-dark rounded-4 border-2 p-3 mb-4">
             <h4>General Information</h4>
-            <div class="form-floating">
-                <form:select path="category" id="selectCategory" cssClass="form-select mb-3 ${errors.hasFieldErrors('category') ? 'is-invalid' : ''}">
+            <div class="form-floating mt-3">
+                <form:select path="category" id="selectCategory" cssClass="form-select mb-0 ${errors.hasFieldErrors('category') ? 'is-invalid' : ''}">
                     <form:option value=""></form:option>
                     <form:options items="${category}" itemValue="id" itemLabel="categoryName"/>
                 </form:select>
@@ -88,17 +87,6 @@
                 <label for="inputEndTime" class="form-label">End Time</label>
             </div>
         </div>
-
-<%--        <div class="container border border-dark rounded-4 border-2 p-3 mb-4">--%>
-<%--            <h4>Upload Image</h4>--%>
-<%--            <div class="chooseImage">--%>
-<%--                <form:input path="" type="file" name="inputFile" id="inputFile" accept=".jpg,.gif.png"/>--%>
-<%--                <div class="image-preview" id="imagePreview">--%>
-<%--                    <img src="" alt="Image Preview" class="image-preview-image">--%>
-<%--                    <span class="image-preview-text">Image Preview</span>--%>
-<%--                </div>--%>
-<%--            </div>--%>
-<%--        </div>--%>
 
         <div></div>
         <div class="mb-3">
