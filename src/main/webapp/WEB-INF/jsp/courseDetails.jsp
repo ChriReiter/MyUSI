@@ -7,6 +7,7 @@
 <%@taglib prefix="bootstrap" tagdir="/WEB-INF/tags/bootstrap" %>
 <%@taglib prefix="layout" tagdir="/WEB-INF/tags/layout" %>
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 
 <layout:page-container title="Course Details" activePage="courseDetails">
     <h1 class="mt-4">Details</h1>
@@ -61,12 +62,13 @@
         </tbody>
     </table>
 
-    <h1 class="mt-4">Dates</h1>
+    <h1 class="mt-4">Date</h1>
     <table class="table table-bordered border-secondary">
         <thead>
             <th class="text-center align-middle" scope="col">Date</th>
             <th class="text-center align-middle" scope="col">Time</th>
             <th class="text-center align-middle" scope="col">Location</th>
+            <th class="text-center align-middle" scope="col">Actions</th>
         </thead>
         <tbody>
             <tr>
@@ -78,6 +80,61 @@
                 <td class="text-center align-middle"> ${course.locations.name} <br>
                      ${course.locations.street} ${course.locations.housenum} <br>
                      ${course.locations.zip} ${course.locations.city}, ${course.locations.country}
+                </td>
+                <td>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col">
+                                <c:if test="${currentUser != ''}">
+                                    <form method="post" class="col" action="/courseRegistration?id=${course.id}">
+                                        <sec:csrfInput/>
+                                        <button id="bookCourseButton${course.id}" type="submit" class="btn btn-lightGreen">
+                                            <c:if test="${course.numSpaces > course.participants.size()}">
+                                            Book
+                                            </c:if>
+                                            <c:if test="${course.numSpaces <= course.participants.size()}">
+                                            Add Queue
+                                            </c:if>
+                                    </form>
+                                    <script>document.getElementById("bookCourseButton${course.id}").hidden = false</script>
+                                </c:if>
+                            </div>
+                            <c:forEach items="${course.participants}" var="participant">
+                                <c:if test="${participant.username == currentUser}">
+                                    <script>document.getElementById("bookCourseButton${course.id}").hidden = true</script>
+                                    <form method="post" class="col" action="/courseDeregistration?id=${course.id}">
+                                        <sec:csrfInput/>
+                                        <button id="notBookCourseButton" type="submit" class="btn btn-danger">Cancel Booking</button>
+                                    </form>
+                                </c:if>
+                            </c:forEach>
+                            <sec:authorize access="hasRole('ROLE_INSTRUCTOR') || hasRole('ROLE_ADMIN')">
+                                <c:if test="${currentUser == course.instructor.username}">
+
+                                    <hr class="mt-3">
+                                    <div class="col col-4 w-auto">
+                                        <a href="/createCourse?id=${course.id}">
+                                            <sec:csrfInput/>
+                                            <button id="bookCourseButton" class="btn btn-outline-secondary">Modify</button>
+                                        </a>
+                                    </div>
+                                    <div class="col col-4 w-auto">
+                                        <a href="/sendMailToEnrolledUsers?id=${course.id}">
+                                            <sec:csrfInput/>
+                                            <button id="mailToButton" class="btn btn-outline-secondary">Mail Users</button>
+                                        </a>
+                                    </div>
+                                    <div class="col col-4 w-auto">
+                                        <form method="post" class="col" action="/deleteCourse?id=${course.id}">
+                                            <sec:csrfInput/>
+                                            <button id="deleteCourseButton" type="submit" class="btn btn-outline-danger">Delete</button>
+                                        </form>
+                                    </div>
+                                </c:if>
+                            </sec:authorize>
+                        </div>
+                    </div>
+                    </div>
                 </td>
             </tr>
         </tbody>
