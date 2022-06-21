@@ -64,4 +64,4 @@ Password: yN4YBkRk6fXkP9YD
 
 ## Link to full documentation
 OneDrive:
-https://fhjoanneum-my.sharepoint.com/:b:/g/personal/matthias_windisch_edu_fh-joanneum_at/ESWdcolgK6xHmpWuHJrmBmQBLAFLKanuPs4tfTwsXieAtA?e=nPaDme
+https://fhjoanneum-my.sharepoint.com/:f:/g/personal/matthias_windisch_edu_fh-joanneum_at/EvXa25ELFr9Oomi3SefNOyoBpUeIwfCR-_HP0A2F_X-TXA?e=f1FkDG
