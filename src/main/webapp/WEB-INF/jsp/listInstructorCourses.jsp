@@ -208,15 +208,12 @@
 
 <script src="/js/switchLayout.js"></script>
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-<script src="https://www.gstatic.com/charts/loader.js"></script>
-<script src="/js/switchLayout.js"></script>
-<script src="js/statistics.js">const courseList = "${courses}"</script>
 <script>
     google.charts.load("current", {packages:["corechart"]});
     google.charts.setOnLoadCallback(drawChart);
 
     var categoryList = [];
-    <c:forEach items="${courses}" var="course">
+    <c:forEach items="${statisticsCourses}" var="course">
     if (categoryList["${course.category.categoryName}"] == null) {
         categoryList["${course.category.categoryName}"] = 1;
     } else {
@@ -269,27 +266,10 @@
         ['SaturdayEnd'],
         ['SundayStart'],
         ['SundayEnd'],
-        /*
-        ['MondayStartUser'],
-        ['MondayEndUser'],
-        ['TuesdayStartUser'],
-        ['TuesdayEndUser'],
-        ['WednesdayStartUser'],
-        ['WednesdayEndUser'],
-        ['ThursdayStartUser'],
-        ['ThursdayEndUser'],
-        ['FridayStartUser'],
-        ['FridayEndUser'],
-        ['SaturdayStartUser'],
-        ['SaturdayEndUser'],
-        ['SundayStartUser'],
-        ['SundayEndUser'],
-
-         */
     ]
 
 
-    <c:forEach items="${courses}" var="course">
+    <c:forEach items="${statisticsCourses}" var="course">
 
     if ("${course.date.dayOfWeek}" == "MONDAY") {
         weekdayTimesStart[0].push(parseInt("${course.timeStart.substring(0,2)*60 + course.timeStart.substring(3,5)}"))
@@ -314,56 +294,7 @@
         weekdayTimesStart[13].push(parseInt("${course.timeEnd.substring(0,2)*60 + course.timeEnd.substring(3,5)}"))
     }
     </c:forEach>
-    /*
-<c:forEach items="${allCourses}" var ="course">
-    console.log("ja")
-    if ("${course.date.dayOfWeek}" == "MONDAY") {
-        for (i=0; i<${course.participants.size()}; i++) {
-            weekdayTimesStart[14].push(parseInt("${course.timeStart.substring(0,2)*60 + course.timeStart.substring(3,5)}"))
-            weekdayTimesStart[15].push(parseInt("${course.timeEnd.substring(0,2)*60 + course.timeEnd.substring(3,5)}"))
-        }
 
-    } else if ("${course.date.dayOfWeek}" == "TUESDAY") {
-        for (i=0; i<${course.participants.size()}; i++) {
-            weekdayTimesStart[16].push(parseInt(${course.timeStart.substring(0,2)*60 + course.timeStart.substring(3,5)}))
-            weekdayTimesStart[17].push(parseInt("${course.timeEnd.substring(0,2)*60 + course.timeEnd.substring(3,5)}"))
-        }
-
-    } else if ("${course.date.dayOfWeek}" == "WEDNESDAY") {
-        for (i=0; i<${course.participants.size()}; i++) {
-            weekdayTimesStart[18].push(parseInt("${course.timeStart.substring(0,2)*60 + course.timeStart.substring(3,5)}"))
-            weekdayTimesStart[19].push(parseInt("${course.timeEnd.substring(0,2)*60 + course.timeEnd.substring(3,5)}"))
-        }
-
-    } else if ("${course.date.dayOfWeek}" == "THURSDAY") {
-        for (i=0; i<${course.participants.size()}; i++) {
-            weekdayTimesStart[20].push(parseInt("${course.timeStart.substring(0,2)*60 + course.timeStart.substring(3,5)}"))
-            weekdayTimesStart[21].push(parseInt("${course.timeEnd.substring(0,2)*60 + course.timeEnd.substring(3,5)}"))
-        }
-    } else if ("${course.date.dayOfWeek}" == "FRIDAY") {
-        for (i=0; i<${course.participants.size()}; i++) {
-            weekdayTimesStart[22].push(parseInt("${course.timeStart.substring(0,2)*60 + course.timeStart.substring(3,5)}"))
-            weekdayTimesStart[23].push(parseInt("${course.timeEnd.substring(0,2)*60 + course.timeEnd.substring(3,5)}"))
-        }
-
-    } else if ("${course.date.dayOfWeek}" == "SATURDAY") {
-        for (i=0; i<${course.participants.size()}; i++) {
-            weekdayTimesStart[24].push(parseInt(${course.timeStart.substring(0,2)*60 + course.timeStart.substring(3,5)}))
-            weekdayTimesStart[25].push(parseInt("${course.timeEnd.substring(0,2)*60 + course.timeEnd.substring(3,5)}"))
-        }
-
-    } else {
-        for (i=0; i<${course.participants.size()}; i++) {
-            weekdayTimesStart[26].push(parseInt("${course.timeStart.substring(0,2)*60 + course.timeStart.substring(3,5)}"))
-            weekdayTimesStart[27].push(parseInt("${course.timeEnd.substring(0,2)*60 + course.timeEnd.substring(3,5)}"))
-        }
-
-    }
-    </c:forEach>
-    */
-
-    //console.log(weekdayTimesStart)
-    //console.log("${allCourses}")
     function drawBoxPlot() {
         var array = weekdayTimesStart
 
@@ -410,18 +341,8 @@
             return array;
         }
 
-        /*
-* Takes an array and returns
-* the median value.
-*/
         function getMedian(array) {
             var length = array.length;
-
-            /* If the array is an even length the
-            * median is the average of the two
-            * middle-most values. Otherwise the
-            * median is the middle-most value.
-            */
 
             if (length % 2 === 0) {
                 var midUpper = length / 2;
@@ -488,14 +409,12 @@
     google.charts.setOnLoadCallback(drawHistogramm);
 
     var ages = [];
-    <c:forEach items="${courses}" var="course">
+    <c:forEach items="${statisticsCourses}" var="course">
     <c:forEach items="${course.participants}" var="user">
     <c:if test="${user.dayOfBirth != null}">
 
     ages.push(2022 - ${user.dayOfBirth.year})
     </c:if>
-
-
 
     </c:forEach>
     </c:forEach>
