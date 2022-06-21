@@ -97,7 +97,7 @@
 </div>
 
 <!-- Footer -->
-<footer class="text-center text-lg-start text-muted" style="background-color: #1D1E2C;">
+<footer class="text-center text-lg-start text-muted mt-4" style="background-color: #1D1E2C;">
     <!-- Section: Social media -->
     <section
             class="d-flex justify-content-center justify-content-lg-between p-4"
