@@ -153,7 +153,7 @@
                     <!-- Links -->
 
                     <h6 class="text-uppercase fw-bold mb-4" style="color: #4FB286">
-                        Instructor Options
+                        Legal Documents
                     </h6>
                     <p style="color: #50FFB1">
                         <a href="/termsAndConditions" class="text-reset">Terms and Conditions</a>
