@@ -159,9 +159,12 @@ class CourseController(val userRepository: UserRepository, val courseRepository:
         val loggedUser = SecurityContextHolder.getContext().authentication.name
 //        val instructorCourses = courseRepository.findCoursesByInstructor(userRepository.findByUsername(loggedUser))
         val instructorCourses = courseRepository.findCoursesByInstructorAndDateGreaterThanEqual(userRepository.findByUsername(loggedUser), LocalDate.now())
-
+        val instructorStatisticCourses = courseRepository.findCoursesByInstructor(userRepository.findByUsername(loggedUser))
         if (instructorCourses != null) {
             model["courses"] = instructorCourses
+        }
+        if (instructorStatisticCourses != null) {
+            model["statisticsCourses"] = instructorStatisticCourses
         }
         model["locations"] = locationRepository.findAll()
         return "listInstructorCourses"
