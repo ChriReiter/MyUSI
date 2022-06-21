@@ -44,7 +44,7 @@ Users can be registered; therefore, you can create your own user. Alternatively,
 
 Username: thomas
 
-Password: password
+Password: passwort
 
 ### Course Instructor
 Can access the same functionality as the authenticated user. Additionally, can create courses, categories and locations, as well as modify courses previously created and all locations. Authorized to view all his proposed courses in a separate page. Can send emails to all users registered in a specific.
@@ -52,7 +52,7 @@ Course instructors cannot be registered. Therefore, a course instructor can be l
 
 Username: ingrid 
 
-Password: password
+Password: passwort
 
 ### Administrator
 Can access the same functionality as the administrator. Additionally, can modify all courses.
